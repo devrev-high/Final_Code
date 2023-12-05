@@ -1,2 +1,2 @@
-This repository contains all the code files
+This repository contains all the code files. 
 #GoForGold

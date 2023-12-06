@@ -128,6 +128,58 @@ class Dynamic_dataGen():
              cnt=cnt+1
 
 
+
+
+class Bonus_dataGen():
+    def __init__(self) -> None:
+        self.tools_list = tool()
+        self.sample_query = query()
+        self.outputMessage = outputMessage()
+        self.query_list = []
+        self.client = OpenAI() 
+        self.no_of_Queries2beGenerated = 0
+        self.temp_str = temp_str()
+
+
+    def genBonusQueryOutputPair(self, n):
+        self.no_of_Queries2beGenerated = n
+        self.no_of_TimesLoopRuns = n/5
+        for j in range(0, self.no_of_TimesLoopRuns):
+            response = self.client.chat.completions.create(
+            model="gpt-4-1106-preview",
+            messages=[
+                    {"role": "system", "content": "You are an extremely helpful and faithful assistant. \
+                            You strictly adhere to the query format given. You are very creative and generate examples \
+                            similar yet different to the given examples. The queries that you generate do not contain \
+                            nested if-else statements or nested for loops. The queries should not require if-else statements \
+                            inside a for loop. Similarly, the queries should not require for loops inside an if-else statement.\
+                            You are given a list of tools and their descriptions. You are given a list of specifications for\
+                            the queries that you need to generate."},
+                    
+                    {"role": "user", "content": f"Given below are 2 sections, each having a docstring description of tools, its \
+                            parameters and return type: Section-1: {self.tools_list} Section-2: {self.temp_str} \
+                            {user_prompt_content_3} {user_prompt_content_4}"}
+                    
+            ]
+            temperature=0.4
+            queries = completion.choices[0].message.content
+
+            completion = self.client.chat.completions.create(
+            model="gpt-4-1106-preview",
+            messages= [
+                    {'role' : 'system', 'content' : 'You are an extremely helpful and extremely faithful chatbot.\
+                        You strictly adhere to the``     output format given. You can only call given functions calls to \
+                        complete a query. You only know these functions and nothing else.'},
+
+                    {'role':'user', 'content':  f"You call given functions calls to complete a query. You only know these functions \
+                        and nothing else: {self.tools_list} + {self.temp_str}. {user_prompt_output_content_2}"},
+            ]
+            temperature = 0.8
+            output = completion.choices[0].message.content
+        
+    return
+
+
     
 
         

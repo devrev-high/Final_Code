@@ -26,11 +26,7 @@ from trl import SFTTrainer
 
 # Remove the huggingface login from here <CHECK HERE>
 from huggingface_hub import login
-login(token="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")
-
 import wandb
-wandb.login(key="aefafd1eeb36b853fd75c422ffc021d30bd259db")
-
 def find_all_linear_names(model):
     cls = bnb.nn.Linear4bit #if args.bits == 4 else (bnb.nn.Linear8bitLt if args.bits == 8 else torch.nn.Linear)
     lora_module_names = set()

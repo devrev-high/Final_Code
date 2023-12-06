@@ -1,0 +1,1955 @@
+def get_project_timeline(project_id):
+"""
+Retrieves the timeline and key milestones of a project
+
+Parameters:
+    project_id (str): The ID of the project for which the timeline is requested
+
+Returns:
+    list: Key milestones and dates for the project timeline
+"""
+
+
+def get_recent_activity_log(user_id, limit=10):
+"""
+Gets the most recent activity log entries for a given user
+
+Parameters:
+    user_id (str): The ID of the user to get activities for
+    limit (int): The maximum number of activity log entries to return
+
+Returns:
+    list: Recent activity log entries
+"""
+
+
+def filter_users_by_skill(skill_name, minimum_proficiency=3):
+"""
+Filters users by a specific skill and its minimum proficiency level
+
+Parameters:
+    skill_name (str): The name of the skill to filter by
+    minimum_proficiency (int): The minimum proficiency level a user should have in the skill
+
+Returns:
+    list: A list of user IDs that match the criteria
+"""
+
+
+def list_user_tasks(user_id, completed=False):
+"""
+Lists all tasks assigned to a user, optionally filtering for completed tasks
+
+Parameters:
+    user_id (str): The ID of the user whose tasks are to be listed
+    completed (bool): If True, only completed tasks are returned
+
+Returns:
+    list: A list of tasks assigned to the user
+"""
+
+
+def mark_task_as_completed(task_id):
+"""
+Marks a task as completed in the system.
+
+Parameters:
+    task_id (str): The ID of the task to be marked as complete
+
+Returns:
+    bool: True if marked successfully, False otherwise
+"""
+
+
+def generate_report_from_template(report_template_id, data_source_id):
+"""
+Generates a report based on a specified template and data source
+
+Parameters:
+    report_template_id (str): The ID of the report template to use
+    data_source_id (str): The ID of the data source
+
+Returns:
+    str: Generated report
+"""
+
+
+def estimate_task_duration(task_id, complexity_level):
+"""
+Estimates the duration needed to complete a task based on its complexity level
+
+Parameters:
+    task_id (str): The ID of the task
+    complexity_level (str): The complexity level of the task. Allowed values: 'low', 'medium', 'high'
+
+Returns:
+    float: Estimated duration in hours
+"""
+
+def update_user_ID(user_id, status):
+"""
+Updates the status of a user account in the system and returns the updated id
+
+Parameters:
+    user_id (str): The ID of the user whose status is to be updated
+    status (str): The new status to apply to the user account
+
+Returns:
+    str: updated User Id
+"""
+def filter_work_by_date_range(start_date, end_date, work_type=None):
+"""
+Filters work items based on a given date range.
+
+Parameters:
+    start_date (str): The start date of the desired date range
+    end_date (str): The end date of the desired date range
+    work_type (list): Optional filter for type of work
+
+Returns:
+    list: Work items within the specified date range
+"""
+
+
+def delete_objects_by_id(object_ids):
+"""
+Deletes objects from the system based on their IDs
+
+Parameters:
+    object_ids (list): List of object IDs to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+"""
+
+
+def merge_duplicate_objects(primary_object_id, duplicate_object_id):
+"""
+Merges a duplicate object into a primary object
+
+Parameters:
+    primary_object_id (str): The ID of the primary object
+    duplicate_object_id (str): The ID of the duplicate object to be merged
+
+Returns:
+    bool: True if the merge was successful, False otherwise
+"""
+
+
+def retrieve_user_permissions(user_id):
+"""
+Retrieves the list of permissions for the specified user
+
+Parameters:
+    user_id (str): The ID of the user whose permissions are to be retrieved
+
+Returns:
+    list: The list of permissions for the user
+"""
+
+
+def list_user_skills(user_id):
+"""
+Lists the skills associated with the specified user
+
+Parameters:
+    user_id (str): The ID of the user whose skills are being queried
+
+Returns:
+    list: The skills of the user
+"""
+
+
+def remove_object_by_id(object_id):
+"""
+Removes an object from the system by its ID
+
+Parameters:
+    object_id (str): The ID of the object to remove
+
+Returns:
+    None
+"""
+
+
+def generate_report_data(report_type, data_set_id):
+"""
+Generates report data based on the provided report type and data set
+
+Parameters:
+    report_type (str): The type of report to generate
+    data_set_id (str): The ID of the data set to be used for the report
+
+Returns:
+    str: A report data string or ID depending on internal implementation
+"""
+
+
+def get_ticket_comments(ticket_id):
+"""
+Retrieves the comments attached to a ticket
+
+Parameters:
+    ticket_id (str): The ID of the ticket whose comments are being retrieved
+
+Returns:
+    list: Comments associated with the ticket
+"""
+
+
+def calculate_budget_remaining(budget_id):
+"""
+Calculates the remaining budget for a given budget ID
+
+Parameters:
+    budget_id (str): The ID of the budget to calculate
+
+Returns:
+    float: The amount of remaining budget
+"""
+
+
+def estimate_time_for_task(task_id, estimation_hours):
+"""
+Updates a task with a time estimation
+
+Parameters:
+    task_id (str): The ID of the task to be updated with an estimated time
+    estimation_hours (float): The estimated time in hours to complete the task
+
+Returns:
+    None
+"""
+
+
+def calculate_progress_percentage(project_id):
+"""
+Calculates the progress percentage of the given project
+
+Parameters:
+    project_id (str): The ID of the project for which to calculate progress
+
+Returns:
+    float: The percentage of project completion
+"""
+
+
+def archive_old_tickets(older_than_date, active_status=False):
+"""
+Archives tickets that are older than the specified date, optionally filters by active status and returns the IDs
+
+Parameters:
+    older_than_date (str): A date in the format 'YYYY-MM-DD', to filter tickets older than this date
+    active_status (bool): If True, only archives tickets that are currently active; defaults to False
+
+Returns:
+    str: ID of tickets archived
+"""
+
+
+def generate_report_from_data(dataset_id, report_type="summary"):
+"""
+Generates a specific type of report from a dataset
+
+Parameters:
+    dataset_id (str): The ID of the dataset from which to generate the report
+    report_type (str): The type of report to generate, default is 'summary'
+
+Returns:
+    str: The ID of the generated report
+"""
+
+
+def remove_users_from_group(user_ids, group_id):
+"""
+Removes the specified users from a group
+
+Parameters:
+    user_ids (list): A list of user IDs to be removed from the group
+    group_id (str): The ID of the group from which the users should be removed
+
+Returns:
+    bool: Status of the removal
+"""
+
+
+def mark_ticket_as_resolved(ticket_id):
+"""
+Marks a ticket as resolved in the system
+
+Parameters:
+    ticket_id (str): The ID of the ticket to be marked as resolved
+
+Returns:
+    bool: True if the ticket was marked as resolved, False otherwise
+"""
+
+
+def assign_tasks_to_employee(task_ids, employee_id):
+"""
+Assigns a list of tasks to the specified employee
+
+Parameters:
+    task_ids (list): A list of task IDs to be assigned
+    employee_id (str): The ID of the employee to whom the tasks will be assigned
+
+Returns:
+    bool: True if the assignment was successful, False otherwise
+"""
+
+
+def notify_user_of_overdue_tasks(user_id):
+"""
+Notifies a user of any overdue tasks assigned to them
+
+Parameters:
+    user_id (str): The ID of the user to check for overdue tasks
+
+Returns:
+    None
+"""
+
+
+def retrieve_user_contact_info(user_id):
+"""
+Retrieves the contact information for a user
+
+Parameters:
+    user_id (str): The ID of the user whose contact info is requested
+
+Returns:
+    str: Contact information of the user
+"""
+
+
+def filter_contacts_by_organization(organization_id, active_only=True):
+"""
+Returns a list of contacts associated with the specified organization, optionally filtering only active contacts
+
+Parameters:
+    organization_id (str): The ID of the organization to filter contacts
+    active_only (bool): Flag to filter only active contacts, default value 'True'
+
+Returns:
+    list: Contacts associated with the organization
+"""
+
+
+def toggle_feature_access(feature_id, user_id, enable_access):
+"""
+Toggles access to a specific feature for a user
+
+Parameters:
+    feature_id (str): The ID of the feature to toggle access
+    user_id (str): The ID of the user whose access will be toggled
+    enable_access (bool): 'True' to enable access, 'False' to disable
+
+Returns:
+    bool: The resulting access status
+"""
+
+
+def get_sprint_history(sprint_id):
+"""
+Retrieves the change history of a sprint
+
+Parameters:
+    sprint_id (str): The ID of the ticket
+
+Returns:
+    list: A list of changes made to the sprint
+"""
+
+
+def update_stage_of_work_item(work_item_id, new_stage):
+"""
+Updates the stage of a work item
+
+Parameters:
+    work_item_id (str): The ID of the work item to update
+    new_stage (str): The new stage to which the work item should be moved
+
+Returns:
+    bool: True if the stage is successfully updated, False otherwise
+"""
+
+
+def merge_duplicate_tickets(primary_ticket_id, duplicate_ticket_ids):
+"""
+Merges duplicate tickets into a primary ticket
+
+Parameters:
+    primary_ticket_id (str): The ID of the primary ticket that remains
+    duplicate_ticket_ids (list): The IDs of the duplicate tickets to be merged into the primary
+
+Returns:
+    None
+"""
+
+
+def list_completed_items_by_user(user_id):
+"""
+Lists items that have been completed by the given user
+
+Parameters:
+    user_id (str): The ID of the user whose completed items are being requested
+
+Returns:
+    list: Completed items by the user
+"""
+
+
+def update_contact_information(contact_id, new_phone=None, new_email=None):
+"""
+Updates the contact information with new provided phone number or email
+
+Parameters:
+    contact_id (str): The ID of the contact to update
+    new_phone (str): The new phone number for the contact, default is 'None'
+    new_email (str): The new email address for the contact, default is 'None'
+
+Returns:
+    bool: Status of the update operation
+"""
+
+
+def get_user_avatar(user_id):
+"""
+Retrieves the avatar image URL for the specified user
+
+Parameters:
+    user_id (str): The ID of the user whose avatar is to be retrieved
+
+Returns:
+    str: URL of the user's avatar image
+"""
+
+
+def merge_duplicate_tasks(primary_task_id, duplicate_task_ids):
+"""
+Merges duplicate tasks into a primary task
+
+Parameters:
+    primary_task_id (str): The ID of the primary task which remains after the merge
+    duplicate_task_ids (list): A list of IDs of the duplicate tasks to be merged
+
+Returns:
+    None
+"""
+
+
+def link_related_tickets(ticket_id, related_ids):
+"""
+Links tickets that are related to each other
+
+Parameters:
+    ticket_id (str): The ID of the ticket that will be linked with related tickets
+    related_ids (list): List of IDs for tickets that are related to the original ticket
+
+Returns:
+    bool: True if the linking is successful, False otherwise
+"""
+
+
+def mark_item_as_duplicated(work_item_id, duplicate_of_id):
+"""
+Marks a work item as a duplicate of another
+
+Parameters:
+    work_item_id (str): The ID of the work item that is a duplicate
+    duplicate_of_id (str): The ID of the work item of which it is a duplicate
+
+Returns:
+    bool: True if the item is successfully marked, False otherwise
+"""
+
+
+def extend_sprint_end_date(sprint_id, new_end_date):
+"""
+Extends the end date of a current sprint to a new date
+
+Parameters:
+    sprint_id (str): The ID of the sprint to extend
+    new_end_date (str): The new end date for the sprint in YYYY-MM-DD format
+
+Returns:
+    bool: True if the sprint end date was extended, False otherwise
+"""
+
+
+def merge_duplicate_records(primary_record_id, duplicate_record_id):
+"""
+Merges a duplicate record into a primary record
+
+Parameters:
+    primary_record_id (str): The ID of the primary record to keep
+    duplicate_record_id (str): The ID of the duplicate record to merge
+
+Returns:
+    bool: True if the merge was successful; otherwise False
+"""
+
+
+def validate_data_integrity(data_point_ids):
+"""
+Checks the integrity of a list of data points in the system
+
+Parameters:
+    data_point_ids (list): List of data point IDs to validate
+
+Returns:
+    list: Validation results with status (True or False) for each data point
+"""
+
+
+def remove_object_from_sprint(object_id, sprint_id):
+"""
+Removes a specified object from a sprint and returns the new list
+
+Parameters:
+    object_id (str): The ID of the object to be removed
+    sprint_id (str): The ID of the project from which the object should be removed
+
+Returns:
+    list: Returns the updated list of sprint objects
+"""
+def retrieve_sprint_workload(sprint_id):
+"""
+Calculates the total workload for a given sprint based on the work items associated with it
+
+Parameters:
+    sprint_id (str): The ID of the sprint for workload calculation
+
+Returns:
+    float: Total workload in hours
+"""
+
+
+def update_contact_info(contact_id, new_email=None, new_phone=None):
+"""
+Updates the contact information for a given contact ID with new email and/or phone
+
+Parameters:
+    contact_id (str): The ID of the contact to update
+    new_email (str, optional): The new email address; defaults to None
+    new_phone (str, optional): The new phone number; defaults to None
+
+Returns:
+    bool: True if the update was successful; otherwise False
+"""
+
+
+def update_object_status(object_id, new_status, changed_by):
+"""
+Updates the status of an object and records the user that made the change
+
+Parameters:
+    object_id (str): The ID of the object for which the status is updated
+    new_status (str): The new status for the object
+    changed_by (str): The ID of the user who is changing the status
+
+Returns:
+    None
+"""
+
+
+def allocate_resources_to_project(project_id, resource_ids):
+"""
+Allocates specified resources to a project
+
+Parameters:
+    project_id (str): The ID of the project to which resources are allocated
+    resource_ids (list): A list of resource IDs to allocate to the project
+
+Returns:
+    bool: True if resources could be allocated, False otherwise
+"""
+
+
+def check_availability_of_part(part_id):
+"""
+Checks if a specific part is available in inventory
+
+Parameters:
+    part_id (str): The ID of the part to check for availability
+
+Returns:
+    bool: True if the part is available, False otherwise
+"""
+
+
+def validate_object_existence(object_id):
+"""
+Checks if an object with the given ID exists in the system
+
+Parameters:
+    object_id (str): The ID of the object to check
+
+Returns:
+    bool: True if the object exists, otherwise False
+"""
+
+
+def check_ticket_status(ticket_id):
+"""
+Checks the status of a ticket
+
+Parameters:
+    ticket_id (str): The ID of the ticket whose status is to be checked
+
+Returns:
+    str: The status of the ticket
+"""
+
+
+def schedule_meeting_with_user(user_id, duration=30, urgent=False):
+"""
+Schedules a meeting with a specified user
+
+Parameters:
+    user_id (str): The ID of the user with whom to schedule a meeting
+    duration (int): Duration of the meeting in minutes, default is '30'
+    urgent (bool): Whether the meeting is urgent, defaults to False
+
+Returns:
+    str: The ID of the scheduled meeting
+"""
+
+
+def validate_project_completion(project_id):
+"""
+Validates if all tasks within a project are completed
+
+Parameters:
+    project_id (str): The ID of the project to validate
+
+Returns:
+    bool: True if completed, False otherwise
+"""
+def assign_ticket_to_user(ticket_id, user_id):
+"""
+Assigns a specific ticket to a user
+
+Parameters:
+    ticket_id (str): The ID of the ticket to be assigned
+    user_id (str): The ID of the user to whom the ticket will be assigned
+
+Returns:
+    bool: True if the assignment is successful, False otherwise
+"""
+
+
+def get_user_workload(user_id):
+"""
+Determines the current workload for a user based on assigned tasks
+
+Parameters:
+    user_id (str): The ID of the user whose workload is to be determined
+
+Returns:
+    int: The number of tasks assigned to the user
+"""
+
+
+def generate_unique_identifier(prefix, use_timestamp=True):
+"""
+Generates a unique identifier with an optional timestamp
+
+Parameters:
+    prefix (str): A prefix for the identifier
+    use_timestamp (bool): If true, appends a timestamp to the prefix; defaults to True
+
+Returns:
+    str: The generated unique identifier
+"""
+
+
+def list_completed_tasks_by_user(user_id):
+"""
+Lists all completed tasks for a specific user
+
+Parameters:
+    user_id (str): The ID of the user whose completed tasks need to be listed
+
+Returns:
+    list: List of completed task IDs
+"""
+
+
+def filter_objects_by_type(object_ids, object_type):
+"""
+Filters a list of objects based on their type
+
+Parameters:
+    object_ids (list): A list of object IDs to filter
+    object_type (str): The type of objects to filter for
+
+Returns:
+    list: Filtered object IDs matching the specified type
+"""
+
+
+def mark_ticket_for_review(ticket_id, reviewer_id):
+"""
+Marks a ticket for review by a specific user
+
+Parameters:
+    ticket_id (str): The ID of the ticket to be marked for review
+    reviewer_id (str): The ID of the user who should review the ticket
+
+Returns:
+    None
+"""
+
+
+def list_recent_activities(user_id, limit=10):
+"""
+Lists the most recent activities performed by a user
+
+Parameters:
+    user_id (str): The ID of the user whose activities are to be listed
+    limit (int): The maximum number of recent activities to return
+
+Returns:
+    list: Recent activities of the user
+"""
+
+
+def deactivate_user_account(user_id, reason):
+"""
+Deactivates a user account for a specific reason
+
+Parameters:
+    user_id (str): The ID of the user whose account is to be deactivated
+    reason (str): The reason for deactivating the account
+
+Returns:
+    bool: True if the account was successfully deactivated; otherwise False
+"""
+
+
+def remove_object_from_inventory(object_id):
+"""
+Removes an object from the inventory system based on the object ID
+
+Parameters:
+    object_id (str): The ID of the object to remove from inventory
+
+Returns:
+    bool: True if the removal was successful, False otherwise
+"""
+def update_issue_status(issue_id, new_status):
+"""
+Updates the status of an issue
+
+Parameters:
+    issue_id (str): The ID of the issue to be updated
+    new_status (str): The new status to be set for the issue. Allowed values: open, in_progress, resolved, closed
+
+Returns:
+    bool: True if the update was successful, False otherwise
+"""
+
+
+def generate_summary_report(object_ids):
+"""
+Generates a summary report for the specified objects
+
+Parameters:
+    object_ids (list): A list of object IDs
+
+Returns:
+    str: The ID of the generated report
+"""
+
+
+def filter_tasks_by_completion(task_ids, completed=True):
+"""
+Filters the list of tasks by their completion status
+
+Parameters:
+    task_ids (list): List of task IDs to filter
+    completed (bool): The completion status to filter by. Default is 'True'
+
+Returns:
+    list: List of task IDs that match the completion status
+"""
+
+
+def assign_tasks_to_user(task_ids, user_id):
+"""
+Assigns a list of task IDs to the provided user
+
+Parameters:
+    task_ids (list): List of task IDs to be assigned
+    user_id (str): The ID of the user to whom the tasks will be assigned
+
+Returns:
+    bool: True if the assignment is successful, False otherwise
+"""
+def fetch_user_tasks(user_id, include_completed=False):
+"""
+Retrieves a list of tasks assigned to a user
+
+Parameters:
+    user_id (str): The ID of the user whose tasks are to be fetched
+    include_completed (bool): Whether to include completed tasks in the list
+
+Returns:
+    list: List of tasks assigned to the user
+"""
+
+
+def update_issue_with_solution(issue_id, solution_text):
+"""
+Updates an issue with a solution description
+
+Parameters:
+    issue_id (str): The ID of the issue to be updated
+    solution_text (str): The description of the solution to apply to the issue
+
+Returns:
+    None
+"""
+
+
+def set_user_permission(user_id, permission_level):
+"""
+Sets a specific permission level for a user account
+
+Parameters:
+    user_id (str): The ID of the user to set permissions for
+    permission_level (str): The level of permission to assign e.g., 'read', 'write', 'admin'
+
+Returns:
+    bool: True if the permission was set successfully, False otherwise
+"""
+
+
+def calculate_work_left(project_id):
+"""
+Calculates the estimated amount of work left in a project
+
+Parameters:
+    project_id (str): The ID of the project to calculate work for
+
+Returns:
+    float: Estimated hours of work left
+"""
+
+
+def retrieve_archived_documents(archive_id, keyword=None):
+"""
+Retrieves documents from the archive based on optional keyword
+
+Parameters:
+    archive_id (str): The ID of the archive from which to retrieve documents
+    keyword (str): Optional keyword to filter documents, default is 'None'
+
+Returns:
+    list: A list of documents matching the keyword if provided, otherwise all documents from the archive
+"""
+
+
+def create_report_for_sprint(sprint_id, report_type):
+"""
+Generates a report for a given sprint
+
+Parameters:
+    sprint_id (str): The ID of the sprint
+    report_type (str): The type of report to be generated
+
+Returns:
+    str: The ID of the generated report
+"""
+
+
+def filter_tasks_by_due_date(task_ids, due_date):
+"""
+Filters tasks by their due date
+
+Parameters:
+    task_ids (list): A list of task IDs to filter
+    due_date (str): The due date to filter tasks by
+
+Returns:
+    list: List of task IDs that have the specified due date
+"""
+
+
+
+def filter_records_by_date(record_ids, start_date, end_date):
+"""
+Filters a list of record IDs based on a date range
+
+Parameters:
+    record_ids (list): List of record IDs to filter
+    start_date (str): Start date for the filtering in 'YYYY-MM-DD' format
+    end_date (str): End date for the filtering in 'YYYY-MM-DD' format
+
+Returns:
+    list: Filtered record IDs
+"""
+
+
+def generate_report(report_type, subject_id, include_summary=True):
+"""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+"""
+
+
+def estimate_work_hours(work_id):
+"""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+"""
+
+
+def assign_task_to_user(task_id, user_id):
+"""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+"""
+
+
+def list_department_members(department_id):
+"""
+Returns a list of user IDs for all members within a specified department
+
+Parameters:
+    department_id (str): The ID of the department to list members for
+
+Returns:
+    list: User IDs of all the members in the department
+"""
+
+
+def generate_report_for_sprint(sprint_id):
+"""
+Generates a performance report for a specified sprint
+
+Parameters:
+    sprint_id (str): The ID of the sprint for which to generate the report
+
+Returns:
+    str: The ID of the generated report
+"""
+
+
+def create_new_ticket(title, description, reported_by):
+"""
+Creates a new ticket in the system with the given details
+
+Parameters:
+    title (str): The title of the new ticket
+    description (str): A detailed description of the issue or request
+    reported_by (str): The ID of the user reporting the ticket
+
+Returns:
+    str: The ID of the newly created ticket
+"""
+
+
+def filter_projects_by_category(category_id, active_only=True):
+"""
+Filters projects by their category and returns a list of project IDs
+
+Parameters:
+    category_id (str): The ID of the category to filter projects by
+    active_only (bool): Whether to return only active projects
+
+Returns:
+    list: List of project IDs matching the category filter
+"""
+def assign_task_to_user(task_id, user_id):
+"""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task is assigned
+
+Returns:
+    None
+"""
+
+
+def check_inventory_availability(part_id, minimum_quantity=1):
+"""
+Checks if the inventory has the specified part in at least the minimum quantity
+
+Parameters:
+    part_id (str): The ID of the part to check in inventory
+    minimum_quantity (int): The minimum quantity to check for; defaults to 1
+
+Returns:
+    bool: True if the minimum quantity is available; otherwise False
+"""
+
+
+def log_user_activity(user_id, activity_description):
+"""
+Logs a user's activity with a description
+
+Parameters:
+    user_id (str): The ID of the user whose activity is being logged
+    activity_description (str): A description of the activity
+
+Returns:
+    bool: True if the logging was successful, False otherwise
+"""
+
+
+def log_system_event(event_type, description, user_id=None):
+"""
+Logs an event in the system with an optional user ID associated with it
+
+Parameters:
+    event_type (str): The type of event to log
+    description (str): A brief description of the event
+    user_id (str): The ID of the user involved in the event, if applicable
+
+Returns:
+    str: The ID of the logged event
+"""
+
+
+def extract_keywords_from_text(text):
+"""
+Given a text, extracts and returns the main keywords
+
+Parameters:
+    text (str): The text from which keywords are to be extracted
+
+Returns:
+    list: A list of extracted keywords
+"""
+
+
+def check_object_permission(user_id, object_id):
+"""
+Checks if a user has permission to access a specific object
+
+Parameters:
+    user_id (str): The ID of the user
+    object_id (str): The ID of the object to check permission for
+
+Returns:
+    bool: True if the user has permission, False otherwise
+"""
+
+
+def update_ticket_status(ticket_id, new_status):
+"""
+Updates the status of a given ticket
+
+Parameters:
+    ticket_id (str): The ID of the ticket to be updated
+    new_status (str): The new status to update the ticket with
+
+Returns:
+    bool: True if the update was successful, otherwise False
+"""
+
+
+def get_object_history(object_id):
+"""
+Retrieves the change history of a specified object
+
+Parameters:
+    object_id (str): The ID of the object for which history is requested
+
+Returns:
+    list: A list of changes made to the object
+"""
+
+
+def calculate_estimated_effort(work_id):
+"""
+Calculates the estimated effort required to complete a work item.
+
+Parameters:
+    work_id (str): The ID of the work item
+
+Returns:
+    float: Estimated effort in hours
+"""
+
+
+def calculate_budget_allocation(project_id, cost_limit):
+"""
+Calculates and assigns the budget allocation for a project
+
+Parameters:
+    project_id (str): The ID of the project for which the budget is calculated
+    cost_limit (float): The cost limit for the project's budget
+
+Returns:
+    float: The amount allocated to the project budget
+"""
+
+
+def fetch_ticket_history(ticket_id, history_limit=10):
+"""
+Fetches the history of changes to a given ticket
+
+Parameters:
+    ticket_id (str): The ID of the ticket for which the history is requested
+    history_limit (int): Maximum number of history entries to retrieve. The default is '10'
+
+Returns:
+    list: A list of history records for the ticket
+"""
+
+
+def generate_work_report(work_ids):
+"""
+Generates a report for the given work items.
+
+Parameters:
+    work_ids (list): A list of work item IDs for report generation
+
+Returns:
+    str: The ID of the generated report
+"""
+def calculate_due_dates(work_item_ids, urgency_level):
+"""
+Calculates the due dates for given work items based on their urgency
+
+Parameters:
+    work_item_ids (list): A list of work item IDs for which due dates are required
+    urgency_level (str): The urgency level. Allowed values: 'high', 'medium', 'low'
+
+Returns:
+    list: Due dates for the specified work items
+"""
+
+
+def batch_update_user_roles(user_ids, new_role):
+"""
+Updates the roles for a batch of users to a new role
+
+Parameters:
+    user_ids (list): List of user IDs whose roles should be updated
+    new_role (str): The new role to assign
+
+Returns:
+    int: Number of users successfully updated
+"""
+
+
+def calculate_user_workload(user_id):
+"""
+Calculates the workload of a user based on assigned tasks
+
+Parameters:
+    user_id (str): The ID of the user whose workload is to be calculated
+
+Returns:
+    float: The calculated workload value
+"""
+
+
+def estimate_completion_time(task_id):
+"""
+Estimates the completion time for a given task
+
+Parameters:
+    task_id (str): The ID of the task for which to estimate completion time
+
+Returns:
+    float: The estimated number of hours to complete the task
+"""
+
+
+def generate_report_by_tag(tag_id, include_archived=False):
+"""
+Generates a report for all work items associated with the given tag
+
+Parameters:
+    tag_id (str): The ID of the tag used to filter work items
+    include_archived (bool): Include archived work items if set to True
+
+Returns:
+    list: Work items associated with the tag
+"""
+
+
+def convert_task_to_ticket(task_id):
+"""
+Converts a task into a ticket in the system
+
+Parameters:
+    task_id (str): The ID of the task to be converted
+
+Returns:
+    str: The ID of the newly created ticket
+"""
+def link_issues_to_project(issue_ids, project_id):
+"""
+Links the given issues to the specified project
+
+Parameters:
+    issue_ids (list): A list of issue IDs to be linked to the project
+    project_id (str): The ID of the project to which the issues should be linked
+
+Returns:
+    bool: Status of the linking action
+"""
+
+
+def calculate_project_completion_rate(project_id):
+"""
+Calculates the completion rate of tasks for a given project
+
+Parameters:
+    project_id (str): The ID of the project to calculate the completion rate for
+
+Returns:
+    float: The completion rate as a percentage
+"""
+
+
+def update_work_item_status(work_item_id, new_status):
+"""
+Updates the status of a given work item
+
+Parameters:
+    work_item_id (str): The ID of the work item to be updated
+    new_status (str): The new status to set for the work item
+"""
+
+
+def link_related_objects(object_id, related_object_id):
+"""
+Creates a link between two related objects in the system
+
+Parameters:
+    object_id (str): The ID of the primary object
+    related_object_id (str): The ID of the object to relate to the primary
+
+Returns:
+    bool: True if the objects were successfully linked, False otherwise
+"""
+
+
+def fetch_users_from_group(group_id):
+"""
+Retrieves a list of user IDs that belong to the specified group
+
+Parameters:
+    group_id (str): The ID of the group
+
+Returns:
+    list: User IDs belonging to the group
+"""
+def assign_tickets_to_user(ticket_ids, user_id):
+"""
+Assigns a set of tickets to a specified user
+
+Parameters:
+    ticket_ids (list): A list of ticket IDs to be assigned
+    user_id (str): The ID of the user to whom the tickets will be assigned
+
+Returns:
+    None
+"""
+
+
+def get_task_dependencies(task_id):
+"""
+Returns a list of task IDs that are dependencies for the given task
+
+Parameters:
+    task_id (str): The ID of the task for which dependencies are requested
+
+Returns:
+    list: Dependency task IDs
+"""
+
+
+def calculate_effort_for_task(task_id):
+"""
+Calculates the effort spent on a specific task by summing subtasks
+
+Parameters:
+    task_id (str): The ID of the task for which the effort needs to be calculated
+
+Returns:
+    float: Total effort spent on the task
+"""
+
+
+def remove_user_from_project(user_id, project_id):
+"""
+Removes a user from a project
+
+Parameters:
+    user_id (str): The ID of the user to be removed
+    project_id (str): The ID of the project from which the user is to be removed
+
+Returns:
+    bool: True if the user is successfully removed, False otherwise
+"""
+
+
+def generate_progress_report(project_id):
+"""
+Generates a progress report for the specified project
+
+Parameters:
+    project_id (str): The ID of the project for which to generate the report
+
+Returns:
+    str: A string summary of the project's progress report
+"""
+
+
+def generate_project_summary(project_id):
+"""
+Generates a summary report for the specified project
+
+Parameters:
+    project_id (str): The ID of the project to summarize
+
+Returns:
+    str: A summary report of the project
+"""
+
+
+def validate_work_item_completeness(work_id):
+"""
+Checks if a work item has all necessary information completed
+
+Parameters:
+    work_id (str): The ID of the work item to check
+
+Returns:
+    bool: True if the work item is complete, False if it lacks information
+"""
+
+
+def generate_progress_report(project_id, report_format="summary"):
+"""
+Generates a progress report for the specified project
+
+Parameters:
+    project_id (str): The ID of the project for which the progress report is needed
+    report_format (str): The format of the report; 'summary' or 'detailed'. The default is 'summary'
+
+Returns:
+    str: The generated progress report
+"""
+
+
+def list_completed_tasks_by_user(user_id, project_id=None):
+"""
+Lists all tasks completed by a given user, optionally filtered by project
+
+Parameters:
+    user_id (str): The ID of the user
+    project_id (str, optional): The ID of the project to filter tasks
+
+Returns:
+    list: List of task IDs completed by the user
+"""
+
+
+def remove_object_from_archive(object_id):
+"""
+Removes an object from the system archive, making it active again
+
+Parameters:
+    object_id (str): The ID of the object to be removed from the archive
+
+Returns:
+    bool: True if the object was successfully removed, False otherwise
+"""
+
+
+def calculate_time_until_deadline(work_item_id):
+"""
+Calculates the amount of time remaining until the deadline of a work item
+
+Parameters:
+    work_item_id (str): The ID of the work item
+
+Returns:
+    float: The number of hours until the deadline
+"""
+
+
+
+def validate_user_permissions(user_id, required_permissions):
+"""
+Checks if the user has the specified permissions
+
+Parameters:
+    user_id (str): The ID of the user whose permissions need to be checked
+    required_permissions (list): A list of permissions to check against the user's permissions
+
+Returns:
+    bool: True if the user has all the required permissions, False otherwise
+"""
+
+
+def track_time_on_task(task_id, hours_spent):
+"""
+Tracks time spent on a task by logging the number of hours
+
+Parameters:
+    task_id (str): The ID of the task on which time is spent
+    hours_spent (float): The number of hours spent on the task
+
+Returns:
+    bool: Status of the time tracking
+"""
+
+
+def archive_completed_work(work_ids):
+"""
+Archives a list of completed work items
+
+Parameters:
+    work_ids (list): A list of work item IDs that have been completed and need to be archived
+
+Returns:
+    int: The number of work items successfully archived
+"""
+
+
+def calculate_estimated_completion(project_id):
+"""
+Calculates the estimated completion date for a project based on current progress
+
+Parameters:
+    project_id (str): The ID of the project to be analyzed
+
+Returns:
+    str: Estimated date of completion
+"""
+
+
+def log_system_activity(activity_description, user_id=None):
+"""
+Logs a system activity with an optional user ID
+
+Parameters:
+    activity_description (str): A brief description of the activity being logged
+    user_id (str, optional): The ID of the user associated with the activity; defaults to None
+
+Returns:
+    bool: True if the activity was logged successfully; otherwise False
+"""
+def merge_ticket_notes(ticket_id, note_ids, updated_by):
+"""
+Merges multiple notes into a single ticket note
+
+Parameters:
+    ticket_id (str): The ID of the ticket where the merged note will be added
+    note_ids (list): List of note IDs that will be merged into the ticket
+    updated_by (str): The ID of the user performing the merge
+
+Returns:
+    str: ID of the updated ticket note
+"""
+
+
+def estimate_ticket_resolution_time(ticket_id):
+"""
+Estimates the resolution time for a given ticket
+
+Parameters:
+    ticket_id (str): The ID of the ticket to estimate time for
+
+Returns:
+    float: Estimated time in hours to resolve the ticket
+"""
+
+
+def validate_data_consistency(data_id, schema_id):
+"""
+Validates if data conforms to a specified schema for consistency
+
+Parameters:
+    data_id (str): The ID of the data to be validated
+    schema_id (str): The ID of the schema to validate the data against
+
+Returns:
+    bool: True if data is consistent, False otherwise
+"""
+def assign_issues_to_user(issue_ids, user_id):
+"""
+Assigns a list of issues to the specified user
+
+Parameters:
+    issue_ids (list): A list of issue IDs that need to be assigned
+    user_id (str): The user ID to whom the issues will be assigned
+
+Returns:
+    None
+"""
+
+
+def fetch_user_created_work(user_id, work_type=None):
+"""
+Retrieves work items created by a specific user
+
+Parameters:
+    user_id (str): The ID of the user whose work items are to be retrieved
+    work_type (list): Filters for work of the provided types, e.g., ['issue', 'ticket']
+
+Returns:
+    list: Work items created by the user
+"""
+
+
+def batch_update_task_status(task_ids, new_status):
+"""
+Updates the status of multiple tasks in a batch operation
+
+Parameters:
+    task_ids (list): A list of task IDs whose status needs updating
+    new_status (str): The new status to apply to the tasks
+
+Returns:
+    bool: True if the update was successful, False otherwise
+"""
+
+
+def archive_completed_tasks(project_id, completed_since):
+"""
+Archives tasks that are completed within the given project since the specified time
+
+Parameters:
+    project_id (str): The ID of the project containing the tasks
+    completed_since (str): Archive tasks completed after this timestamp
+
+Returns:
+    int: Number of tasks archived
+"""
+
+
+def retrieve_user_workload(user_id):
+"""
+Retrieves the current workload for the specified user
+
+Parameters:
+    user_id (str): The ID of the user whose workload is to be retrieved
+
+Returns:
+    list: A list containing workload details
+"""
+
+
+def calculate_expense_totals(expense_ids):
+"""
+Calculates the total amount from a list of expense IDs
+
+Parameters:
+    expense_ids (list): List of expense IDs to calculate the total amount
+
+Returns:
+    float: The total amount of the expenses
+"""
+
+
+def get_user_permissions(user_id):
+"""
+Returns a list of permissions for a specified user ID
+
+Parameters:
+    user_id (str): The ID of the user whose permissions you want to retrieve
+
+Returns:
+    list: User permissions
+"""
+
+
+def calculate_cost_of_tasks(task_ids):
+"""
+Calculates the total cost for a list of task IDs
+
+Parameters:
+    task_ids (list): A list of task IDs to calculate cost for
+
+Returns:
+    float: Total cost of the tasks
+"""
+
+
+def update_work_item_due_date(work_item_id, due_date):
+"""
+Updates the due date for the specified work item
+
+Parameters:
+    work_item_id (str): The ID of the work item to be updated
+    due_date (str): The new due date for the work item
+
+Returns:
+    None: Indicates that the operation was executed without returning any value
+"""
+
+
+def retrieve_document_by_keyword(keyword):
+"""
+Retrieves a document ID containing the specified keyword
+
+Parameters:
+    keyword (str): The keyword to search for in the documents
+
+Returns:
+    str: ID of the document containing the keyword
+"""
+def filter_projects_by_status(project_ids, status="active"):
+"""
+Filters a list of project IDs by their status
+
+Parameters:
+    project_ids (list): A list of project IDs to filter
+    status (str): The status to filter by, default is 'active'
+
+Returns:
+    list: Project IDs matching the status
+"""
+
+
+def extract_contact_info(text_id, entity_type):
+"""
+Extracts contact information from a text source based on a given entity type
+
+Parameters:
+    text_id (str): The ID of the text source from which to extract contact information
+    entity_type (str): The type of entity to extract info from. Allowed values: 'individual', 'company'
+
+Returns:
+    list: Extracted contact information
+"""
+
+
+def get_work_item_history(work_id):
+"""
+Retrieves the history of changes for a given work item
+
+Parameters:
+    work_id (str): The ID of the work item
+
+Returns:
+    list: A chronological list of changes made to the work item
+"""
+
+
+def list_user_permissions(user_id):
+"""
+Lists all the permissions that a user has within the system
+
+Parameters:
+    user_id (str): The ID of the user for whom permissions are being listed
+
+Returns:
+    list: A list of permissions that the user possesses
+"""
+
+
+def merge_duplicate_work_items(primary_work_id, duplicate_work_ids):
+"""
+Merges duplicate work items into the primary work item
+
+Parameters:
+    primary_work_id (str): The ID of the primary work item
+    duplicate_work_ids (list): List of IDs of duplicate work items to be merged
+
+Returns:
+    bool: True if merge was successful, otherwise False
+"""
+
+
+def track_project_completion(project_id):
+"""
+Tracks the completion percentage of a project based on completed tasks
+
+Parameters:
+    project_id (str): The ID of the project to track
+
+Returns:
+    float: Percentage of the project completed
+"""
+
+
+def find_work_items_by_tag(work_type, tag):
+"""
+Finds work items of a certain type with a given tag
+
+Parameters:
+    work_type (str): The type of the work items to filter by
+    tag (str): The tag to filter the work items
+
+Returns:
+    list: List of work items with the given tag
+"""
+def filter_users_by_department(department_id=None, active_only=False):
+"""
+Filters a list of users that belong to the specified department
+
+Parameters:
+    department_id (str): The ID of the department to filter users
+    active_only (bool): Filters for only active users if set to True
+
+Returns:
+    list: Users in the specified department
+"""
+
+
+def find_user_by_email(email):
+"""
+Finds a user in the system by their email address
+
+Parameters:
+    email (str): The email address of the user to find
+
+Returns:
+    str: ID of the user
+"""
+
+
+def list_recent_projects(user_id, days_back=30):
+"""
+Lists all projects a user has worked on in the past number of days
+
+Parameters:
+    user_id (str): The ID of the user
+    days_back (int): The number of past days to look for projects. The default is '30'
+
+Returns:
+    list: Project IDs that the user has worked on
+"""
+
+
+def validate_work_item_status(work_item_id, status_options):
+"""
+Checks if the given work item has a status that is among the provided options
+
+Parameters:
+    work_item_id (str): The ID of the work item to check
+    status_options (list): A list of valid status options
+
+Returns:
+    bool: True if status is valid, False otherwise
+"""
+
+
+def list_all_blocked_tickets():
+"""
+Lists all tickets that are currently blocked
+
+Returns:
+    list: Ticket IDs that are currently blocked
+"""
+
+
+def get_user_contact_info(user_id):
+"""
+Retrieves contact information for a user
+
+Parameters:
+    user_id (str): The ID of the user whose contact information is requested
+
+Returns:
+    str: The contact information of the user
+"""
+
+
+def calculate_progress(project_id):
+"""
+Calculates the overall progress of a given project as a percentage
+
+Parameters:
+    project_id (str): The ID of the project for which progress is being calculated
+
+Returns:
+    float: The progress percentage of the project
+"""
+
+
+def filter_tickets_by_date(ticket_ids, start_date, end_date=None):
+"""
+Filters a list of ticket IDs based on a date range
+
+Parameters:
+    ticket_ids (list): A list of ticket IDs to filter
+    start_date (str): The start date for the range
+    end_date (str, optional): The end date for the range, defaults to None
+
+Returns:
+    list: Filtered list of ticket IDs
+"""
+
+
+def link_related_documents(doc_id, related_doc_ids):
+"""
+Links related documents to the given document in the system
+
+Parameters:
+    doc_id (str): The ID of the document to which related documents should be linked
+    related_doc_ids (list): A list of IDs for related documents
+
+Returns:
+    bool: True if the operation was successful, False otherwise
+"""
+
+
+def filter_work_by_date_range(start_date, end_date, work_type=None):
+"""
+Filters work items based on a specific date range
+
+Parameters:
+    start_date (str): The start date for the filter range (format: YYYY-MM-DD)
+    end_date (str): The end date for the filter range (format: YYYY-MM-DD)
+    work_type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Work items in the specified date range
+"""
+
+
+def convert_task_to_subtask(task_id, parent_task_id):
+"""
+Converts a standalone task into a subtask of another task
+
+Parameters:
+    task_id (str): The ID of the task to be converted
+    parent_task_id (str): The ID of the parent task to which the subtask will be linked
+
+Returns:
+    bool: True if the conversion was successful, False otherwise
+"""
+
+
+def estimate_cost_for_work(work_id, cost_per_hour=100):
+"""
+Estimates the cost for completing a work item based on a cost per hour rate
+
+Parameters:
+    work_id (str): The ID of the work item to estimate cost for
+    cost_per_hour (float): The cost per hour. Default is '100'
+
+Returns:
+    float: Estimated cost
+"""
+
+
+def calculate_estimate_completion_time(work_id):
+"""
+Calculates the estimated completion time for the specified work item
+
+Parameters:
+    work_id (str): The ID of the work item to calculate the estimated time
+
+Returns:
+    float: Estimated completion time in hours
+"""
+
+
+def find_team_members(team_id):
+"""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+"""
+
+
+def get_team_member_list(team_id):
+"""
+Retrieves a list of team members for the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: List of team member IDs
+"""
+
+
+def remove_work_item_from_sprint(work_id, sprint_id):
+"""
+Removes the specified work item from a sprint
+
+Parameters:
+    work_id (str): The ID of the work item to be removed
+    sprint_id (str): The ID of the sprint from which to remove the work item
+
+Returns:
+    bool: True if the removal was successful, False otherwise
+"""
+
+
+def reassign_work_item_owner(work_id, new_owner_id):
+"""
+Reassigns the owner of a work item to a new user
+
+Parameters:
+    work_id (str): The ID of the work item to be reassigned
+    new_owner_id (str): The user ID of the new owner
+
+Returns:
+    bool: True if reassignment is successful, False otherwise
+"""
+
+
+def list_work_attachments(work_id):
+"""
+Lists all attachments associated with a work item.
+
+Parameters:
+    work_id (str): The ID of the work item
+
+Returns:
+    list: Attachment file IDs
+"""
+
+
+def calculate_work_item_duration(work_id):
+"""
+Calculates the total time taken to complete a work item
+
+Parameters:
+    work_id (str): The ID of the work item for which duration is to be calculated
+
+Returns:
+    float: The total duration in hours
+"""
+
+
+def calculate_workload_for_user(user_id):
+"""
+Calculates the total number of open work items assigned to a user
+
+Parameters:
+    user_id (str): The ID of the user for whom to calculate the workload
+
+Returns:
+    int: The total number of open work items
+"""

@@ -1,4 +1,4 @@
-query,completion
+Query,Output
 Summarize issues similar to don:core:dvrv-us-1:devo/0:issue/1,"var_1 = get_similar_work_items(work_id=""don:core:dvrv-us-1:devo/0:issue/1"")
 var_2 = summarize_objects(objects=var_1)
 "

@@ -1,7 +1,9 @@
-from openai import OpenAI
-import random
-import math
 import re
+import csv
+import math
+import random
+import numpy as np
+from openai import OpenAI
 
 class Static_dataGen():
     def __init__(self,key) -> None:
@@ -30,9 +32,9 @@ class Static_dataGen():
                 temperature=0.7,
             )
             content = response.choices[0].message.content
-            query = []
-            query = re.findall(r"'''(.*?)'''", content, re.DOTALL)
-            for q in query:
+            Qr = []
+            Qr = re.findall(r"'''(.*?)'''", content, re.DOTALL)
+            for q in Qr:
                 self.query_list.append(q)         
         return self.genOutput()
 
@@ -154,7 +156,7 @@ class Bonus_dataGen():
         self.tools_list = open('./Tool_list/tool_list.txt', 'r').read()
         self.extra_tools = open('./Tool_list/bonustools.txt','r').read()
         self.user_prompt_output_content = open('./Prompts/BonusOutputPrompt.txt','r').read()
-        self.user_prompt_query_content = open('./Prompts/BonusQueryPrompt.txt','r').read()
+        self.user_prompt_query_content = open('.Prompts/BonusQueryPrompt.txt','r').read()
         self.query_list = []
         self.outputCompletion = []
         self.client = OpenAI(api_key=key) 
@@ -204,6 +206,56 @@ class Bonus_dataGen():
             merged_data = [{'Query': query, 'Output': output} for query, output in zip(self.query_list, self.outputCompletion)]
             return merged_data
         
+class Preprocessing():
+    def __init__(self) -> None:
+        self.staticTool_list = [row[0] for row in csv.reader(open('./Tool_list/final-static-toollist.csv', 'r'))]
+        self.dynamicTool_list = [row[0] for row in csv.reader(open('./Tool_list/final-dynamic-toolset.csv', 'r'))]
+
+    def prompt_p2_pipeline(self, query, output, additional_tools=list()):
+        len_add = len(additional_tools)
+        add_len = math.floor(np.random.uniform(0, 10-len_add))
+        random_tools = random.sample(self.dynamicTool_list, add_len)
+        added_tools = list(set(additional_tools + random_tools))
+        added_tools = '\n'.join(added_tools)
+        prompt = f'''
+        <s>
+        [INST]
+        Added Tools: 
+
+        {added_tools}
+
+        Query: {query} [/INST]
+
+        ```
+        {output}
+        ```
+        </s>
+        '''
+        return prompt
+    
+    def prompt_p3_pipeline(self, query, output, additional_tools=list()):
+        used_tools = additional_tools + self.staticTool_list
+        used_len = len(used_tools)
+        add_len = math.floor(np.random.uniform(0, 18-used_len))
+        random_tools = random.sample(self.dynamicTool_list, add_len)
+        allowed_tools = list(set(used_tools + random_tools))
+        allowed_tools = '\n'.join(allowed_tools)
+
+        prompt = f'''
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        {allowed_tools}
+
+        Query: {query} [/INST]
+
+        ```
+        {output}
+        ```
+        </s>
+        '''
+        return prompt
 
 
     

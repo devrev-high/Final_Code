@@ -1,18 +1,19 @@
 from openai import OpenAI
 import random
+import math
 import re
 
 class Static_dataGen():
     def __init__(self,key) -> None:
-        self.tools_list = open('/home/mayanksony/scripts/dataGen/tool_list.txt', 'r').read()
-        self.sample_query = open('/home/mayanksony/scripts/dataGen/sample_queries.txt', 'r').read()
+        self.tools_list = open('./tool_list.txt', 'r').read()
+        self.sample_query = open('./sample_queries.txt', 'r').read()
         self.query_list = []
         self.outputCompletion = []
         self.client = OpenAI(api_key=key) 
         self.no_of_Queries2beGenerated = 0
     
     def genQuery(self, n):
-        self.no_of_Queries2beGenerated = round(n/10)*10
+        self.no_of_Queries2beGenerated = math.ceil(n/10)
         for j in range(0, self.no_of_Queries2beGenerated):
             response = self.client.chat.completions.create(
             model="gpt-4-1106-preview",
@@ -37,7 +38,7 @@ class Static_dataGen():
 
     def genOutput(self):
         cnt = 0
-        while(cnt<self.no_of_Queries2beGenerated):
+        while(cnt<self.no_of_Queries2beGenerated*10):
             usrInp = "Answer these queries one by one, making sure to reset to var_1 after\
                   each query. All the var must be printed in seperate lines and print the \
                   output in the following format '''<output>'''\n"
@@ -72,26 +73,29 @@ class Static_dataGen():
         merged_data = [{'Query': query, 'Output': output} for query, output in zip(self.query_list, self.outputCompletion)]
         return merged_data
     
+
 class Dynamic_dataGen():
     def __init__(self,key) -> None:
-        self.tools_list = open('/home/mayanksony/scripts/dataGen/tool_list.txt', 'r').read()
-        self.sample_query = open('/home/mayanksony/scripts/dataGen/sample_queries.txt', 'r').read()
+        self.tools_list = open('./tool_list.txt','r').read()
+        self.dyQuGenPrompt = open('./DynamicQueryGenPrompt.txt', 'r').read()
+        self.dyOpGenPrompt = open('./DynamicOutputGenPrompt.txt', 'r').read()
         self.query_list = []
         self.DynamicTool_list = []
         self.outputCompletion = []
+        self.added_tools = []
         self.client = OpenAI(api_key=key) 
         self.no_of_Queries2beGenerated = 0
 
-    def genDynamicTools(self):
-        
-        for j in range(0, 100):
+    def genDynamicTools(self, x):
+        no_of_tools = math.ceil(x/10)
+        for j in range(0, no_of_tools):
             response = self.client.chat.completions.create(
                         model="gpt-4-1106-preview",
                         messages= [
                         {"role": "system", "content": "You are a helpful assistant. You always strictly adhere to the output format given. You are very creative as well. You generate outputs which are creatively different from the sample."},
-                        {"role": "user", "content": f"Here is a list 10 tools given in a docstring format, each performing a specific function: {self.tools_list}. Select any 3 tools from the list of tools and generate 10 tools similar to the chosen 4 \
+                        {"role": "user", "content": f"Here is a list of 9 tools given in a docstring format, each performing a specific function: {self.tools_list}. Select any 3 tools from the list of tools and generate 10 tools similar to the chosen 3 \
                         tools but performing different tasks, without numbering. Keep the tools function simple. Give output in the same format as the tools in the given tool list. Make sure that the argument values doesn't ask for for large files,\
-                        but instead asks for something shorter like file IDs. Make sure that the type of parameters is and return type is always mentioned in the exact format as in the provided tool list. The return type and type of parameters of the\
+                        but instead asks for something shorter like file IDs. Make sure that the type of parameters is specified and return type is always mentioned in the exact format as in the provided tool list. The return type and type of parameters of the\
                         new functions should be limited to int, str, bool, float, list and None. The generated tools could have default values. Make sure the tool has all the paremeters required for it to achieve that function, even the one it needs to\
                         make a change to. After every tool add three hyphens on the next line. Dont add three hyphens after the last tool."}
                        ],
@@ -102,8 +106,9 @@ class Dynamic_dataGen():
             self.DynamicTool_list.extend(tools2)        
         return 
     
-    def genDynamicQueryOutputPair(self):
+    def genDynamicQueryOutputPair(self, n):
         cnt = 0
+        self.no_of_Queries2beGenerated = n
         while(cnt<self.no_of_Queries2beGenerated):
              sec2str = random.sample(self.DynamicTool_list, k=10)
              temp_str = ' '
@@ -112,75 +117,37 @@ class Dynamic_dataGen():
              
              completion = self.client.chat.completions.create(
              model="gpt-4-1106-preview",
-            messages= [sys_prompt_query,
-            {'role':'user', 'content':user_prompt_content_1+temp_str+user_prompt_content_3+user_prompt_content_4_20}],
+            messages= [{'role':'system', 'content': 'You are an extremely helpful and faithful assistant. \
+                      You stritcly adhere to the output format given. You are very creative and generate \
+                      examples similar yet different to the given examples.'},
+                      {'role':'user', 'content':f'Given below are 2 sections, each having a docstring\
+                      description of tools, its parameters and return type:{self.tools_list}\nSection-2:'+temp_str
+                      +self.dyQuGenPrompt}],
             temperature = 0.5
             )
-             queries = completion.choices[0].message.content
+             query = completion.choices[0].message.content
+             query = re.sub(r"^\d+\.\s*",'', query)
+             self.query_list.append(query)
+             
              completion = self.client.chat.completions.create(
             model="gpt-4-1106-preview",
-            messages= [sys_prompt_query,
-            {'role':'user', 'content':user_prompt_output_content_1+temp_str+user_prompt_output_content_3+queries}],
+            messages= [{'role' : 'system', 'content' : 'You are an extremely helpful and extremely faithful\
+                      chatbot. You strictly adhere to the output format given.You can only call given functions\
+                      calls to complete a query. You only know these functions and nothing else.'},
+                       {'role':'user', 'content':f'You call given functions calls to complete a query. You only know\
+                         these functions and nothing else:{self.tools_list}'
+                         +temp_str+self.dyOpGenPrompt+query}],
             temperature = 0.8
             )
-
              output = completion.choices[0].message.content
+             lines = output.split('\n')
+             code_str = '\n'.join(lines[1:])
+             self.outputCompletion.append(code_str)
+             self.added_tools.append(sec2str)
              cnt=cnt+1
-
-
-
-
-class Bonus_dataGen():
-    def __init__(self) -> None:
-        self.tools_list = tool()
-        self.sample_query = query()
-        self.outputMessage = outputMessage()
-        self.query_list = []
-        self.client = OpenAI() 
-        self.no_of_Queries2beGenerated = 0
-        self.temp_str = temp_str()
-
-
-    def genBonusQueryOutputPair(self, n):
-        self.no_of_Queries2beGenerated = n
-        self.no_of_TimesLoopRuns = n/5
-        for j in range(0, self.no_of_TimesLoopRuns):
-            response = self.client.chat.completions.create(
-            model="gpt-4-1106-preview",
-            messages=[
-                    {"role": "system", "content": "You are an extremely helpful and faithful assistant. \
-                            You strictly adhere to the query format given. You are very creative and generate examples \
-                            similar yet different to the given examples. The queries that you generate do not contain \
-                            nested if-else statements or nested for loops. The queries should not require if-else statements \
-                            inside a for loop. Similarly, the queries should not require for loops inside an if-else statement.\
-                            You are given a list of tools and their descriptions. You are given a list of specifications for\
-                            the queries that you need to generate."},
-                    
-                    {"role": "user", "content": f"Given below are 2 sections, each having a docstring description of tools, its \
-                            parameters and return type: Section-1: {self.tools_list} Section-2: {self.temp_str} \
-                            {user_prompt_content_3} {user_prompt_content_4}"}
-                    
-            ]
-            temperature=0.4
-            queries = completion.choices[0].message.content
-
-            completion = self.client.chat.completions.create(
-            model="gpt-4-1106-preview",
-            messages= [
-                    {'role' : 'system', 'content' : 'You are an extremely helpful and extremely faithful chatbot.\
-                        You strictly adhere to the``     output format given. You can only call given functions calls to \
-                        complete a query. You only know these functions and nothing else.'},
-
-                    {'role':'user', 'content':  f"You call given functions calls to complete a query. You only know these functions \
-                        and nothing else: {self.tools_list} + {self.temp_str}. {user_prompt_output_content_2}"},
-            ]
-            temperature = 0.8
-            output = completion.choices[0].message.content
         
-    return
-
-
-    
+        merged_data = [{'Added_Tools':added_tools,'Query': query, 'Output': output} for added_tools, query, output in zip(self.added_tools,self.query_list, self.outputCompletion)]
+        return merged_data     
 
         
 

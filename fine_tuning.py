@@ -23,7 +23,6 @@ from peft import (
     PeftModel
 )
 from trl import SFTTrainer
-
 # Remove the huggingface login from here <CHECK HERE>
 from huggingface_hub import login
 login(token="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")
@@ -38,13 +37,10 @@ def find_all_linear_names(model):
         if isinstance(module, cls):
             names = name.split('.')
             lora_module_names.add(names[0] if len(names) == 1 else names[-1])
-
-
     # lm_head is often excluded.
     if 'lm_head' in lora_module_names:  # needed for 16-bit
         lora_module_names.remove('lm_head')
     return list(lora_module_names)
-
 # get max length based on hardware constraints 
 def get_max_length(model):
     conf = model.config
@@ -58,18 +54,14 @@ def get_max_length(model):
         max_length = 1024
         print(f"Using default max length: {max_length}")
     return max_length
-
 # function to preprocess the dataset
 def preprocess_dataset(model, tokenizer: AutoTokenizer, max_length: int, dataset: str, seed: int = 42):
     # Format each prompt.
     print("Preprocessing dataset...")
-
     tokenizer.add_special_tokens({'pad_token': '[PAD]'})
     with torch.no_grad():
       model.resize_token_embeddings(len(tokenizer))
     model.config.pad_token_id = tokenizer.pad_token_id
-
-    # https://blog.ovhcloud.com/fine-tuning-llama-2-models-using-a-single-gpu-qlora-and-ai-notebooks/
     def preprocess_batch(batch, tokenizer, max_length):
         return tokenizer(
             batch["data"],
@@ -84,21 +76,14 @@ def preprocess_dataset(model, tokenizer: AutoTokenizer, max_length: int, dataset
         batched=True,
         remove_columns=["data"],
     )
-
-    # Filter out samples that have input_ids exceeding max_length.
-    # Not needed as the tokenizer truncates all prompts over max length.
-    # dataset = dataset.filter(lambda sample: len(sample["input_ids"]) < max_length)
-
     # Shuffle dataset.
     dataset = dataset.shuffle(seed=seed)
-
     return dataset
 
 def main(args):
     model_name = args.model
     epochs = args.n
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-
     # Quantization configurations 
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
@@ -106,7 +91,6 @@ def main(args):
         bnb_4bit_quant_type="nf4",
         bnb_4bit_compute_dtype=torch.bfloat16,
     )
-
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         quantization_config=bnb_config,
@@ -117,11 +101,9 @@ def main(args):
     model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
     # Finding LORA supporting layers
     modules = find_all_linear_names(model)
-    
     lora_alpha = args.lora_alpha
     lora_dropout = args.lora_dropout
     lora_r = args.lora_r
-
     peft_config = LoraConfig(
         lora_alpha=lora_alpha,
         lora_dropout=lora_dropout,
@@ -133,10 +115,8 @@ def main(args):
     model = get_peft_model(model, peft_config)
     data_files={'train': 'final_train.parquet', 'test': 'final_test.parquet', 'validation': 'final_valid.parquet'}
     dataset = load_dataset("Insight244/p3-data")
-
     # Change the max length depending on hardware constraints.
     max_length = get_max_length(model)
-
     #preprocess the dataset
     formatted_dataset = deepcopy(dataset)
     dataset = preprocess_dataset(model, tokenizer, max_length, dataset)
@@ -146,14 +126,12 @@ def main(args):
         gradient_accumulation_steps=4,  # Powers of 2.
         learning_rate=args.learning_rate,
         max_grad_norm=1.0,
-        # max_steps=40,
         lr_scheduler_type="linear",
         warmup_steps=5,
         fp16=True,
         logging_strategy="steps",
         logging_steps=1,
-        # save_strategy="epochs",
-        # save_steps=10,
+        save_strategy="epochs",
         optim="paged_adamw_8bit",
         report_to="wandb",
         num_train_epochs=args.n,
@@ -161,7 +139,6 @@ def main(args):
         eval_steps=100,
         push_to_hub=True
     )
-
     training_args = training_args.set_push_to_hub("Insight244/codellama-7b-instfinetuned-p3", strategy='all_checkpoints')
     training_args = training_args.set_save(strategy="epoch", steps=10) #change to epoch later
     run = wandb.init(
@@ -180,8 +157,7 @@ def main(args):
         args=training_args,
         data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
         train_dataset=dataset['train'],
-        eval_dataset=dataset['validation'],
-
+        eval_dataset=dataset['validation']
     )
     results = trainer.train()  # Now we just run train()!
     run.finish()

@@ -1,0 +1,12 @@
+Your task is to generate the given number of queries using any amount of tools from Section-1, and any amount of tools from Section-2. The query should necessarily use atleast 2 tools from Section-2.
+Your queries must be similar to the following:
+
+1. Retrieve work items created by user "DevLead" and summarize them.
+2. Find all tasks related to part "UIX-200" and prioritize them.
+3. Summarize and prioritize all issues with priority P1 from the "QA" stage.
+4. Locate all tickets from source channel "WEB" that need a response and summarize them.
+5. Prioritize all tasks owned by user "ManagerMike" and add them to the current sprint.
+6. Retrieve similar work items to "ISSUE-123" and summarize them for a report
+
+Note that the given samples should make use of 2 or more tools from Section-2 and any number of tools from Section-1. The query should not require a for loop.
+Now in this format, generate 1 query with the specifications provided. Always ensure that the queries are answerable with the given tools.

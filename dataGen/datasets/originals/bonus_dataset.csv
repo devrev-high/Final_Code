@@ -1,0 +1,1027 @@
+Query,Output
+"Create tasks from the text ""WeeklyUpdate"" and if the user is ""USER-XYZ"", assign them to the current sprint. If not, assign them to sprint ""SPRINT-789"".","var_1 = who_am_i()
+var_2 = create_actionable_tasks_from_text(text=""WeeklyUpdate"")
+if(var_1==""USER-XYZ""):
+    temp_1 = get_sprint_id()
+    temp_2 = add_work_items_to_sprint(work_ids=var_2, sprint_id=temp_1)
+else:
+    temp_1 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-789"")"
+"Retrieve work items with type ""task"" and severity ""high"", summarize them, and assign the first 10 to user ""USER-123"".","for loop_var in range(0,10):
+    temp_1 = works_list(type=[""task""], ticket.severity=[""high""])
+    temp_2 = summarize_objects(objects=temp_1)
+    temp_3 = assign_task_to_user(task_id=temp_1[loop_var], user_id=""USER-123"")"
+"Find work items with priority ""p1"" and type ""issue"", prioritize them, and add the top 3 to sprint ""SPRINT-321"".","var_1 = works_list(issue.priority=[""p1""], type=[""issue""])
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in var_2:
+    var_3 = add_work_items_to_sprint(work_ids=loop_var, sprint_id=""SPRINT-321"")"
+"Extract tasks from the text ""ReleaseNotes"", prioritize them, and assign the first 5 to the current sprint.","var_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in var_2:   
+    temp_1 = get_sprint_id()
+    temp_2 = add_work_items_to_sprint(work_ids=loop_var, sprint_id=temp_1)"
+"Fetch tasks for user ""USER-999"", prioritize them, and mark the top 2 as completed.","for loop_var in range(0,2):
+    temp_1 = fetch_user_tasks(user_id=""USER-999"")
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = mark_task_as_completed(task_id=temp_2[loop_var])"
+"Summarize all tickets with source channel ""email"", prioritize them, and assign the most critical one to the current sprint.","var_1 = works_list(ticket.source_channel=[""email""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=[var_3[0]], sprint_id=var_4)"
+"Find work items owned by ""USER-222"", summarize them, and estimate the work hours for each item.","var_1 = search_object_by_name(query=""USER-222"")
+var_2 = works_list(owned_by=[var_1])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)"
+"Retrieve all tasks created by ""USER-333"", prioritize them, and assign the one with the highest priority to ""USER-444"".","var_1 = works_list(created_by=[""USER-333""], type=[""task""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = assign_task_to_user(task_id=var_2[0], user_id=""USER-444"")"
+"Extract tasks from the text ""ClientFeedback"", create a report for each task, and assign the tasks to ""USER-555"".","var_1 = create_actionable_tasks_from_text(text=""ClientFeedback"")
+for loop_var in var_1:
+    temp_1 = generate_report(report_type=""task"", subject_id=loop_var)
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=""USER-555"")"
+"Create tasks from the text ""ClientMeetingSummary"", prioritize them, and assign the first 3 to user ""USER-999"".","for loop_var in range(0,3):
+    temp_1 = create_actionable_tasks_from_text(text=""ClientMeetingSummary"")
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = assign_task_to_user(task_id=temp_2[loop_var], user_id=""USER-999"")"
+"Retrieve all tasks assigned to ""USER-1010"", prioritize them, and mark the least critical one as completed.","var_1 = fetch_user_tasks(user_id=""USER-1010"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = mark_task_as_completed(task_id=var_2[-1])"
+"Find work items related to part ""PART-234"", summarize them, and estimate the work hours for each.","var_1 = search_object_by_name(query=""PART-234"")
+var_2 = works_list(applies_to_part=[var_1])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)"
+"Extract tasks from the text ""DevelopmentPlan"", prioritize them, and assign them to the current sprint.","var_1 = create_actionable_tasks_from_text(text=""DevelopmentPlan"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+for loop_var in var_2:
+    temp_1 = add_work_items_to_sprint(work_ids=loop_var, sprint_id=var_3)"
+"Get similar work items to ""ISSUE-345"", summarize them, and assign the most critical one to ""USER-1111"".","var_1 = get_similar_work_items(work_id=""ISSUE-345"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+var_4 = assign_task_to_user(task_id=var_3[0], user_id=""USER-1111"")"
+"Fetch tasks for user ""USER-1212"", prioritize them, and assign the top 3 to sprint ""SPRINT-543"".","var_1 = fetch_user_tasks(user_id=""USER-1212"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_2[0:3], sprint_id=""SPRINT-543"")"
+"Search for the object ID with the name ""ProjectAlpha"" and generate a report for it, including a summary.","var_1 = search_object_by_name(query=""ProjectAlpha"")
+var_2 = generate_report(report_type=""object"", subject_id=var_1, include_summary=True)"
+"Assign all tasks related to the part ""PART-789"" to the user with ID ""USER-321"".","for loop_var in range(0,50):
+    temp_1 = search_object_by_name(query=""PART-789"")
+    temp_2 = works_list(applies_to_part=[temp_1], type=[""task""])
+    temp_3 = assign_task_to_user(task_id=temp_2[loop_var], user_id=""USER-321"")"
+"Create actionable tasks from the text in the document ""DocXYZ"", and estimate the work hours for each task created.","for loop_var in range(0,50):
+    temp_1 = create_actionable_tasks_from_text(text=""DocXYZ"")
+    temp_2 = estimate_work_hours(work_id=temp_1[loop_var])"
+"Fetch all tasks for user ""USER-111"", prioritize them, and assign the tasks to the user ""USER-222"".","var_1 = fetch_user_tasks(user_id=""USER-111"")
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in var_2:
+    temp_1 = assign_task_to_user(task_id=loop_var, user_id=""USER-222"")"
+"Get the sprint ID for ""SprintBeta"", find all work items with priority ""p1"" and add them to ""SprintBeta"".","var_1 = search_object_by_name(query=""SprintBeta"")
+var_2 = works_list(issue.priority=[""p1""], type=[""task""])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_1)"
+"Extract tasks from the text ""WeeklyUpdate"", mark them as completed, and summarize them for review.","var_1 = create_actionable_tasks_from_text(text=""WeeklyUpdate"")
+for loop_var in var_1
+    temp_1 = mark_task_as_completed(task_id=loop_var)
+    temp_2 = summarize_objects(objects=loop_var)"
+"Find similar work items to ""ISSUE-101"", prioritize them, and add the top two to the sprint with ID ""SPRINT-789"".","for loop_var in range(0,2):
+    temp_1 = get_similar_work_items(work_id=""ISSUE-101"")
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = add_work_items_to_sprint(work_ids=temp_2[loop_var], sprint_id=""SPRINT-789"")"
+"Delete the object with the name ""ObsoleteItem"" from the system after searching for its ID.","var_1 = search_object_by_name(query=""ObsoleteItem"")
+var_2 = delete_object_by_id(object_id=var_1)"
+"Generate a report for the subject with ID ""SUBJECT-123"" without including a summary, and then search for the object by the name ""ReportSubject"".","var_1 = generate_report(report_type=""subject"", subject_id=""SUBJECT-123"", include_summary=False)
+var_2 = search_object_by_name(query=""ReportSubject"")"
+"Assign the task with ID ""TASK-999"" to the current user and then mark it as completed.","var_1 = who_am_i()
+var_2 = assign_task_to_user(task_id=""TASK-999"", user_id=var_1)
+var_3 = mark_task_as_completed(task_id=""TASK-999"")"
+"Create actionable tasks from the customer feedback text ""Feedback123"" and assign all created tasks to user ""USER-789"".","for loop_var in range(0,50):
+    temp_1 = create_actionable_tasks_from_text(text=""Feedback123"")
+    temp_2 = assign_task_to_user(task_id=temp_1[loop_var], user_id=""USER-789"")"
+"Fetch all tasks for user ""USER-987"", summarize them, and generate a report for user ""USER-987"" with the summarized tasks.","var_1 = fetch_user_tasks(user_id=""USER-987"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = generate_report(report_type=""tasks"", subject_id=""USER-987"")"
+"Estimate the work hours for work item ""WORK-321"", and if the estimation is more than 10 hours, assign it to the user ""USER-654"".","var_1 = estimate_work_hours(work_id=""WORK-321"")
+if(var_1 > 10):
+    temp_1 = assign_task_to_user(task_id=""WORK-321"", user_id=""USER-654"")"
+"Summarize all objects related to the part ""PART-XYZ"" and create a report for these summarized objects.","var_1 = search_object_by_name(query=""PART-XYZ"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = generate_report(report_type=""objects"", subject_id=var_1)"
+"Find work items with issue priority ""p3"" and ticket severity ""high"", prioritize them, and assign the top three to the user ""USER-333"".","for loop_var in range(0,3):
+    temp_1 = works_list(issue.priority=[""p3""], ticket.severity=[""high""], type=[""task""])
+    temp_2 = prioritize_objects(objects=tepm_1)
+    temp_3 = assign_task_to_user(task_id=temp_2[loop_var], user_id=""USER-333"")"
+"Fetch tasks for user ""USER-444"" that are not completed, prioritize them, and mark the one with the highest priority as completed.","var_1 = fetch_user_tasks(user_id=""USER-444"", include_completed=False)
+var_2 = prioritize_objects(objects=var_1)
+var_3 = mark_task_as_completed(task_id=var_2[0])"
+"Extract tasks from the email content ""EmailContent123"", add them to the current sprint, and summarize them for the sprint review.","var_1 = create_actionable_tasks_from_text(text=""EmailContent123"")
+var_2 = get_sprint_id()
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)
+var_4 = summarize_objects(objects=var_1)"
+"Search for the object by the name ""UrgentIssue"", estimate the work hours required, and if it's less than 5 hours, mark it as a priority.","var_1 = search_object_by_name(query=""UrgentIssue"")
+var_2 = estimate_work_hours(work_id=var_1)
+if(var_2 < 5):
+    temp_1 = search_object_by_name(query=""UrgentIssue"")
+    temp_2 = mark_task_as_completed(task_id=var_1)"
+"Extract tasks from customer feedback ""CustomerFeedback"" and if the current user is ""USER-321"", add them to sprint id ""SPRINT-789"". If not, summarize the tasks for further analysis.","var_1 = who_am_i()
+if(var_1==""USER-321""):
+    temp_1 = create_actionable_tasks_from_text(text=""CustomerFeedback"")
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=""SPRINT-789"")
+else:
+    temp_3 = summarize_objects(objects=temp_1)"
+"Identify work items related to part ""PART-987"" with priority ""p1"", summarize them, and assign all to sprint id ""SPRINT-654"" if created by user ""USER-111"".","var_1 = search_object_by_name(query=""PART-987"")
+var_2 = search_object_by_name(query=""USER-111"")
+var_3 = works_list(applies_to_part=[var_1], created_by=[var_2], issue.priority=[""p1""], type=[""issue""])
+var_4 = summarize_objects(objects=var_3)
+if(var_2==""USER-111""):
+    temp_1 = search_object_by_name(query=""PART-987"")
+    temp_2 = search_object_by_name(query=""USER-111"")
+    temp_3 = works_list(applies_to_part=[var_1], created_by=[var_2], issue.priority=[""p1""], type=[""issue""])
+    temp_4 = add_work_items_to_sprint(work_ids=var_3, sprint_id=""SPRINT-654"")"
+"Summarize all tickets created by ""USER-222"" with severity ""high"", estimate the work hours for each, and assign tasks requiring less than 5 hours to user ""USER-333"".","var_1 = search_object_by_name(query=""USER-222"")
+var_2 = works_list(created_by=[var_1], ticket.severity=[""high""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)
+    if(temp_1 < 5):
+        temp_2 = assign_task_to_user(task_id=loop_var, user_id=""USER-333"")"
+"Retrieve all tasks assigned to ""USER-444"", prioritize them, and generate a report for the top 10 tasks without including a summary.","var_1 = fetch_user_tasks(user_id=""USER-444"")
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in var_2:
+var_3 = generate_report(report_type=""tasks"", subject_id=loop_var, include_summary=False)"
+"Search for work items by name ""UrgentIssue"", summarize the results, and create a report with a summary for the current sprint.","var_1 = search_object_by_name(query=""UrgentIssue"")
+var_2 = works_list(type=[""issue""], ticket.rev_org=[var_1])
+var_3 = summarize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = generate_report(report_type=""summary"", subject_id=var_4, include_summary=True)"
+"Find all work items with type ""task"" and owned by ""USER-555"", summarize them, and create actionable tasks from the summary text.","var_1 = search_object_by_name(query=""USER-555"")
+var_2 = works_list(owned_by=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = create_actionable_tasks_from_text(text=var_3)"
+"Retrieve tasks for ""USER-666"" that are not completed, summarize them, and assign the 3 most critical ones to ""USER-777"".","var_1 = fetch_user_tasks(user_id=""USER-666"", include_completed=False)
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+for loop_var in range(0,3):
+    temp_1 = assign_task_to_user(task_id=var_3[loop_var], user_id=""USER-777"")"
+"Search for object by name ""CriticalComponent"", find all related work items, prioritize them, and assign the 3 with the highest priority to ""USER-CCC"".","for loop_var in range(0,3):
+    temp_1 = search_object_by_name(query=""CriticalComponent"")
+    temp_2 = works_list(ticket.rev_org=[temp_1], type=[""issue"", ""ticket"", ""task""])
+    temp_3 = prioritize_objects(objects=temp_2)
+    temp_4 = assign_task_to_user(task_id=temp_3[loop_var], user_id=""USER-CCC"")"
+"Retrieve all tickets needing a response, summarize them, and if any are associated with Rev organization ""RevTech"", assign them to ""USER-DDD"".","var_1 = works_list(ticket.needs_response=True, type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+if(""RevTech"" in [item['ticket.rev_org'] for item in var_1]):
+    temp_1 = works_list(ticket.needs_response=True, type=[""ticket""])
+    temp_2 = assign_task_to_user(task_id=temp_1, user_id=""USER-DDD"")"
+"Find all work items created by ""USER-HHH"" and filter by issue priority ""p2"", summarize them, and assign the summarized tasks to ""USER-III"".","var_1 = search_object_by_name(query=""USER-HHH"")
+var_2 = works_list(created_by=[var_1], issue.priority=[""p2""], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = assign_task_to_user(task_id=var_3, user_id=""USER-III"")"
+"Retrieve work items related to the ""NewFeature"" type, summarize them, and if the current user is ""DEV-321"", prioritize and add the top 10 to sprint ""SPRINT-789"". Otherwise, add them to sprint ""SPRINT-101"".","var_1 = works_list(work_type=[""NewFeature""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = who_am_i()
+if(var_3==""DEV-321""):
+    temp_1 = prioritize_objects(objects=var_1)
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1[0:10], sprint_id=""SPRINT-789"")
+else:
+    temp_1 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""SPRINT-101"")"
+"Generate a report for part ""PART-999"" with a summary, find similar work items, and add the 3 most similar to the current sprint.","var_1 = search_object_by_name(query=""PART-999"")
+var_2 = generate_report(report_type=""part"", subject_id=var_1, include_summary=True)
+var_3 = get_similar_work_items(work_id=var_1)
+var_4 = prioritize_objects(objects=var_3)
+for loop_var in var_4:
+    temp_1 = get_sprint_id()
+    temp_2 = add_work_items_to_sprint(work_ids=loop_var, sprint_id=temp_1)"
+"Get the ID of the current sprint, find all tasks with source channel ""Email"", summarize them, and add the prioritized tasks to the current sprint.","var_1 = works_list(ticket.source_channel=[""Email""], type=[""task""])
+var_2 = summarize_objects(objects=var_2)
+var_3 = prioritize_objects(objects=var_2)
+for loop_var in var_3:
+    temp_1 = get_sprint_id()
+    temp_2 = add_work_items_to_sprint(work_ids=loop_var, sprint_id=temp_1)"
+"Search for the object named ""CriticalBug"", create actionable tasks from the description, and assign all the tasks to the user with ID ""USER-111"".","for loop_var in range(0,50):
+    temp_1 = search_object_by_name(query=""CriticalBug"")
+    temp_2 = create_actionable_tasks_from_text(text=temp_1)
+    temp_3 = assign_task_to_user(task_id=temp_2[loop_var], user_id=""USER-111"")"
+"Fetch all tasks for user ""QA-123"", prioritize them, and mark them as completed.","var_1 = fetch_user_tasks(user_id=""QA-123"")
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in var_2:
+    temp_1 = mark_task_as_completed(task_id=loop_var)"
+"Create a report for user ""USER-XYZ"" without a summary, find all tasks with priority ""p1"" for this user, and assign the top 2 to ""USER-XYZ"".","var_1 = search_object_by_name(query=""USER-XYZ"")
+var_2 = generate_report(report_type=""user"", subject_id=var_1, include_summary=False)
+var_3 = works_list(created_by=[var_1], issue.priority=[""p1""], type=[""task""])
+var_4 = prioritize_objects(objects=var_3)
+for loop_var in var_4:
+    temp_1 = search_object_by_name(query=""USER-XYZ"")
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=temp_1)"
+"Summarize work items of type ""issue"" with priority ""p0"", and add the 5 with the highest priority to the sprint with ID ""SPRINT-333"".","for loop_var in range(1,5):
+    temp_1 = works_list(issue.priority=[""p0""], type=[""issue""])
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = add_work_items_to_sprint(work_ids=temp_2[loop_var], sprint_id=""SPRINT-333"")"
+"Extract all tasks from the text ""ReleaseNotes"", prioritize them, and mark the top 10 as completed.","for loop_var in range(0,10):
+    temp_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = mark_task_as_completed(task_id=temp_2[loop_var])"
+"Retrieve work items owned by ""USER-ABC"", summarize them, and if the current sprint is ""SPRINT-DEF"", assign the top 5 to it. Otherwise, create a new sprint and add them there.","var_1 = works_list(owned_by=[""USER-ABC""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = get_sprint_id()
+if(var_3==""SPRINT-DEF""):
+    temp_1 = prioritize_objects(objects=var_1)
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1[0:5], sprint_id=""SPRINT-DEF"")
+else:
+    temp_1 = prioritize_objects(objects=var_1)
+    temp_2 = ""Unanswerable_query_error"" "
+"Get the user ID of the current user, fetch their tasks, prioritize them, and generate a report for the top 3 tasks with a summary.","var_1 = who_am_i()
+var_2 = fetch_user_tasks(user_id=var_1)
+var_3 = prioritize_objects(objects=var_2)
+var_4 = generate_report(report_type=""tasks"", subject_id=var_3[0:3], include_summary=True)"
+"Find team members of ""TeamZeta"", fetch tasks for each member, prioritize the tasks, and assign the top task of each member to the current sprint.","var_1 = find_team_members(team_id=""TeamZeta"")
+for loop_var in var_1:
+    temp_1 = fetch_user_tasks(user_id=loop_var)
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = get_sprint_id()
+    temp_4 = add_work_items_to_sprint(work_ids=[temp_2[0]], sprint_id=temp_3)"
+"Search for the object by the name ""UrgentIssue"", get similar work items, summarize them, and assign the top 4 to the user with ID ""DEV-456"".","var_1 = search_object_by_name(query=""UrgentIssue"")
+var_2 = get_similar_work_items(work_id=var_1)
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+for loop_var in range(0,4):
+    temp_1 = assign_task_to_user(task_id=var_4[loop_var], user_id=""DEV-456"")"
+"Summarize all tickets with the source channel ""SupportChat"", prioritize them, and add the top 8 to the sprint with ID ""SPRINT-654"".","var_1 = works_list(ticket.source_channel=[""SupportChat""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+var_4 = add_work_items_to_sprint(work_ids=var_3[0:8], sprint_id=""SPRINT-654"")"
+"Extract tasks from the text ""ClientFeedback"", summarize them, and if the current user is ""USER-321"", assign the tasks to them. Otherwise, assign the tasks to ""USER-654"".","var_1 = create_actionable_tasks_from_text(text=""ClientFeedback"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = who_am_i()
+if(var_3==""USER-321""):
+    temp_1 = assign_task_to_user(task_id=var_1, user_id=""USER-321"")
+else:
+    temp_1 = assign_task_to_user(task_id=var_1, user_id=""USER-654"")"
+"Create actionable tasks from the text ""UpdateRequest"", prioritize them, and assign the 6 tasks with the highest priority to the current sprint.","var_1 = create_actionable_tasks_from_text(text=""UpdateRequest"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+for loop_var in range(0,6):
+    temp_1 = add_work_items_to_sprint(work_ids=[var_2[loop_var]], sprint_id=var_3)"
+"Generate a report for the subject ""ProjectAlpha"", summarize all related issues, and assign the top 3 prioritized issues to ""USER-789"".","var_1 = search_object_by_name(query=""ProjectAlpha"")
+var_2 = generate_report(report_type=""project"", subject_id=var_1, include_summary=True)
+var_3 = works_list(issue.rev_orgs=[var_1], type=[""issue""])
+var_4 = prioritize_objects(objects=var_3)
+for loop_var in range(0,3):
+    temp_1 = assign_task_to_user(task_id=var_4[loop_var], user_id=""USER-789"")"
+"Find all work items with a severity of ""blocker"", summarize them, and add the top 7 to the sprint with ID ""SPRINT-852"".","var_1 = works_list(ticket.severity=[""blocker""], type=[""issue""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+var_4 = add_work_items_to_sprint(work_ids=var_3[0:7], sprint_id=""SPRINT-852"")"
+"Fetch user tasks for ""USER-123"" including completed tasks, prioritize them, and generate a report for the top 5 tasks without a summary.","var_1 = fetch_user_tasks(user_id=""USER-123"", include_completed=True)
+var_2 = prioritize_objects(objects=var_1)
+var_3 = generate_report(report_type=""tasks"", subject_id=var_2[0:5], include_summary=False)"
+"Retrieve all tasks created by user ""USER-789"", summarize them, and if the summary contains ""urgent"", assign them to sprint ""SPRINT-999""; otherwise, add them to sprint ""SPRINT-888"".","var_1 = works_list(created_by=[""USER-789""], type=[""task""])
+var_2 = summarize_objects(objects=var_1)
+if(""urgent"" in var_2):
+    temp_1 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""SPRINT-999"")
+else:
+    temp_2 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""SPRINT-888"")"
+"Generate a report for the object ""OBJ-321"" without including the summary, then find all tasks linked to this object and assign them to the user with ID ""USER-1122"".","var_1 = generate_report(report_type=""object_report"", subject_id=""OBJ-321"", include_summary=False)
+var_2 = search_object_by_name(query=""OBJ-321"")
+var_3 = works_list(ticket.source_channel=[var_2], type=[""task""])
+for loop_var in range(0,10):
+    temp_1 = assign_task_to_user(task_id=var_3[loop_var], user_id=""USER-1122"")"
+"Summarize the work items with type ""ticket"" and severity ""high"", estimate the work hours for each, and assign the task with the highest estimated hours to user ""USER-XYZ"".","var_1 = works_list(ticket.severity=[""high""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = estimate_work_hours(work_id=var_1[0])
+var_4 = estimate_work_hours(work_id=var_1[1])
+if(var_3 > var_4):
+    temp_1 = assign_task_to_user(task_id=var_1[0], user_id=""USER-XYZ"")
+else:
+    temp_2 = assign_task_to_user(task_id=var_1[1], user_id=""USER-XYZ"")"
+"Fetch all tasks assigned to user ""USER-555"" that are not completed, prioritize them, and mark the top 3 as completed.","var_1 = fetch_user_tasks(user_id=""USER-555"", include_completed=False)
+var_2 = prioritize_objects(objects=var_1)
+temp_1 = mark_task_as_completed(task_id=var_2[0])
+temp_2 = mark_task_as_completed(task_id=var_2[1])
+temp_3 = mark_task_as_completed(task_id=var_2[2])"
+"Find work items of type ""issue"" with priority ""p1"" and created by ""USER-222"", summarize them, and if any summary includes ""escalation"", assign them to ""USER-333"".","var_1 = search_object_by_name(query=""USER-222"")
+var_2 = works_list(created_by=[var_1], issue.priority=[""p1""], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+if(""escalation"" in var_3):
+    temp_1 = assign_task_to_user(task_id=var_2, user_id=""USER-333"")"
+"Search for the object with name ""CriticalComponent"", estimate the work hours needed for similar work items, and assign the one with the longest estimated hours to the current sprint.","var_1 = search_object_by_name(query=""CriticalComponent"")
+var_2 = get_similar_work_items(work_id=var_1)
+var_3 = estimate_work_hours(work_id=var_2[0])
+var_4 = estimate_work_hours(work_id=var_2[1])
+if(var_3 > var_4):
+    temp_1 = get_sprint_id()
+    temp_2 = add_work_items_to_sprint(work_ids=[var_2[0]], sprint_id=temp_1)
+else:
+    temp_3 = get_sprint_id()
+    temp_4 = add_work_items_to_sprint(work_ids=[var_2[1]], sprint_id=temp_3)"
+"Extract tasks from the text ""ClientFeedback"", prioritize them, and assign the top 10 tasks to users from team ""TeamAlpha"" evenly.","var_1 = create_actionable_tasks_from_text(text=""ClientFeedback"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = find_team_members(team_id=""TeamAlpha"")
+for loop_var in range(0,10):
+    temp_1 = assign_task_to_user(task_id=var_2[loop_var], user_id=var_3[loop_var % len(var_3)])"
+"Fetch tasks for user ""USER-777"", exclude completed tasks, summarize them, and create a report with the type ""task-summary"" for user ""USER-777"".","var_1 = fetch_user_tasks(user_id=""USER-777"", include_completed=False)
+var_2 = summarize_objects(objects=var_1)
+var_3 = generate_report(report_type=""task-summary"", subject_id=""USER-777"")"
+"Prioritize all work items with type ""task"" and source channel ""email"", then assign the top 5 to the user ""USER-444"".","var_1 = works_list(ticket.source_channel=[""email""], type=[""task""])
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in range(0,5):
+    temp_1 = assign_task_to_user(task_id=var_2[loop_var], user_id=""USER-444"")"
+"Find work items with stage name ""In-Progress"" and owned by ""USER-123"", summarize the list, and generate a report of type ""progress-summary"" for these items.","var_1 = search_object_by_name(query=""USER-123"")
+var_2 = works_list(owned_by=[var_1], stage.name=[""In-Progress""], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = generate_report(report_type=""progress-summary"", subject_id=var_3)"
+"Extract all tasks from the text ""ReleaseNotes"", create actionable tasks, and assign them to the team members of team ""TeamBeta"".","for loop_var in range(0,10):
+    temp_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+    temp_2 = find_team_members(team_id=""TeamBeta"")
+    temp_3 = assign_task_to_user(task_id=temp_1[loop_var], user_id=temp_2[loop_var % len(temp_2)])"
+"Retrieve the current user's ID, fetch all tasks assigned to this user, prioritize them, and mark the task with the highest priority as completed.","var_1 = who_am_i()
+var_2 = fetch_user_tasks(user_id=var_1)
+var_3 = prioritize_objects(objects=var_2)
+var_4 = mark_task_as_completed(task_id=var_3[0])"
+"Search for the object with name ""ProjectDelta"", retrieve all tasks related to this object, prioritize them, and assign the top 2 to sprint ""SPRINT-321"".","var_1 = search_object_by_name(query=""ProjectDelta"")
+var_2 = works_list(ticket.source_channel=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = add_work_items_to_sprint(work_ids=[var_3[0], var_3[1]], sprint_id=""SPRINT-321"")"
+"Get the sprint ID for ""SprintNext"", find all work items with issue priority ""p3"", and add them to ""SprintNext"".","var_1 = search_object_by_name(query=""SprintNext"")
+var_2 = works_list(issue.priority=[""p3""], type=[""issue""])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_1)"
+"Summarize work items created by ""USER-999"" that apply to part ""PART-77"", prioritize them, and assign the top 3 to the most recent sprint.","var_1 = search_object_by_name(query=""USER-999"")
+var_2 = search_object_by_name(query=""PART-77"")
+var_3 = works_list(created_by=[var_1], applies_to_part=[var_2], type=[""task""])
+var_4 = prioritize_objects(objects=var_3)
+var_5 = get_sprint_id()
+var_6 = add_work_items_to_sprint(work_ids=[var_4[0], var_4[1], var_4[2]], sprint_id=var_5)"
+"Create actionable tasks from the text ""ProductSpecs"", prioritize them, and assign the top 4 tasks to the user with the least number of tasks.","for loop_var in range(0,4):
+    temp_1 = create_actionable_tasks_from_text(text=""ProductSpecs"")
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = who_am_i()
+    temp_4 = fetch_user_tasks(user_id=temp_3)
+    temp_5 = assign_task_to_user(task_id=temp_2[loop_var], user_id=temp_4[loop_var % len(temp_4)])"
+"Find all tickets with source channel ""web"" and severity ""low"", summarize them, and if the current sprint is ""SprintCleanup"", add all tickets to it; otherwise, create a new sprint and add them there.","var_1 = works_list(ticket.source_channel=[""web""], ticket.severity=[""low""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = get_sprint_id()
+if(var_3 == ""SprintCleanup""):
+    temp_1 = works_list(ticket.source_channel=[""web""], ticket.severity=[""low""], type=[""ticket""])
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=""SprintCleanup"")
+else:
+    temp_1 = works_list(ticket.source_channel=[""web""], ticket.severity=[""low""], type=[""ticket""])
+    temp_2 = create_actionable_tasks_from_text(text=""Create New Sprint"")
+    temp_3 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=temp_2)"
+"Extract actionable tasks from customer feedback ""FeedbackText"" and assign them to the current sprint if the user ""USER-789"" is the owner. Otherwise, assign them to sprint id ""SPRINT-999"".","var_1 = who_am_i()
+if(var_1==""USER-789""):
+    temp_1 = create_actionable_tasks_from_text(text=""FeedbackText"")
+    temp_2 = get_sprint_id()
+    temp_3 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=temp_2)
+else:
+    temp_1 = create_actionable_tasks_from_text(text=""FeedbackText"")
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=""SPRINT-999"")"
+"Retrieve all work items with type ""task"" that need a response, summarize them, and then add the top 10 to sprint id ""SPRINT-321"".","var_1 = works_list(type=[""task""], ticket.needs_response=True)
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+var_4 = add_work_items_to_sprint(work_ids=var_3[0:10], sprint_id=""SPRINT-321"")"
+"Find work items owned by ""USER-ABC"" with priority ""p1"", prioritize them, and assign the top 3 to the current sprint.","var_1 = search_object_by_name(query=""USER-ABC"")
+var_2 = works_list(owned_by=[var_1], issue.priority=[""p1""], type=[""issue""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3[0:3], sprint_id=var_4)"
+"Find all tickets created by ""USER-789"" with severity ""high"", prioritize them, and assign the top 5 to the current sprint.","var_1 = search_object_by_name(query=""USER-789"")
+var_2 = works_list(created_by=[var_1], ticket.severity=[""high""], type=[""ticket""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3[0:5], sprint_id=var_4)"
+"Summarize all issues with priority ""p0"" and add them to sprint id ""SPRINT-ABC"" if the current user is a member of team ""TeamX"".","var_1 = who_am_i()
+var_2 = find_team_members(team_id=""TeamX"")
+if(var_1 in var_2):
+    temp_1 = works_list(issue.priority=[""p0""], type=[""issue""])
+    temp_2 = summarize_objects(objects=temp_1)
+    temp_3 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=""SPRINT-ABC"")"
+"For team ""TeamOmega"", get the member IDs, find all work items with type ""issue"" for these members, summarize the items, and assign the top 2 to sprint id ""SPRINT-XYZ"".","var_1 = find_team_members(team_id=""TeamOmega"")
+for loop_var in var_1:
+    temp_1 = works_list(owned_by=[loop_var], type=[""issue""])
+    temp_2 = summarize_objects(objects=temp_1)
+var_3 = prioritize_objects(objects=temp_1)
+var_4 = add_work_items_to_sprint(work_ids=var_3[0:2], sprint_id=""SPRINT-XYZ"")"
+"Generate a report for all tasks associated with ""OBJECT-789"", include a summary, and assign any new tasks found in the report to ""USER-654"".","var_1 = search_object_by_name(query=""OBJECT-789"")
+var_2 = generate_report(report_type=""tasks"", subject_id=var_1)
+var_3 = create_actionable_tasks_from_text(text=var_2)
+for loop_var in var_3:
+    temp_1 = assign_task_to_user(task_id=loop_var, user_id=""USER-654"")"
+"Search for work items related to the source channel ""Email"", prioritize them, and add the top 3 to the current sprint.","var_1 = works_list(ticket.source_channel=[""Email""], type=[""ticket""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2[0:3], sprint_id=var_3)"
+"Extract actionable tasks from the text ""UserManual"", create a summary for them, and assign them to the sprint id found by searching ""NextRelease"".","var_1 = create_actionable_tasks_from_text(text=""UserManual"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = search_object_by_name(query=""NextRelease"")
+var_4 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_3)"
+"Identify work items with severity ""blocker"" for part ""PART-111"", summarize them, and assign the most critical one to each user in team ""TeamBeta"".","var_1 = find_team_members(team_id=""TeamBeta"")
+for loop_var in var_1:
+    temp_1 = search_object_by_name(query=""PART-111"")
+    temp_2 = works_list(applies_to_part=[temp_1], ticket.severity=[""blocker""], type=[""issue""])
+    temp_3 = summarize_objects(objects=temp_2)
+    temp_4 = prioritize_objects(objects=temp_2)
+    temp_5 = assign_task_to_user(task_id=temp_4[0], user_id=loop_var)"
+"Retrieve tasks for ""USER-999"" that are not completed, prioritize them, and mark the top 3 as completed.","for loop_var in range(0,3):
+    temp_1 = fetch_user_tasks(user_id=""USER-999"", include_completed=False)
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = mark_task_as_completed(task_id=temp_2[loop_var])"
+"Find work items created by ""USER-222"" with type ""ticket"", prioritize them, and assign the top 4 to ""USER-333"".","for loop_var in range(0,4):
+    temp_1 = search_object_by_name(query=""USER-222"")
+    temp_2 = works_list(created_by=[temp_1], type=[""ticket""])
+    temp_3 = prioritize_objects(objects=temp_2)
+    temp_4 = assign_task_to_user(task_id=temp_3[loop_var], user_id=""USER-333"")"
+"Extract tasks from the text ""InstallationGuide"", prioritize them, and assign the first 8 to the current sprint.","var_1 = create_actionable_tasks_from_text(text=""InstallationGuide"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+for loop_var in range(0,8):
+    temp_1 = add_work_items_to_sprint(work_ids=[var_2[loop_var]], sprint_id=var_3)"
+"Find all tasks for ""USER-888"" with priority ""p3"", summarize them, and assign the most urgent one to the current sprint.","var_1 = search_object_by_name(query=""USER-888"")
+var_2 = works_list(owned_by=[var_1], issue.priority=[""p3""], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+var_5 = get_sprint_id()
+var_6 = add_work_items_to_sprint(work_ids=[var_4[0]], sprint_id=var_5)"
+"Retrieve work items for part ""PART-444"" created by ""USER-555"", prioritize them based on severity, and add the top 2 to sprint id ""SPRINT-666"".","var_1 = search_object_by_name(query=""PART-444"")
+var_2 = search_object_by_name(query=""USER-555"")
+var_3 = works_list(applies_to_part=[var_1], created_by=[var_2], type=[""issue""])
+var_4 = prioritize_objects(objects=var_3)
+var_5 = add_work_items_to_sprint(work_ids=var_4[0:2], sprint_id=""SPRINT-666"")"
+"Create tasks from the text ""UpdateText"" and if the current user is ""USER-XYZ"", add them to the sprint with ID ""SPRINT-ABC"". If not, assign them to ""SPRINT-DEF"".","var_1 = who_am_i()
+var_2 = create_actionable_tasks_from_text(text=""UpdateText"")
+if(var_1==""USER-XYZ""):
+    temp_1 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-ABC"")
+else:
+    temp_1 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-DEF"")"
+"Retrieve work items with type ""issue"" that are created by ""DevTeamA"", summarize them, and then assign the first 10 to sprint ""SPRINT-001"" and the next 10 to sprint ""SPRINT-002"".","var_1 = works_list(created_by=[""DevTeamA""], type=[""issue""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_1[0:10], sprint_id=""SPRINT-001"")
+var_4 = add_work_items_to_sprint(work_ids=var_1[10:20], sprint_id=""SPRINT-002"")"
+"Summarize the tasks created from the text ""ReleaseNotes"" and assign all the tasks to ""JuniorDev"".","var_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+    temp_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+    temp_2 = assign_task_to_user(task_id=temp_1[loop_var], user_id=""JuniorDev"")"
+"Find work items owned by ""Manager123"" with priority ""p1"", add them to the sprint with ID ""SPRINT-789"" if the current sprint ID is ""SPRINT-789"", otherwise do not add them to any sprint.","var_1 = get_sprint_id()
+if(var_1==""SPRINT-789""):
+    temp_1 = works_list(owned_by=[""Manager123""], issue.priority=[""p1""], type=[""issue""])
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=""SPRINT-789"")"
+"Extract tasks from the text ""ClientFeedback"", prioritize them, and assign the top 3 tasks to the user with ID ""LeadDev123"".","var_1 = create_actionable_tasks_from_text(text=""ClientFeedback"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = assign_task_to_user(task_id=var_2[0], user_id=""LeadDev123"")
+var_4 = assign_task_to_user(task_id=var_2[1], user_id=""LeadDev123"")
+var_5 = assign_task_to_user(task_id=var_2[2], user_id=""LeadDev123"")"
+"Summarize and prioritize all tickets with severity ""high"" and source channel ""email"", then mark the top 5 as completed.","for loop_var in range(0,5):
+    temp_1 = works_list(ticket.severity=[""high""], ticket.source_channel=[""email""], type=[""ticket""])
+    temp_2 = summarize_objects(objects=temp_1)
+    temp_3 = prioritize_objects(objects=temp_1)
+    temp_4 = mark_task_as_completed(task_id=temp_3[loop_var])"
+"Search for the object with the name ""CriticalBugReport"", estimate the work hours needed, and if it is more than 5 hours, assign it to user ""SeniorDev"".","var_1 = search_object_by_name(query=""CriticalBugReport"")
+var_2 = estimate_work_hours(work_id=var_1)
+if(var_2 > 5):
+    temp_1 = assign_task_to_user(task_id=var_1, user_id=""SeniorDev"")"
+"Combine the tasks from users ""UserA"" and ""UserB"", summarize the combined list, and generate a report with the summary.","var_1 = fetch_user_tasks(user_id=""UserA"")
+var_2 = fetch_user_tasks(user_id=""UserB"")
+var_3 = summarize_objects(objects=var_1+var_2)
+var_4 = generate_report(report_type=""summary"", subject_id=var_3)"
+"Find work items similar to ""WORK-123"", summarize the findings, and add the summarized text to the sprint report.","var_1 = get_similar_work_items(work_id=""WORK-123"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = generate_report(report_type=""sprint"", subject_id=var_2)"
+"For team ""AlphaTeam"", get the member IDs, find all tasks assigned to these members, prioritize them, and assign the top 2 tasks to the current sprint.","var_1 = find_team_members(team_id=""AlphaTeam"")
+for loop_var in var_1:
+    temp_1 = fetch_user_tasks(user_id=loop_var)
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = get_sprint_id()
+    temp_4 = assign_task_to_user(task_id=temp_2[0], user_id=loop_var)
+    temp_5 = assign_task_to_user(task_id=temp_2[1], user_id=loop_var)
+    temp_6 = add_work_items_to_sprint(work_ids=[temp_2[0], temp_2[1]], sprint_id=temp_3)"
+"Extract tasks from the text ""WeeklyGoals"", assign them to user ""USER-789"", and if any task is estimated to take more than 8 hours, mark it as high priority.","var_1 = create_actionable_tasks_from_text(text=""WeeklyGoals"")
+for loop_var in var_1:
+    temp_1 = estimate_work_hours(work_id=loop_var)
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=""USER-789"")
+    if(temp_1 > 8):
+        temp_3 = mark_task_as_completed(task_id=loop_var)  "
+"Find work items with type ""ticket"" and severity ""low"" created by ""UserC"", summarize them, and create a report for management review.","var_1 = search_object_by_name(query=""UserC"")
+var_2 = works_list(created_by=[var_1], ticket.severity=[""low""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = generate_report(report_type=""management"", subject_id=var_3)"
+"Retrieve all tasks assigned to user ""DevLead"" that are not completed, estimate the total hours required, and if it exceeds 40 hours, notify the project manager.",Unanswerable_query_error
+"Search for the object by name ""UrgentIssue"", create a task from the description, and if the task is a ""blocker"", add it to the current sprint.","var_1 = search_object_by_name(query=""UrgentIssue"")
+var_2 = create_actionable_tasks_from_text(text=var_1)
+var_3 = get_sprint_id()
+if(var_2==""blocker""):
+    temp_1 = add_work_items_to_sprint(work_ids=[var_2], sprint_id=var_3)"
+"Extract tasks from the text ""ClientMeetingSummary"", prioritize them, and assign the task with the highest priority to the current sprint.","var_1 = create_actionable_tasks_from_text(text=""ClientMeetingSummary"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=[var_2[0]], sprint_id=var_3)"
+"For team ""BetaSquad"", find all issues with priority ""p3"" related to the team members, summarize these issues, and assign the most critical one to the team leader.","var_1 = find_team_members(team_id=""BetaSquad"")
+for loop_var in var_1:
+    temp_1 = works_list(owned_by=[loop_var], issue.priority=[""p3""], type=[""issue""])
+    temp_2 = summarize_objects(objects=temp_1)
+    temp_3 = prioritize_objects(objects=temp_1)
+    temp_4 = assign_task_to_user(task_id=temp_3[0], user_id=loop_var)  "
+"Retrieve all tasks for user ""QAExpert"" including completed ones, prioritize them, and create a report including a summary of the top 5 tasks.","var_1 = fetch_user_tasks(user_id=""QAExpert"", include_completed=True)
+var_2 = prioritize_objects(objects=var_1)
+var_3 = summarize_objects(objects=var_2[0:5])
+var_4 = generate_report(report_type=""summary"", subject_id=var_3)"
+"Find similar work items to ""ISSUE-101"", estimate the work hours for each, and assign them to user ""QuickFixer"".","var_1 = get_similar_work_items(work_id=""ISSUE-101"")
+for loop_var in var_1:
+    temp_1 = estimate_work_hours(work_id=loop_var)
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=""QuickFixer"")  "
+"Summarize the tasks created from the client feedback ""ClientFeedback-A"" and assign them to sprint ""SPRINT-789"" if they are of type ""issue"".","var_1 = create_actionable_tasks_from_text(text=""ClientFeedback-A"")
+var_2 = works_list(type=[""issue""])
+if var_1 == var_2:
+    temp_1 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""SPRINT-789"")"
+"Prioritize work items with severity ""high"" from the support team and add the top 10 to the sprint ""SPRINT-101"".","var_1 = works_list(ticket.severity=[""high""], type=[""issue"", ""ticket"", ""task""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_2[0:10], sprint_id=""SPRINT-101"")"
+"Generate a report for the user ""USER-999"" including a summary of their completed and ongoing tasks.","var_1 = who_am_i()
+var_2 = fetch_user_tasks(user_id=""USER-999"", include_completed=True)
+var_3 = generate_report(report_type=""user-tasks"", subject_id=""USER-999"")"
+"Find work items related to part ""PART-321"" with priority ""p1"", summarize them, and estimate the total work hours required.","var_1 = search_object_by_name(query=""PART-321"")
+var_2 = works_list(applies_to_part=[var_1], issue.priority=[""p1""], type=[""issue"", ""ticket"", ""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = estimate_work_hours(work_id=var_2[0])"
+"Create tasks from the recent audit report ""AuditReport-Q1"" and assign them to the team members of ""TeamAlpha"".","var_1 = find_team_members(team_id=""TeamAlpha"")
+for loop_var in var_1:
+    temp_1 = create_actionable_tasks_from_text(text=""AuditReport-Q1"")
+    temp_2 = assign_task_to_user(task_id=temp_1, user_id=loop_var)"
+"Search for the object with the name ""ProjectOmega"" and create a detailed report for it without a summary.","var_1 = search_object_by_name(query=""ProjectOmega"")
+var_2 = generate_report(report_type=""detailed"", subject_id=var_1, include_summary=False)"
+"Retrieve all tickets needing a response, prioritize them, and assign the top 3 to user ""SupportAgent-1"".","for loop_var in range(0,3):
+    temp_1 = works_list(ticket.needs_response=True, type=[""ticket""])
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = assign_task_to_user(task_id=temp_2[0], user_id=""SupportAgent-1"")
+    temp_4 = assign_task_to_user(task_id=temp_2[1], user_id=""SupportAgent-1"")
+    temp_5 = assign_task_to_user(task_id=temp_2[2], user_id=""SupportAgent-1"")"
+"Summarize and prioritize all tasks assigned to ""USER-234"" that are not completed and mark the one with the highest priority as completed.","var_1 = fetch_user_tasks(user_id=""USER-234"", include_completed=False)
+var_2 = prioritize_objects(objects=var_1)
+var_3 = mark_task_as_completed(task_id=var_2[0])"
+"Extract tasks from the engineering meeting notes ""Eng-Meeting-01"" and assign them to the users who are part of ""TeamBeta"".","var_1 = find_team_members(team_id=""TeamBeta"")
+for loop_var in var_1:
+    temp_1 = create_actionable_tasks_from_text(text=""Eng-Meeting-01"")
+    temp_2 = assign_task_to_user(task_id=temp_1, user_id=loop_var)"
+"Find similar work items to ""TASK-789"", estimate the work hours for each, and add the ones with the highest estimated hours to the sprint ""SPRINT-321"".","var_1 = get_similar_work_items(work_id=""TASK-789"")
+var_2 = estimate_work_hours(work_id=var_1[0])
+var_3 = prioritize_objects(objects=var_1)
+var_4 = add_work_items_to_sprint(work_ids=[var_3[0]], sprint_id=""SPRINT-321"")"
+"Prioritize the issues created by ""USER-567"" and add the top 5 to the current sprint if their type is ""ticket"".","var_1 = search_object_by_name(query=""USER-567"")
+var_2 = works_list(created_by=[var_1], type=[""ticket""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+if var_2 == [""ticket""]:
+    temp_1 = add_work_items_to_sprint(work_ids=var_3[0:5], sprint_id=var_4)"
+"Create a report for part ""PART-XYZ"" and include a summary of all related tasks, issues, and tickets.","var_1 = search_object_by_name(query=""PART-XYZ"")
+var_2 = works_list(applies_to_part=[var_1], type=[""issue"", ""ticket"", ""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = generate_report(report_type=""part-tasks"", subject_id=var_1)"
+"Assign all tasks related to the customer ""CustomerA"" to the user who is currently logged in.","var_1 = search_object_by_name(query=""CustomerA"")
+var_2 = works_list(ticket.rev_org=[var_1], type=[""task""])
+for loop_var in var_2:
+    temp_1 = who_am_i()
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=temp_1)"
+"Fetch all tasks for user ""USER-890"", prioritize them, and generate a report for the tasks with the highest priority.","var_1 = fetch_user_tasks(user_id=""USER-890"", include_completed=False)
+var_2 = prioritize_objects(objects=var_1)
+var_3 = generate_report(report_type=""user-tasks"", subject_id=""USER-890"")"
+"Retrieve the list of tasks for ""USER-777"", summarize them, and assign the most critical task to the current sprint.","var_1 = fetch_user_tasks(user_id=""USER-777"", include_completed=False)
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=[var_2[0]], sprint_id=var_3)"
+"Find work items of type ""task"" that need to be added to the sprint ""SPRINT-555"" and summarize them for the sprint planning meeting.","var_1 = works_list(type=[""task""], ticket.needs_response=True)
+var_2 = summarize_objects(objects=var_1)"
+"Summarize the work items owned by ""USER-111"" that are in the stage ""Testing"" and create a report to track their progress.","var_1 = search_object_by_name(query=""USER-111"")
+var_2 = works_list(owned_by=[var_1], stage.name=[""Testing""], type=[""issue"", ""ticket"", ""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = generate_report(report_type=""user-progress"", subject_id=var_1)"
+"Generate a list of tasks from the recent code review notes ""CodeReview-C1"" and assign them to the user with the ID ""DEV-222"".","var_1 = create_actionable_tasks_from_text(text=""CodeReview-C1"")
+for loop_var in var_1:
+    temp_1 = assign_task_to_user(task_id=loop_var, user_id=""DEV-222"")"
+"Prioritize all tickets with source channel ""Email"" and assign the top 2 to each member of ""TeamGamma"" for immediate response.","var_1 = find_team_members(team_id=""TeamGamma"")
+for loop_var in var_1:
+    temp_1 = works_list(ticket.source_channel=[""Email""], type=[""ticket""])
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = assign_task_to_user(task_id=temp_2, user_id=loop_var)"
+"Extract actionable tasks from the quarterly strategy document ""StrategyDoc-Q2"", create tasks for them, and assign them to the product team members.","var_1 = find_team_members(team_id=""ProductTeam"")
+for loop_var in var_1:
+    temp_1 = create_actionable_tasks_from_text(text=""StrategyDoc-Q2"")
+    temp_2 = assign_task_to_user(task_id=temp_1, user_id=loop_var)"
+"Extract actionable tasks from the text ""UpdateText"" and if the user is ""USER-789"", assign them to the current sprint. If not, assign them to sprint id ""SPRINT-999"".","var_1 = create_actionable_tasks_from_text(text=""UpdateText"")
+var_2 = who_am_i()
+if(var_2==""USER-789""):
+    temp_1 = get_sprint_id()
+    temp_2 = add_work_items_to_sprint(work_ids=var_1, sprint_id=temp_1)
+else:
+    temp_1 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""SPRINT-999"")"
+"Find work items with type ""ticket"" and severity ""high"" created by user ""USER-321"". Summarize these items and add them to the sprint with id ""SPRINT-ABC"".","var_1 = search_object_by_name(query=""USER-321"")
+var_2 = works_list(created_by=[var_1], ticket.severity=[""high""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-ABC"")"
+"Retrieve all tasks assigned to ""USER-XYZ"", prioritize them, and mark the top 10 as completed.","var_1 = fetch_user_tasks(user_id=""USER-XYZ"")
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in range(0,10):
+    temp_1 = mark_task_as_completed(task_id=var_2[loop_var])"
+"Generate a report for object ""OBJ-123"" of type ""activity-log"" without including a summary.","var_1 = search_object_by_name(query=""OBJ-123"")
+var_2 = generate_report(report_type=""activity-log"", subject_id=var_1, include_summary=False)"
+"Create tasks based on the insights from the text ""CustomerFeedback"" and assign the resulting tasks to user ""SupportAgent"".","var_1 = create_actionable_tasks_from_text(text=""CustomerFeedback"")
+for loop_var in var_1:
+    temp_1 = assign_task_to_user(task_id=loop_var, user_id=""SupportAgent"")"
+"Search for object by name ""GadgetProMax"" and estimate the work hours needed for the work item with the found ID.","var_1 = search_object_by_name(query=""GadgetProMax"")
+var_2 = estimate_work_hours(work_id=var_1)"
+"Prioritize all work items related to the part ""PART-789"" and assign the top 3 to the current sprint.","var_1 = search_object_by_name(query=""PART-789"")
+var_2 = works_list(applies_to_part=[var_1], type=[""issue"", ""ticket"", ""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3[0:3], sprint_id=var_4)"
+"Get similar work items to ""WORK-101"", create a report summarizing these items, and delete the object with the least priority.","var_1 = get_similar_work_items(work_id=""WORK-101"")
+var_2 = generate_report(report_type=""summary"", subject_id=""WORK-101"")
+var_3 = prioritize_objects(objects=var_1)
+var_4 = delete_object_by_id(object_id=var_3[-1])"
+"Identify work items with issue priority ""p1"" and ticket source channel ""email"". Prioritize them and add the first 5 to sprint ""SPRINT-XYZ"".","var_1 = works_list(issue.priority=[""p1""], ticket.source_channel=[""email""], type=[""issue"", ""ticket""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_2[0:5], sprint_id=""SPRINT-XYZ"")"
+"Summarize objects related to ""OBJ-234"", create actionable tasks from the summary, and assign them to the current sprint.","var_1 = search_object_by_name(query=""OBJ-234"")
+var_2 = summarize_objects(objects=[var_1])
+var_3 = create_actionable_tasks_from_text(text=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)"
+"Find team members of team ""TeamAlpha"", fetch their tasks, prioritize the tasks, and assign the highest priority task of each member to sprint ""SPRINT-DEF"".","var_1 = find_team_members(team_id=""TeamAlpha"")
+for loop_var in var_1:
+    temp_1 = fetch_user_tasks(user_id=loop_var)
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = get_sprint_id()
+    temp_4 = add_work_items_to_sprint(work_ids=[temp_2[0]], sprint_id=""SPRINT-DEF"")"
+"Retrieve all tasks that need a response, summarize them, and assign the tasks to the user with ID ""USER-1122"".","var_1 = works_list(ticket.needs_response=True, type=[""task""])
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+    temp_1 = search_object_by_name(query=""USER-1122"")
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=temp_1)"
+"Search for the user name ""ManagerMike"", fetch all tasks created by this user, prioritize them, and mark the bottom 5 as completed.","for loop_var in range(1,6):
+    temp_1 =  search_object_by_name(query=""ManagerMike"")
+    temp_2 = works_list(created_by=[temp_1], type=[""task""])
+    temp_3 = prioritize_objects(objects=temp_2)
+    temp_4 = mark_task_as_completed(task_id=temp_3[-loop_var])"
+"Extract tasks from the document ""Doc-Ref-543"" and assign them to the sprint that has the ID returned by the search for ""SprintName"".","var_1 = create_actionable_tasks_from_text(text=""Doc-Ref-543"")
+var_2 = search_object_by_name(query=""SprintName"")
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)"
+"Prioritize work items owned by ""USER-777"" and add the top 10 to the sprint with the ID obtained from the search for ""NextSprint"".","var_1 = search_object_by_name(query=""USER-777"")
+var_2 = works_list(owned_by=[var_1], type=[""issue"", ""ticket"", ""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = search_object_by_name(query=""NextSprint"")
+var_5 = add_work_items_to_sprint(work_ids=var_3[0:10], sprint_id=var_4)"
+"Create a report of type ""workload"" for user ""USER-888"", including a summary, and estimate the hours for each task in the report.","var_1 = search_object_by_name(query=""USER-888"")
+var_2 = generate_report(report_type=""workload"", subject_id=var_1)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)"
+"Assign all tasks extracted from the text ""ReleaseNotes"" to the user who is currently logged in as identified by ""who_am_i"".","var_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+for loop_var in var_1:
+    temp_1 = who_am_i()
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=temp_1)"
+"Summarize and prioritize all tickets with severity ""blocker"", and assign the top 5 to the user found by searching ""LeadDeveloper"".","var_1 = works_list(ticket.severity=[""blocker""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+var_4 = search_object_by_name(query=""LeadDeveloper"")
+var_5 = add_work_items_to_sprint(work_ids=var_3[0:5], sprint_id=var_4)"
+"For team ""TeamBeta"", get the member IDs, find all issues with priority ""p0"" for these members, summarize the issues, and add the top prioritized issue of each member to the current sprint.","var_1 = find_team_members(team_id=""TeamBeta"")
+for loop_var in var_1:
+    temp_1 = works_list(owned_by=[loop_var], issue.priority=[""p0""], type=[""issue""])
+    temp_2 = summarize_objects(objects=temp_1)
+    temp_3 = prioritize_objects(objects=temp_1)
+    temp_4 = get_sprint_id()
+    temp_5 = add_work_items_to_sprint(work_ids=[temp_3[0]], sprint_id=temp_4)"
+"Create tasks from the customer feedback ""FeedbackText"", assign them to the current sprint, and generate a report including a summary for each task.","var_1 = create_actionable_tasks_from_text(text=""FeedbackText"")
+var_2 = get_sprint_id()
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)
+for loop_var in var_1:
+    temp_1 = summarize_objects(objects=[loop_var])
+    temp_2 = generate_report(report_type=""task"", subject_id=loop_var, include_summary=True)"
+"Retrieve all tasks created by ""ManagerID"", prioritize them, and assign the top 10 tasks to user ""LeadDev"".","var_1 = search_object_by_name(query=""ManagerID"")
+var_2 = works_list(created_by=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+for loop_var in range(0,10):
+    temp_1 = assign_task_to_user(task_id=var_3[loop_var], user_id=""LeadDev"")"
+"Summarize all work items with type ""issue"" and severity ""high"", estimate the work hours for each, and assign them to the current sprint.","var_1 = works_list(ticket.severity=[""high""], type=[""issue""])
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+    temp_1 = get_sprint_id()
+    temp_2 = estimate_work_hours(work_id=loop_var)
+    temp_3 = add_work_items_to_sprint(work_ids=[loop_var], sprint_id=temp_1)"
+"Find all tasks associated with part ""PART-789"", summarize them, and create a report for each task with the type ""QualityCheck"".","var_1 = search_object_by_name(query=""PART-789"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_2:
+    temp_1 = generate_report(report_type=""QualityCheck"", subject_id=loop_var, include_summary=False)"
+"Search for object by name ""CriticalComponent"", find all related work items, and assign them to the sprint with ID ""SPRINT-789"".","var_1 = search_object_by_name(query=""CriticalComponent"")
+var_2 = works_list(ticket.rev_org=[var_1])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-789"")"
+"For user ""DesignerID"", fetch all uncompleted tasks, summarize them, and mark the task with the highest priority as completed.","var_1 = fetch_user_tasks(user_id=""DesignerID"", include_completed=False)
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+var_4 = mark_task_as_completed(task_id=var_3[0])"
+"Generate a list of tasks from the document ""SpecDoc"", assign them to the team members of team ""DesignTeam"", and estimate the work hours for each task.","var_1 = create_actionable_tasks_from_text(text=""SpecDoc"")
+var_2 = find_team_members(team_id=""DesignTeam"")
+for loop_var in var_2:
+    temp_1 = assign_task_to_user(task_id=var_1, user_id=loop_var)
+    temp_2 = estimate_work_hours(work_id=var_1)"
+"Find all tickets with source channel ""Email"", prioritize them, and add the top 3 to the sprint with ID ""SPRINT-321"".","var_1 = works_list(ticket.source_channel=[""Email""], type=[""ticket""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2[0:3], sprint_id=""SPRINT-321"")"
+"Summarize all work items owned by ""OwnerID"", create actionable tasks from the summary, and assign them to the current sprint.","var_1 = summarize_objects(objects=[""OwnerID""])
+var_2 = create_actionable_tasks_from_text(text=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)"
+"Retrieve all tasks assigned to user ""USER-789"", prioritize them, and generate a report for each task without including a summary.","var_1 = fetch_user_tasks(user_id=""USER-789"", include_completed=False)
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in var_2:
+    temp_1 = generate_report(report_type=""task"", subject_id=loop_var, include_summary=False)"
+"Find similar work items to ""ISSUE-123"", summarize them, and mark each as completed.","var_1 = get_similar_work_items(work_id=""ISSUE-123"")
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+    temp_1 = estimate_work_hours(work_id=loop_var)
+    temp_2 = mark_task_as_completed(task_id=loop_var)"
+"Search for object by name ""UrgentIssue"", retrieve all related work items, prioritize them, and assign the top 5 to user ""SupportLead"".","var_1 = search_object_by_name(query=""UrgentIssue"")
+var_2 = works_list(ticket.rev_org=[var_1])
+var_3 = prioritize_objects(objects=var_2)
+for loop_var in range(0,5):
+    temp_1 = assign_task_to_user(task_id=var_3[loop_var], user_id=""SupportLead"")"
+"For team ""TeamAlpha"", get all members' IDs, find all issues created by these members, summarize them, and assign the top 2 to the current sprint.","var_1 = find_team_members(team_id=""TeamAlpha"")
+for loop_var in var_1:
+    temp_1 = works_list(created_by=[loop_var], type=[""issue""])
+    temp_2 = summarize_objects(objects=temp_1)
+    temp_3 = prioritize_objects(objects=temp_1)
+    temp_4 = get_sprint_id()
+    temp_5 = add_work_items_to_sprint(work_ids=[temp_3[0],temp_3[1]], sprint_id=temp_4)"
+"Extract tasks from the error log ""ErrorLogText"", summarize them, and assign each task to the user with ID ""TechSupportID"".","var_1 = create_actionable_tasks_from_text(text=""ErrorLogText"")
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+    temp_1 = assign_task_to_user(task_id=loop_var, user_id=""TechSupportID"")"
+"Find all work items with type ""task"" and priority ""p1"", prioritize them, and add the top 7 to the sprint with ID ""SPRINT-654"".","var_1 = works_list(issue.priority=[""p1""], type=[""task""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_2[0:7], sprint_id=""SPRINT-654"")"
+"Retrieve all tasks assigned to ""USER-321"", prioritize them, and delete the task with the lowest priority.","var_1 = fetch_user_tasks(user_id=""USER-321"", include_completed=False)
+var_2 = prioritize_objects(objects=var_1)
+var_3 = delete_object_by_id(object_id=var_2[-1])"
+"Find all tickets with severity ""blocker"" for part ""PART-456"", summarize them, and assign them to the sprint with ID ""SPRINT-987"".","var_1 = search_object_by_name(query=""PART-456"")
+var_2 = works_list(applies_to_part=[var_1], ticket.severity=[""blocker""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-987"")"
+"For user ""USER-654"", fetch all tasks including completed ones, summarize them, and create a report for each task with the type ""WeeklySummary"".","var_1 = fetch_user_tasks(user_id=""USER-654"", include_completed=True)
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+    temp_1 = generate_report(report_type=""WeeklySummary"", subject_id=loop_var, include_summary=True)"
+"Extract tasks from the release notes ""ReleaseNotesText"", prioritize them, and assign the 5 tasks with the shortest estimated work hours to user ""DevOpsID"".","var_1 = create_actionable_tasks_from_text(text=""ReleaseNotesText"")
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in range(0,5):
+    temp_1 = estimate_work_hours(work_id=var_2[loop_var])
+    temp_2 = assign_task_to_user(task_id=var_2[loop_var], user_id=""DevOpsID"")"
+"Create tasks from the customer feedback text ""CustomerFeedbackA"" and if the user ""USER-789"" is the current user, add those tasks to the current sprint.","var_1 = who_am_i()
+if(var_1 == ""USER-789""):
+    temp_1 = get_sprint_id()
+    temp_2 = create_actionable_tasks_from_text(text=""CustomerFeedbackA"")
+    temp_3 = add_work_items_to_sprint(work_ids=temp_2, sprint_id=temp_1)"
+"Prioritize work items that have a type of ""task"" and are created by ""ManagerX"", then assign the top 3 tasks to user ""USER-321"".","var_1 = search_object_by_name(query=""ManagerX"")
+var_2 = works_list(created_by=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+for loop_var in range(0,3):
+    temp_1 = assign_task_to_user(task_id=var_3[loop_var], user_id=""USER-321"")"
+"Summarize all tickets with source channel ""Email"" and severity ""high"" for a report and estimate the work hours for each ticket.","var_1 = works_list(ticket.source_channel=[""Email""], ticket.severity=[""high""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+    temp_1 = estimate_work_hours(work_id=loop_var)"
+"Retrieve work items with issue priority ""p1"" and owned by ""LeadDev"", add them to sprint ""SPRINT-789"" if they are not already part of a sprint.","var_1 = search_object_by_name(query=""LeadDev"")
+var_2 = works_list(owned_by=[var_1], issue.priority=[""p1""])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-789"")"
+"For the team with ID ""TeamAlpha"", find all tasks created by these team members, summarize them, and assign the top 10 to the current sprint.","var_1 = find_team_members(team_id=""TeamAlpha"")
+var_2 = works_list(created_by=var_1, type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+var_5 = get_sprint_id()
+for loop_var in range(0,10):
+    temp_1 = add_work_items_to_sprint(work_ids=[var_4[loop_var]], sprint_id=var_5)"
+"Generate a report for all issues with severity ""blocker"" and summarize the report for management review.","var_1 = works_list(ticket.severity=[""blocker""], type=[""issue""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = generate_report(report_type=""issues"", subject_id=var_2, include_summary=True)"
+"Assign all tasks from the project ""ProjectBeta"" to the user who is currently logged in using the who_am_i() function.","var_1 = who_am_i()
+var_2 = search_object_by_name(query=""ProjectBeta"")
+var_3 = works_list(ticket.rev_org=[var_2], type=[""task""])
+for loop_var in var_3:
+    temp_1 = assign_task_to_user(task_id=loop_var, user_id=var_1)"
+"Find work items of type ""issue"" that need a response, prioritize them, and assign the top 5 to the current sprint.","var_1 = works_list(ticket.needs_response=True, type=[""issue""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+for loop_var in range(0,5):
+    temp_1 = add_work_items_to_sprint(work_ids=[var_2[loop_var]], sprint_id=var_3)"
+Summarize all work items for the current sprint and create a report with the summary to share with stakeholders.,"var_1 = get_sprint_id()
+var_2 = works_list(stage.name=[var_1])
+var_3 = summarize_objects(objects=var_2)
+var_4 = generate_report(report_type=""sprint_summary"", subject_id=var_1, include_summary=True)"
+"Identify all tasks assigned to ""USER-234"" that are not completed, prioritize them, and reassign the top 2 tasks to ""USER-567"".","var_1 = fetch_user_tasks(user_id=""USER-234"", include_completed=False)
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in range(0,2):
+    temp_1 = assign_task_to_user(task_id=var_2[loop_var], user_id=""USER-567"")"
+"Extract tasks from the internal memo ""Memo123"" and assign them to the sprint with ID ""SPRINT-321"" if the memo contains urgent items.","var_1 = create_actionable_tasks_from_text(text=""Memo123"")
+if(""urgent"" in var_1):
+    temp_1 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""SPRINT-321"")"
+"Summarize all tickets that have been created by ""UserSupportTeam"" and are of type ""ticket"", then estimate the work hours for each summarized ticket.","var_1 = search_object_by_name(query=""UserSupportTeam"")
+var_2 = works_list(created_by=[var_1], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)"
+"Prioritize all work items that apply to part ""PART-111"" and are of type ""issue"", then add the top 3 issues to the sprint ""SPRINT-222"".","var_1 = search_object_by_name(query=""PART-111"")
+var_2 = works_list(applies_to_part=[var_1], type=[""issue""])
+var_3 = prioritize_objects(objects=var_2)
+for loop_var in range(0,3):
+    temp_1 = add_work_items_to_sprint(work_ids=[var_3[loop_var]], sprint_id=""SPRINT-222"")"
+"Retrieve all tasks that are owned by ""USER-ABC"" and have a ticket severity of ""medium"", summarize them, and generate a report for team review.","var_1 = search_object_by_name(query=""USER-ABC"")
+var_2 = works_list(owned_by=[var_1], ticket.severity=[""medium""], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = generate_report(report_type=""task_summary"", subject_id=var_3, include_summary=True)"
+"Find all work items created by ""DevTeam5"", prioritize them, and assign the top 4 to user ""USER-XYZ"".","var_1 = search_object_by_name(query=""DevTeam5"")
+var_2 = works_list(created_by=[var_1])
+var_3 = prioritize_objects(objects=var_2)
+for loop_var in range(0,4):
+    temp_1 = assign_task_to_user(task_id=var_3[loop_var], user_id=""USER-XYZ"")"
+"Summarize all work items that are at stage ""Testing"" and add them to the sprint ""SPRINT-333"" if they are critical.","var_1 = works_list(stage.name=[""Testing""])
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+    if(""critical"" in loop_var):
+        temp_1 = add_work_items_to_sprint(work_ids=[loop_var], sprint_id=""SPRINT-333"")"
+"Prioritize all tickets with a source channel ""SupportChat"" and assign the top 5 to the sprint ""SPRINT-444"" for immediate attention.","var_1 = works_list(ticket.source_channel=[""SupportChat""])
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in range(0,5):
+    temp_1 = add_work_items_to_sprint(work_ids=[var_2[loop_var]], sprint_id=""SPRINT-444"")"
+"Find all tasks for user ""USER-999"", summarize them, and create a report that includes a summary and estimated work hours for each task.","var_1 = fetch_user_tasks(user_id=""USER-999"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = generate_report(report_type=""user_tasks"", subject_id=var_2, include_summary=True)
+for loop_var in var_1:
+    temp_1 = estimate_work_hours(work_id=loop_var)"
+"Create tasks from the text of the customer feedback ""CustomerFeedbackA"" and assign them to sprint ""SprintAlpha"" if the user ""USER-A"" is the creator. Otherwise, add them to sprint ""SprintBeta"".","var_1 = who_am_i()
+var_2 = create_actionable_tasks_from_text(text=""CustomerFeedbackA"")
+if(var_1 == ""USER-A""):
+    temp_1 = create_actionable_tasks_from_text(text=""CustomerFeedbackA"")
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=""SprintAlpha"")
+else:
+    temp_1 = create_actionable_tasks_from_text(text=""CustomerFeedbackA"")
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=""SprintBeta"")"
+"Retrieve all work items with type ""task"" that need a response, summarize them, and assign the first 10 to user ""USER-1"" and the rest to user ""USER-2"".","var_1 = works_list(ticket.needs_response=True, type=[""task""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = assign_task_to_user(task_id=var_1[0:10], user_id=""USER-1"")
+var_4 = assign_task_to_user(task_id=var_1[10:], user_id=""USER-2"")"
+"Fetch work items created by ""USER-X"", filter by severity ""high"", and assign them to the sprint with ID ""SPRINT-001"" if any of the items are of type ""issue"".","var_1 = works_list(created_by=[""USER-X""], ticket.severity=[""high""], type=[""issue"", ""task""])
+if(""issue"" in var_1):
+    temp_1 = works_list(created_by=[""USER-X""], ticket.severity=[""high""], type=[""issue"", ""task""])
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=""SPRINT-001"")"
+"Summarize the tasks assigned to user ""USER-XYZ"", estimate the work hours for each task, and generate a report for user ""USER-XYZ"" with these details.","var_1 = fetch_user_tasks(user_id=""USER-XYZ"")
+var_2 = summarize_objects(objects=var_1)
+for loop_var in range(0,10):
+    temp_1 = estimate_work_hours(work_id=var_1[loop_var])
+var_3 = generate_report(report_type=""tasks"", subject_id=""USER-XYZ"")"
+"Identify work items with priority ""p1"" and type ""ticket"", prioritize them, and add the first 10 to the sprint with ID ""SPRINT-ABC"".","var_1 = works_list(issue.priority=[""p1""], type=[""ticket""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_2[0:10], sprint_id=""SPRINT-ABC"")"
+"Extract tasks from the text ""WeeklyUpdateText"", prioritize them, and assign the top 3 to the user with ID ""USER-12345"".","for loop_var in range(0,3):
+    temp_1 = create_actionable_tasks_from_text(text=""WeeklyUpdateText"")
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = assign_task_to_user(task_id=temp_2[loop_var], user_id=""USER-12345"")"
+"Find work items owned by ""USER-TEAMLEAD"", summarize them, and create a report for each item with a summary included.","var_1 = works_list(owned_by=[""USER-TEAMLEAD""])
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+    temp_1 = generate_report(report_type=""work-item"", subject_id=loop_var, include_summary=True)"
+"Get the current sprint ID, find similar work items to ""WORK-ID-789"", and add them to the current sprint.","var_1 = get_sprint_id()
+var_2 = get_similar_work_items(work_id=""WORK-ID-789"")
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_1)"
+"Extract tasks from the text ""ReleaseNotes"", create actionable tasks, and assign them to the user who is currently logged in.","var_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+for loop_var in var_1:
+    temp_1 = who_am_i()
+    temp_1 = assign_task_to_user(task_id=loop_var, user_id=temp_1)"
+"Generate a report for the subject with ID ""SUBJECT-001"" of type ""activity-log"", excluding the summary, and assign a task to user ""USER-AGENT"" to review the report.","var_1 = generate_report(report_type=""activity-log"", subject_id=""SUBJECT-001"", include_summary=False)
+var_2 = assign_task_to_user(task_id=var_1, user_id=""USER-AGENT"")"
+"Find all work items with type ""issue"" and severity ""blocker"", prioritize them, and assign the first 5 to the current sprint.","var_1 = works_list(issue.severity=[""blocker""], type=[""issue""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2[0:5], sprint_id=var_3)"
+"Fetch all tasks for user ""USER-DEV"", prioritize them, and mark the top 10 tasks as completed.","for loop_var in range(0,10):
+    temp_1 = fetch_user_tasks(user_id=""USER-DEV"")
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = mark_task_as_completed(task_id=temp_2[loop_var])"
+"Search for an object by name ""ProjectDelta"", estimate the work hours required for the related work item, and generate a report including a summary.","var_1 = search_object_by_name(query=""ProjectDelta"")
+var_2 = estimate_work_hours(work_id=var_1)
+var_3 = generate_report(report_type=""work-item"", subject_id=var_1, include_summary=True)"
+"Extract tasks from the text ""ClientMeetingSummary"", summarize them, and assign the tasks to team members of team ""TeamOmega"".","var_1 = create_actionable_tasks_from_text(text=""ClientMeetingSummary"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = find_team_members(team_id=""TeamOmega"")
+for loop_var in var_3:
+    temp_1 = create_actionable_tasks_from_text(text=""ClientMeetingSummary"")
+    temp_1 = assign_task_to_user(task_id=temp_1, user_id=loop_var)"
+"Retrieve all user tasks for ""USER-MANAGER"", prioritize them, and assign the highest priority task to the current sprint.","var_1 = fetch_user_tasks(user_id=""USER-MANAGER"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=[var_2[0]], sprint_id=var_3)"
+"Find similar work items to ""WORK-ID-123"", summarize them, and assign the most critical task to the user with ID ""USER-CRITICAL"".","var_1 = get_similar_work_items(work_id=""WORK-ID-123"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+var_4 = assign_task_to_user(task_id=var_3[0], user_id=""USER-CRITICAL"")"
+"Extract tasks from the text ""EngineeringSpecs"", prioritize them, and add the top 5 to the sprint with ID ""SPRINT-ENGINEERING"".","var_1 = create_actionable_tasks_from_text(text=""EngineeringSpecs"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_2[0:5], sprint_id=""SPRINT-ENGINEERING"")"
+"Retrieve work items with type ""task"" and source channel ""email"", prioritize them, and assign the first 3 to user ""USER-EMAIL"".","var_1 = works_list(ticket.source_channel=[""email""], type=[""task""])
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in range(0,3):
+    temp_1 = works_list(ticket.source_channel=[""email""], type=[""task""])
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = assign_task_to_user(task_id=temp_2[loop_var], user_id=""USER-EMAIL"")"
+"Find work items for part ""PART-XYZ"", filter by priority ""p3"", summarize them, and create a task for each summary for user ""USER-PART"".","var_1 = search_object_by_name(query=""PART-XYZ"")
+var_2 = works_list(applies_to_part=[var_1], issue.priority=[""p3""], type=[""issue"", ""ticket""])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_3:
+    temp_1 = create_actionable_tasks_from_text(text=loop_var)
+    temp_2 = assign_task_to_user(task_id=temp_1, user_id=""USER-PART"")"
+"Identify work items created by ""USER-QA"", filter by issue priority ""p0"", and assign them to the sprint with ID ""SPRINT-QA"" if any of the items are related to ""QA-Testing"".","var_1 = search_object_by_name(query=""USER-QA"")
+var_2 = works_list(created_by=[var_1], issue.priority=[""p0""], type=[""issue"", ""ticket""])
+if(""QA-Testing"" in var_2):
+    temp_1 = search_object_by_name(query=""USER-QA"")
+    temp_2 = works_list(created_by=[temp_1], issue.priority=[""p0""], type=[""issue"", ""ticket""])
+    temp_3 = add_work_items_to_sprint(work_ids=temp_2, sprint_id=""SPRINT-QA"")"
+"Create tasks from the client feedback text ""ClientFeedback"" and add them to sprint ""SPRINT-789"" if the user ""USER-321"" is the current user.","var_1 = who_am_i()
+if(var_1==""USER-321""):
+    temp_1 = create_actionable_tasks_from_text(text=""ClientFeedback"")
+    temp_2 = add_work_items_to_sprint(work_ids=temp_1, sprint_id=""SPRINT-789"")"
+"Retrieve work items with type ""ticket"" and severity ""high"" created by ""USER-XYZ"", summarize them, and assign to the current sprint.","var_1 = search_object_by_name(query=""USER-XYZ"")
+var_2 = works_list(created_by=[var_1], ticket.severity=[""high""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_4)"
+"Summarize all tasks assigned to ""USER-999"", prioritize them, and generate a report with the tasks.","var_1 = fetch_user_tasks(user_id=""USER-999"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+for loop_var in var_3:
+    temp_1 = generate_report(report_type=""tasks"", subject_id=loop_var)"
+"Find all issues with priority ""p1"" and ""p2"", summarize the list, and add the summarized text as a note to the current sprint's report.","var_1 = works_list(issue.priority=[""p1"", ""p2""], type=[""issue""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = generate_report(report_type=""sprint"", subject_id=var_3, include_summary=False)
+var_5 = add_work_items_to_sprint(work_ids=[var_2], sprint_id=var_3)"
+"Fetch tasks for user ""USER-1122"" that are not completed, estimate the hours for each, and mark the tasks estimated under 2 hours as completed.","var_1 = fetch_user_tasks(user_id=""USER-1122"", include_completed=False)
+for loop_var in loop_var:
+    temp_1 = estimate_work_hours(work_id=loop_var)
+    temp_2 = mark_task_as_completed(task_id=loop_var)"
+"Fetch tasks for user ""USER-1122"" that are not completed, estimate the hours for each, and mark the tasks as completed.","var_1 = search_object_by_name(query=""USER-333"")
+var_2 = works_list(owned_by=[var_1], issue.priority=[""p0""], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = generate_report(report_type=""issue"", subject_id=var_3)"
+"Search for the object with the name ""QuarterlyReport"", estimate the work hours needed, and if it's over 10 hours, assign it to the user ""Analyst"".","var_1 = search_object_by_name(query=""QuarterlyReport"")
+var_2 = estimate_work_hours(work_id=var_1)
+if(var_2 > 10):
+    temp_1 = search_object_by_name(query=""QuarterlyReport"")
+    temp_2 = assign_task_to_user(temp_id=temp_1, user_id=""Analyst"")"
+"Fetch all tasks for ""USER-777"", exclude the completed ones, prioritize the list, and assign the top 3 to ""USER-888"".","for loop_var in range(0,3):
+    temp_1 = fetch_user_tasks(user_id=""USER-777"", include_completed=False)
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = assign_task_to_user(task_id=temp_2[loop_var], user_id=""USER-888"")"
+"Extract tasks from the document ""ReleaseNotes"", prioritize them, and assign the tasks with estimated hours to ""USER-555"".","var_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=""USER-555"")"
+"Retrieve work items with the type ""issue"" and source channel ""email"", summarize them, and create a report for the management team.","var_1 = works_list(ticket.source_channel=[""email""], type=[""issue""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = generate_report(report_type=""management"", subject_id=var_2)"
+"Get similar work items to ""ISSUE-123"", summarize the list, and mark it as completed.","var_1 = get_similar_work_items(work_id=""ISSUE-123"")
+var_2 = summarize_objects(objects=var_1)
+for loop_var in var_1:
+        temp_1 = mark_task_as_completed(task_id=loop_var)"
+"Find all tasks created by ""USER-444"" with severity ""blocker"", summarize them, and assign the summary to be reviewed by ""USER-555"".","var_1 = search_object_by_name(query=""USER-444"")
+var_2 = works_list(created_by=[var_1], ticket.severity=[""blocker""], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = assign_task_to_user(task_id=var_3, user_id=""USER-555"")"
+"Extract tasks from the email ""UrgentUpdate"", prioritize them, and assign the top 5 to the sprint with ID ""SPRINT-321"".","for loop_var in range(0:5):
+    temp_1 = create_actionable_tasks_from_text(text=""UrgentUpdate"")
+    temp_2 = prioritize_objects(objects=temp_1)
+    temp_3 = add_work_items_to_sprint(work_ids=temp_2[loop_var], sprint_id=""SPRINT-321"")"
+"Summarize the work items for part ""PART-789"", find the most similar work item, and assign it to the user ""USER-666"".","var_1 = search_object_by_name(query=""PART-789"")
+var_2 = works_list(applies_to_part=[var_1], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = get_similar_work_items(work_id=var_2)
+var_5 = assign_task_to_user(task_id=var_4, user_id=""USER-666"")"
+"Create tasks from the text ""ProductSpecs"", prioritize them, and assign the tasks to ""USER-222"".","var_1 = create_actionable_tasks_from_text(text=""ProductSpecs"")
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in var_2:
+    temp_1 = assign_task_to_user(task_id=loop_var, user_id=""USER-222"")"
+"Fetch all tasks for user ""USER-111"", prioritize them, and generate a report for the top 5 without including a summary.","var_1 = fetch_user_tasks(user_id=""USER-111"")
+var_2 = prioritize_objects(objects=var_1)
+for loop_var in var_2:
+var_3 = generate_report(report_type=""tasks"", subject_id=loop_var, include_summary=False)"
+"Retrieve all tasks with type ""task"" and priority ""p3"", summarize them, and assign the summary to the report for project ""PROJECT-ABC"".","var_1 = works_list(issue.priority=[""p3""], type=[""task""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = search_object_by_name(query=""PROJECT-ABC"")
+var_4 = assign_task_to_user(task_id=var_2, user_id=var_3)"
+"Extract actionable tasks from the research notes ""ResearchData"", prioritize them, and assign the most critical task to ""USER-333"".","var_1 = create_actionable_tasks_from_text(text=""ResearchData"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = assign_task_to_user(task_id=var_2[0], user_id=""USER-333"")"
+"Find team members of ""TeamZeta"", get work items with type ""ticket"" related to these members, summarize them, and assign the top one to ""USER-444"".","var_1 = find_team_members(team_id=""TeamZeta"")
+for loop_var in var_1:
+    temp_1 = works_list(owned_by=[loop_var], type=[""ticket""])
+    temp_2 = summarize_objects(objects=temp_1)
+    temp_3 = prioritize_objects(objects=temp_1)
+    temp_4 = assign_task_to_user(task_id=temp_3[0], user_id=""USER-444"")"

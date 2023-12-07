@@ -4,6 +4,7 @@ from copy import deepcopy
 from random import randrange
 from functools import partial
 import torch
+import pandas as pd
 import accelerate
 import bitsandbytes as bnb
 from datasets import load_dataset
@@ -22,6 +23,7 @@ from peft import (
     PeftModel
 )
 from trl import SFTTrainer
+from sklearn.model_selection import train_test_split
 
 def find_all_linear_names(model):
     cls = bnb.nn.Linear4bit #if args.bits == 4 else (bnb.nn.Linear8bitLt if args.bits == 8 else torch.nn.Linear)
@@ -74,6 +76,7 @@ def preprocess_dataset(model, tokenizer: AutoTokenizer, max_length: int, dataset
     return dataset
 
 def main(args):
+    repo_dir = args.repo_dir
     dataset_name = args.dataset
     model_name = args.model
     epochs = args.n
@@ -107,8 +110,12 @@ def main(args):
         task_type="CAUSAL_LM"
     )
     model = get_peft_model(model, peft_config)
+    if repo_dir == 2:
+        data_files = {'train':'train.csv','validation':'validation.csv'}
+        dataset = load_dataset(dataset_name,data_files=data_files)
+    else:
+        dataset = load_dataset(dataset_name)
 
-    dataset = load_dataset(dataset_name)
     # Change the max length depending on hardware constraints.
     max_length = get_max_length(model)
     #preprocess the dataset
@@ -147,6 +154,7 @@ def main(args):
 if '__name__' == '__main__':
     parser = argparse.ArgumentParser(description="Script for fine-tuning")
     # Add argument(s) here
+    parser.add_argument("--repo_dir", type=int, default=1, help="Enter 1 for hf repo, 2 for local dir")
     parser.add_argument("--dataset", type=str, default="Insight244/p3-stage-1-data-no-dynamic-no-random-no-bonus", help="Name of dataset to finetune")
     parser.add_argument("--model", type=str, default="codellama/CodeLlama-7b-Instruct-hf", help="Name of model to finetune")
     parser.add_argument("--n", type=int, default=5, help="Number of epochs")

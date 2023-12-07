@@ -9,6 +9,7 @@ class Static_dataGen():
     def __init__(self,key) -> None:
         self.tools_list = open('./Tool_list/tool_list.txt', 'r').read()
         self.sample_query = open('./Tool_list/sample_queries.txt', 'r').read()
+        self.sample_query_with_op = open('./Tool_list/sample_queries_with_output.txt', 'r').read()
         self.query_list = []
         self.outputCompletion = []
         self.client = OpenAI(api_key=key) 
@@ -31,9 +32,9 @@ class Static_dataGen():
                 ],
                 temperature=0.7,
             )
-            content = response.choices[0].message.content
+            query_block = response.choices[0].message.content
             Qr = []
-            Qr = re.findall(r"'''(.*?)'''", content, re.DOTALL)
+            Qr = re.findall(r"'''(.*?)'''", query_block, re.DOTALL)
             for q in Qr:
                 self.query_list.append(q)         
         return self.genOutput()
@@ -54,7 +55,7 @@ class Static_dataGen():
                             You call given functions calls to complete a query. You only know these functions and nothing else: \n{self.tools_list}\n\
                             The only code you know to write is of type 'var_name = function_call(function_argument)'. You never output anything \
                             else other than this format. You follow the sequence of completing query religiously. Here are some sample queries and \
-                            their respective responses that I want from you:\n Example output: {self.sample_query}\n\
+                            their respective responses that I want from you:\n Example output: {self.sample_query_with_op}\n\
                             The user will prompt you with a list of queries similar to the example. Answer very strictly in the same format shown above. \
                             Use indexing for the output.Make sure to mention type wherever relevant when calling works_list. Any missing type arguments is not acceptable.\
                             Don't make unnecessary calls to any functions. When given names make sure to call search_object_by_name() to get work_ids."
@@ -103,8 +104,8 @@ class Dynamic_dataGen():
                        ],
                 temperature=1,
             )
-            content = response.choices[0].message.content
-            tools2 = content.split('---')
+            tool_block = response.choices[0].message.content
+            tools2 = tool_block.split('---')
             self.DynamicTool_list.extend(tools2)        
         return 
     
@@ -156,7 +157,7 @@ class Bonus_dataGen():
         self.tools_list = open('./Tool_list/tool_list.txt', 'r').read()
         self.extra_tools = open('./Tool_list/bonustools.txt','r').read()
         self.user_prompt_output_content = open('./Prompts/BonusOutputPrompt.txt','r').read()
-        self.user_prompt_query_content = open('.Prompts/BonusQueryPrompt.txt','r').read()
+        self.user_prompt_query_content = open('./Prompts/BonusQueryPrompt.txt','r').read()
         self.query_list = []
         self.outputCompletion = []
         self.client = OpenAI(api_key=key) 
@@ -203,8 +204,8 @@ class Bonus_dataGen():
             code_str = '\n'.join(lines[1:])
             self.outputCompletion.append(code_str)
 
-            merged_data = [{'Query': query, 'Output': output} for query, output in zip(self.query_list, self.outputCompletion)]
-            return merged_data
+        merged_data = [{'Query': query, 'Output': output} for query, output in zip(self.query_list, self.outputCompletion)]
+        return merged_data
         
 class Preprocessing():
     def __init__(self) -> None:

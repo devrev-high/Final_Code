@@ -78,7 +78,7 @@ class Static_dataGen():
 
 class Dynamic_dataGen():
     def __init__(self,key) -> None:
-        self.tools_list = open('.Tool_list/tool_list.txt','r').read()
+        self.tools_list = open('./Tool_list/tool_list.txt','r').read()
         self.dyQuGenPrompt = open('./Prompts/DynamicQueryGenPrompt.txt', 'r').read()
         self.dyOpGenPrompt = open('./Prompts/DynamicOutputGenPrompt.txt', 'r').read()
         self.query_list = []

@@ -40,13 +40,13 @@ def get_inference(model_name, user_prompt):
   ans = tokenizer.decode(outputs[0][len(inputs[0]):], skip_special_tokens=True)
   return ans
 
-def compelitionP1StaticDynamic(model, data_dict):
+def completionP1StaticDynamic(model, data_dict):
   prompt = prompt_begin+data_dict['docstring']+"Here are some sample queries \
     and their respective responses:"+sample_query+prompt_end+data_dict['query']
   return get_inference(model,prompt)
 
 
-def compelitionP1Bonus(model, data_dict):
+def completionP1Bonus(model, data_dict):
   prompt = prompt_begin+data_dict['docstring']+ "If the query requires the use of conditional logic or iterations, use if, else or for loop,\
       in the same format shown in the examples below. In case of a condition or loop, use temp_x in place of var_i inside the block, where x \
       is an integer starting from 1, denoting the index of variable.Do not use temp except in case of a condition or iteration. Variables var_i \
@@ -65,7 +65,7 @@ def compelitionP1Bonus(model, data_dict):
   return get_inference(model,prompt)
 
 
-def compelitionP1Modified(model, data_dict):
+def completionP1Modified(model, data_dict):
   prompt = prompt_begin+data_dict['docstring']+prompt_end+data_dict['query']
   return get_inference(model,prompt)
 

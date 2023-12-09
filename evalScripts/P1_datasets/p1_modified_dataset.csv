@@ -1,0 +1,6169 @@
+Query,Output,Docstring
+"Summarize all issues from rev org ""HEHE"". 
+Create 15 actionable tasks from the summary and add them to the current sprint.","var_1 = works_list(type=[""issue""],issue.rev_orgs = [""HEHE""])
+var_2 = summarize_objects(objects = var_1) 
+var_3 = create_actionable_tasks_from_text(text=var_2,limit=15)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids = var_3,sprint_id = var_4)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text,limit):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+limit(int): The maximum number of actionable insights to create. The default is 10. 
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Find similar work items to ""RUSH-009"" in the current sprint. Prioritize then summarize these work items.","var_1 = get_sprint_id()
+var_2 = get_similar_work_items(work_id = ""RUSH-009"",sprint_id = var_1)
+var_3 = prioritize_objects(objects = var_2)
+var_4 = summarize_objects(objects = var_3)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+def get_similar_work_items(work_id,sprint_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+sprint_id(str): The ID of the sprint in which to search for the work items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Prioritize my high priority issues and add them to the current sprint,"var1 = who_am_i()
+var2 = works_list(issue.priority = ""high"", owned_by = var1)
+var3 = prioritize_objects(objects = var2)
+var4 = get_sprint_id()
+var5 = add_work_items_to_sprint(work_ids = var3, sprint_id = var4)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: high, low
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Reverse prioritize then summarize all tickets belonging to user ""BRU004"".","var_1 = works_list(type=[""ticket""],owned_by = [""BRU004""])
+var_2 = prioritize_objects(objects = var_1, reverse = True)
+var_3 = summarize_objects(objects = var_2)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+def prioritize_objects(objects,reverse):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+reverse(bool): If true, returns a reversed list. Default is False.
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Summarize all tickets belonging to rev org ""RohIT"". Include detailed information in this summary.","var_1 = works_list(type = [""ticket""],ticket.rev_org = [""RohIT""])
+var_2 = summarize_objects(objects = var_1, include_details = True)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects, include_details=False):
+    """"""
+    Summarizes a list of objects. The logic of how to summarize a
+    particular object type is an internal implementation detail
+
+    Parameters:
+    objects (list): List of objects to summarize
+    include_details (bool): Flag to include detailed information in the summary
+
+    Returns:
+    text: Summarized text of the objects
+    """"""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Summarize all work items similar to ""HEOP3"" with a threshold 0.69. Add these to the current sprint.","var_1 = get_similar_work_items(work_id = ""HEOP3"", similarity_threshold = 0.69)
+var_2 = summarize_objects(objects = var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids = var_1, sprint_id = var_3)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id, similarity_threshold=0.8):
+    """"""
+    Returns a list of work items that are similar to the given work item
+
+    Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+    similarity_threshold (float): The similarity threshold for considering items as similar
+
+    Returns:
+    list: Similar work items
+    """"""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Summarize all issues and tickets belonging to user ""BITHC"" in csv format.","var_1 = works_list(owned_by = [""BITHC""], type = [""issue"",""ticket""])
+var_2 = summarize_objects(objects = var_1, summary_format = ""csv"")","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects, summary_format='text'):
+    """"""
+    Summarizes a list of objects. The logic of how to summarize a
+    particular object type is an internal implementation detail
+
+    Parameters:
+    objects (list): List of objects to summarize
+    summary_format (str): The format in which to present the summary. Default is ""text"". Allowed values = [""json"", ""text"", ""csv""]
+
+    Returns:
+    text: Summarized text or structured summary based on the chosen format
+    """"""
+
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Summarize the work item named ""TASM"" in the current sprint.","var_1 = search_object_by_name(query = ""TASM"",scope=""sprint"")
+var_2 = summarize_objects(objects = var_1)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+def search_object_by_name(query,scope):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+scope(str): The scope of the search, by default ""sprint"". Allowed values = [""sprint"",""global""]
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Summarize all work items belonging me, including archives.","var_1 = who_am_i()
+var_2 = works_list(owned_by = [var_1], include_archived = True)
+var_3 = summarize_objects(objects = var_2)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None, include_archived=False):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+include_archived (bool): If true, will include archived work items. Default is False.
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Summarize all issues belonging to user RR998. Create actionable tasks from this summary and assign them to user BB334.,"var_1 = works_list(type = [""issue""], owned_by = [""RR998""])
+var_2 = summarize_objects(objects = var_1)
+var_3 = create_actionable_tasks_from_text(text = var_2, owner = ""BB334"")","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text,owner):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+owner (str): The owner of these tasks. Default is current user.
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Find all issues related to part CAPL-987 that need review, prioritize them, and add them to the current sprint.","var1 = works_list(applies_to_part = ""CAPL-987"", needs_review = True, type = ""issue"")
+var2 = prioritize_objects(objects = var1)
+var3 = get_sprint_id()
+var4 = add_work_items_to_sprint(work_ids = var2, sprint_id = var3)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None, needs_review = False,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+needs_review (bool): Filters for work items that need review
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Identify my completed tasks for the current sprint, summarize and add to sprint","var1 = who_am_i()
+var2 = get_sprint_id()
+var3 = works_list(owned_by = var1, type = ['task'], completed = True)
+var4 = summarize_objects(objects = var3)
+var5 = add_work_items_to_sprint(work_ids = var2, sprint_id = var4)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None, completed = False,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+completed (bool): Filters for works that have been completed
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"For part ID PART-001, get all tasks in the design phase, prioritize and assign for the upcoming sprint","var1 = works_list(applies_to_part = ['PART-001'], stage.name = ['design'])
+var2 = prioritize_objects(objects = var1)
+var3 = get_sprint_id(stage = 'upcoming')
+var4 = add_work_items_to_sprint(work_ids = var2, sprint_id = var3)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id(stage = ""current""):
+
+""""""
+Returns the current, previous or upcoming sprint ID
+
+Parameters:
+
+stage (str): Stage of sprint. Allowed values: previous, current, upcoming
+
+Returns:
+
+str: ID of the specified sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Retrieve and prioritize my tasks related to the 'AlphaProject' that require skill of coding and databases,"var1 = who_am_i()
+var2 = works_list(type = ['task'], owned_by = var1, applies_to_part = ['AlphaProject'], skills = ['coding', 'databases'])
+var3 = prioritize_objects(objects = var2)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None, skills = None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+skills (list): A list of skills to filter by
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"List all archived tickets in DEV stage, summarize them and add to sprint for user CURRENT-USER","var1 = who_am_i()
+var2 = works_list(stage.name = ['DEV'], owned_by = var1, type = ['ticket'], ticket.archived = True)
+var3 = summarize_objects(objects = var2)
+var4 = get_sprint_id()
+var5 = add_work_items_to_sprint(work_ids = var3, sprint_id = var4)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None, ticket.archived = False):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+tickets.archived (bool): Filters for archived tickets
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Find highly similar issues to PROD-789, summarize them, and add them to the current sprint if priority is P1","var1 = get_similar_work_items(work_id = ""PROD-789"", similarity_degree = ""high"")
+var2 = summarize_objects(objects = var1)
+var3 = get_sprint_id()
+var4 = works_list(issue.priority = ['p1'])
+var5 = add_work_items_to_sprint(work_ids = var4, sprint_id = var3)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id, similarity_degree):
+
+""""""
+
+Returns a list of work items that are similar to the given work item based on degree of similarity 
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+similarity_degree (str): Filters for tickets with any the specified degree of similarity. Allowed values: high, low, medium
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Find work items of type 'task' related to the available parts and summarize them.,"var1 = works_list(part_availability = True, type = ['task'])
+var2 = summarize_objects(objects = var1)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None, part_availability = False):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+part_availability (bool): Filters for parts that are available
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"List issues for CAPL-123 assigned to ORG1 and ORG2, filter by stage 'In Progress', and add to my current sprint","var1 = who_am_i()
+var2 = works_list(stage.name = ['InProgress'], applies_to_part = ['CAPL-123'], owned_by = var1, assigned_to = ['ORG1', 'ORG2'] )
+var3 = get_sprint_id()
+var4 = add_work_items_to_sprint(work_ids = var2, sprint_id = var3)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None, assigned_to = None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+assigned_to (list): Filters for work assigned to any of these users
+
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Find all tasks related to ENH-321 owned by me and assinged to USER123 and need to be reviewed, summarize, and prioritize ","var1 = who_am_i()
+var2 = works_list(applies_to_part = ['ENH-321'], type = ['task'], assigned_to = ['USER123'], needs_review = True)
+var3 = summarize_objects(objects = var2)
+var4 = prioritize_objects(objects = var3)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None, needs_review = False,  assigned_to = None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+needs_review (bool): Filters for work items that need review
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+assigned_to (list): Filters for work assigned to any of these users
+
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Summarize all my tickets.,"var_1 = what_is_my_name()
+var_2 = works_list(owned_by = [var_1],type = [""ticket""])
+var_3 = summarize_objects(objects = var_2)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+def what_is_my_name():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Summarize the work item named SAACH3.,"var_1 = search_object_by_name(name = ""SAACH)
+var_2 = summarize_objects(objects = var_1)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(name):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+name (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Summarize the work items owned by me,"var_1 = who_am_i()
+var_2 = works_list(owned_by = [var_1])
+","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Generate 8 actionable tasks from the summary of issues related to the component 'UI-Widget' and add them to the current sprint.
+","var_1 = works_list(applies_to_part=['UI-Widget'], type=['issue'])
+var_2 = summarize_objects(objects=var_1)
+var_3 = create_actionable_tasks_from_text(text=var_2, limit=8)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text, limit=10):
+    """"""
+    Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+    
+    Parameters:
+    text (str): The text from which the actionable insights need to be created
+    limit(int): The maximum number of actionable insights to create. The default is 10.
+    
+    Returns:
+    list: Tasks created from the given text
+    """"""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Find work items similar to ""TASK-007"" in the current sprint with a similarity threshold of 0.8. Summarize these items.","var_1 = get_similar_work_items(work_id=""TASK-007"", sprint_id=get_sprint_id(), threshold=0.8)
+var_2 = summarize_objects(objects=var_1)
+","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id, sprint_id, threshold=0.75):
+    """"""
+    Returns a list of work items that are similar to the given work item
+    
+    Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+    sprint_id(str): The ID of the sprint in which to search for the work items
+    threshold(float): The similarity threshold for considering items as similar. Default is 0.75.
+    
+    Returns:
+    list: Similar work items
+    """"""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Search for a user named ""John Doe"" and return the ID.
+","var_1 = search_object_by_name(query=""John Doe"", search_type='user')","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query, search_type='all'):
+    """"""
+    Given a search string, returns the ID of a matching object in the system of record.
+    If multiple matches are found, it returns the one where the confidence is highest
+    
+    Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+    search_type (str): The type of object to search for. Default is 'all'.
+                      Possible values: 'customer', 'part', 'user', 'all'
+    
+    Returns:
+    str: ID of the matching object
+    """"""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Create 5 actionable tasks from a client meeting transcript, prioritizing them as 'high'.
+","var_1 = create_actionable_tasks_from_text(text=""Client meeting transcript"", limit=5, priority='high')","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text, limit=10, priority='medium'):
+    """"""
+    Given a text, extracts actionable insights and creates tasks for them
+    
+    Parameters:
+    text (str): The text from which the actionable insights need to be created
+    limit(int): The maximum number of actionable insights to create. The default is 10.
+    priority(str): Priority level for created tasks. Default is 'medium'.
+                   Possible values: 'low', 'medium', 'high'
+    
+    Returns:
+    list: Tasks created from the given text
+    """"""
+
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Get the ID of the current sprint for the 'Marketing' team.
+",var_1 = get_sprint_id(team='Marketing'),"def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id(team='default'):
+    """"""
+    Returns the ID of the current sprint for a specified team
+    
+    Parameters:
+    team (str): Name of the team. Default is 'default'.
+    
+    Returns:
+    str: ID of the current sprint for the specified team
+    """"""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Summarize all tasks assigned to user 'JaneDoe', including detailed information and statistical data.","var_1 = works_list(type='task', owned_by='JaneDoe')
+var_2 = summarize_objects(objects=var_1, include_details=True, show_stats=True)
+","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects, include_details=False, show_stats=True):
+    """"""
+    Summarizes a list of objects
+    
+    Parameters:
+    objects (list): List of objects to summarize
+    include_details (bool): Flag to include detailed information in the summary. Default is False.
+    show_stats (bool): Flag to show statistical data in the summary. Default is True.
+    
+    Returns:
+    text: Summarized text of the objects
+    """"""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Search for parts related to 'Component-A' in the system.
+
+","var_1 = search_object_by_name(query='Component-A', search_type='part')","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query, search_type='all', limit=1):
+    """"""
+    Given a search string, returns the ID of a matching object in the system of record.
+    If multiple matches are found, it returns the one where the confidence is highest
+    
+    Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+    search_type (str): The type of object to search for. Default is 'all'.
+                      Possible values: 'customer', 'part', 'user', 'all'
+    limit (int): The maximum number of matching objects to retrieve. Default is 1.
+    
+    Returns:
+    str or list: ID(s) of the matching object(s)
+    """"""
+
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Create 7 actionable tasks from a meeting transcript.
+
+","var_1 = create_actionable_tasks_from_text(text='Meeting transcript', limit=7)","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text, limit=10):
+    """"""
+    Given a text, extracts actionable insights and creates tasks for them
+    
+    Parameters:
+    text (str): The text from which the actionable insights need to be created
+    limit(int): The maximum number of actionable insights to create. The default is 10.
+    
+    Returns:
+    list: Tasks created from the given text
+    """"""
+
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Add all high-priority issues assigned to 'UserA' to sprint 'Sprint-40' and assign them to 'UserB'.,"var_1 = works_list(type='issue', issue_priority=['high'], owned_by='UserA')
+var_2 = add_work_items_to_sprint(work_ids=var_1, sprint_id='Sprint-40', assign_to='UserB')","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+ def add_work_items_to_sprint(work_ids, sprint_id, assign_to=None):
+    """"""
+    Adds the given work items to the sprint
+    
+    Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+    assign_to (str): Optional. Assign the work items to a specific user.
+    
+    Returns:
+    None
+    """"""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Create actionable tasks from the summary of all medium severity issues.,"var1 = works_list(ticket_severity=['medium'], work_type=['issue'])
+var2 = summarize_objects(objects=var1)
+var3 = create_actionable_tasks_from_text(text=var2, severity_level='medium')","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text, severity_level):
+    """"""
+    Parameters:
+    text (str): The text from which the actionable insights need to be created.
+    severity_level (str): The severity level of the issues to create tasks for.
+
+    Returns:
+    List of tasks created from the given text.
+    """"""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Summarize high severity tickets from the customer UltimateCustomer,"var1 = search_object_by_name(query = ""UltimateCustomer"")","
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Summarize issues similar to devo/3:issue/4,#UnanswerableQueryError,"def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Summarize high severity tickets from the customer XCustomer,"var1 = search_object_by_name(query = ""XCustomer"")
+","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+"Prioritize my P0, P1, P2 issues and add them to the current sprint",#UnanswerableQueryError,"
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+"
+"Identify my tasks related to the ""PythonProject"" and prioritze and summarize them","var1 = who_am_i()
+var2 = works_list(owned_by = var1, applies_to_part = [""PythonProject'])
+","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""
+Identify tasks related to the 'Alpha' feature that are in the 'development' stage and add them to sprint 'S123',"var1 = works_list(applies_to_part = ['FEAT-ALPHA'], stage.name = ['development'])
+var2 = get_sprint_id()
+","def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+Returns the string ID of the current user
+
+"""""""
+Retrieve the sprint ID and add my 'blocker' severity tasks to it,#UnanswerableQueryError,"def works_list(applies_to_part=None, created_by=None, issue.priority=None,
+
+issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None,
+
+ticket.needs_response=False, ticket.rev_org=None,
+
+ticket.severity=None, ticket.source_channel=None, work_type=None):
+
+""""""
+
+Returns a list of work items matching the request
+
+Parameters:
+
+applies_to_part (list): Filters for work belonging to any of the provided parts
+
+created_by (list): Filters for work created by any of these users
+
+issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+
+issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+
+limit (int): The maximum number of works to return. The default is '50'
+
+owned_by (list): Filters for work owned by any of these users
+
+stage.name (list): Filters for records in the provided stage(s) by name
+
+ticket.needs_response (bool): Filters for tickets that need a response
+
+ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+
+ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+
+ticket.source_channel (list): Filters for tickets with any of the provided source channels
+
+type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+
+list: Matching work items
+
+""""""
+
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def prioritize_objects(objects):
+
+""""""
+
+Returns a list of objects sorted by priority. The logic of what constitutes
+
+priority for a given object is an internal implementation detail
+
+Parameters:
+
+objects (list): A list of objects to be prioritized
+
+Returns:
+
+list: Prioritized objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+"
+"Provide a summary of tasks related to the ""Beta"" project that are currently in the ""triage"" stage","var1 = search_object_by_name(query = ""Beta"")
+","
+def summarize_objects(objects):
+
+""""""
+
+Summarizes a list of objects. The logic of how to summarize a
+
+particular object type is an internal implementation detail
+
+Parameters:
+
+objects (list): List of objects to summarize
+
+Returns:
+
+text: Summarized text of the objects
+
+""""""
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+
+""""""
+
+Adds the given work items to the sprint
+
+Parameters:
+
+work_ids (list): A list of work item IDs to be added to the sprint
+
+sprint_id (str): The ID of the sprint to which the work items should be added
+
+""""""
+
+def get_sprint_id():
+
+""""""
+
+Returns the ID of the current sprint
+
+""""""
+
+def get_similar_work_items(work_id):
+
+""""""
+
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+
+work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+
+list: Similar work items
+
+""""""
+
+def search_object_by_name(query):
+
+""""""
+
+Given a search string, returns the ID of a matching object in the system of record.
+
+If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+
+query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+
+str: ID of matching object
+
+""""""
+
+def create_actionable_tasks_from_text(text):
+
+""""""
+
+Given a text, extracts actionable insights, and creates tasks for them,
+
+which are kind of a work item
+
+Parameters:
+
+text (str): The text from which the actionable insights need to be created
+
+Returns:
+
+list: tasks created from the given text
+
+""""""
+
+def who_am_i():
+
+""""""
+
+Returns the string ID of the current user
+
+"""""""

@@ -1,0 +1,2607 @@
+Query,Output
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Create tasks for the reported issues in the component COMP-999 [/INST]
+","var_1 = search_object_by_name(query=""COMP-999"")
+var_2 = create_actionable_tasks_from_text(text=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Locate and add p3 issues from REV-Engineering to the sprint [/INST]
+","var_1 = search_object_by_name(query=""REV-Engineering"")
+var_2 = works_list(issue.rev_orgs=[var_1], issue.priority=[""p3""], type=[""issue""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve the current sprint ID and add p3 issues from the ""GammaModule"". [/INST]
+","var_1 = get_sprint_id()
+var_2 = search_object_by_name(query=""GammaModule"")
+var_3 = works_list(issue.priority=[""p3""], applies_to_part=[var_2], type=[""issue""])
+var_4 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and summarize the latest tasks associated with Rev organization REV-XYZ for quick review [/INST]
+","var_1 = search_object_by_name(query=""REV-XYZ"")
+var_2 = works_list(type=[""task""], ticket.rev_org=[var_1])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Create tasks from meeting notes and assign them to DevTeam123. [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""meeting notes"")
+var_2 = search_object_by_name(query=""DevTeam123"")
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Prioritize tickets from the REV-345 organization that need a response and summarize the prioritized list [/INST]
+","var_1 = works_list(ticket.rev_org=[""REV-345""], ticket.needs_response=True, type=[""ticket""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Who won the Indian Elections last time? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify work items related to the 'Customer Engagement' project and create a prioritized list [/INST]
+","var_1 = search_object_by_name(query=""Customer Engagement"")
+var_2 = works_list(ticket.rev_org=[var_1], type=[""issue"", ""ticket"", ""task""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List all high severity tickets coming in from slack from customer Cust123 and generate a summary of them. [/INST]
+","var_1 = search_object_by_name(query=""Cust123"")
+var_2 = works_list(ticket.severity=[""high""], ticket.source_channel=[""slack""], ticket.rev_org=[var_1], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify my p1 issues within Rev organization 'REV-789' and summarize for today's meeting [/INST]
+","var_1 = who_am_i()
+var_2 = search_object_by_name(query=""REV-789"")
+var_3 = works_list(owned_by=[var_1], issue.priority=[""p1""], issue.rev_orgs=[var_2], type=[""issue""])
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve my work items associated with part PART-987 and needing response, then summarize them [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], applies_to_part=[""PART-987""], ticket.needs_response=True)
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and prioritize tasks related to project Gamma, then summarize [/INST]
+","var_1 = search_object_by_name(query=""Gamma"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Search for an object with the name ""CriticalServer"" and return the highest confidence match [/INST]
+","var_1 = search_object_by_name(query=""CriticalServer"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List all tasks owned by DEVU-321 that are in the 'in-progress' stage and summarize them. [/INST]
+","var_1 = works_list(owned_by=[""DEVU-321""], stage.name=[""in-progress""], type=[""task""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Is consciousness a product of the brain, or does the brain serve as a conduit for a greater consciousness? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List all P2 priority tickets from the product PROD-789 and add them to the current sprint. [/INST]
+","var_1 = search_object_by_name(query=""PROD-789"")
+var_2 = works_list(applies_to_part=[var_1], issue.priority=[""p2""], type=[""ticket""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and summarize all P3 issues owned by TechLead and limit the number of work items to 30. [/INST]
+","var_1 = works_list(owned_by=[""TechLead""], issue.priority=[""p3""], type=[""issue""], limit=30)
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get the summary of tickets created by me with severity ""blocker"" and link them to the part ""PROD-999"" [/INST]
+","var_1 = who_am_i()
+var_2 = search_object_by_name(query=""PROD-999"")
+var_3 = works_list(created_by=[var_1], ticket.severity=[""blocker""], applies_to_part=[var_2], type=[""ticket""])
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Collect all issues related to 'Widget-Improvement' and add them to the 'Engineering' sprint. [/INST]
+","var_1 = search_object_by_name(query=""Widget-Improvement"")
+var_2 = works_list(applies_to_part=[var_1], type=[""issue""])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""Engineering"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Extract tasks from the engineering meeting notes T and summarize the action items [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""T"")
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Create tasks for issues that need response and are created by user USR-456 [/INST]
+","var_1 = works_list(ticket.needs_response=True, created_by=[""USR-456""], type=[""issue""])
+var_2 = create_actionable_tasks_from_text(text=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: For user DEVU-456, summarize their tickets and issues with 'blocker' severity [/INST]
+","var_1 = works_list(created_by=[""DEVU-456""], ticket.severity=[""blocker""], type=[""ticket"", ""issue""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Display my tasks in ""QA Testing"" stage and add them to the sprint ""S1234"" [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], stage.name=[""QA Testing""], type=[""task""])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""S1234"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize work related to multiple parts including FEAT-456 and BUG-789, and then prioritize them [/INST]
+","var_1 = works_list(applies_to_part=[""FEAT-456"", ""BUG-789""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List all blocker and high severity tickets for the product PROD-789 and summarize the impact [/INST]
+","var_1 = works_list(applies_to_part=[""PROD-789""], ticket.severity=[""blocker"", ""high""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find tickets with severity 'medium', summarize and identify similar work items for PROD-456 [/INST]
+","var_1 = search_object_by_name(query=""PROD-456"")
+var_2 = works_list(ticket.severity=[""medium""], applies_to_part=[var_1], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = get_similar_work_items(work_id=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Fetch the current sprint ID and list all tasks assigned to the user DEVU-456 [/INST]
+","var_1 = get_sprint_id()
+var_2 = search_object_by_name(query=""DEVU-456"")
+var_3 = works_list(owned_by=[var_2], type=[""task""])
+var_4 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate a list of my tickets that need a response and summarize them [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], ticket.needs_response=True, type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Prioritize tickets from source channel 'email' and filter by user AGENT-007 [/INST]
+","var_1 = works_list(owned_by=[""AGENT-007""], ticket.source_channel=[""email""], type=[""ticket""])
+var_2 = prioritize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate a summary of all p0 issues from the ""Networking"" part category. [/INST]
+","var_1 = works_list(applies_to_part=[""Networking""], issue.priority=[""p0""], type=[""issue""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Extract actionable tasks from meeting notes ""ProjectX"" and summarize them for review [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""ProjectX"")
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List all tasks owned by user DEVU-456, filter by stage 'development', and add to sprint SPRINT-123 [/INST]
+","var_1 = works_list(owned_by=[""DEVU-456""], stage.name=[""development""], type=[""task""])
+var_2 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""SPRINT-123"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find all issues related to the part 'UI-Widget' and provide a summarized report [/INST]
+","var_1 = works_list(applies_to_part=[""UI-Widget""], type=[""issue""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize the current sprint's work items and find similar tasks to improve efficiency [/INST]
+","var_1 = get_sprint_id()
+var_2 = works_list()
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query:  Find work items created by User789, prioritize them, and add them to the current sprint, limiting the results to 45. [/INST]
+","var_1 = works_list(created_by=[""User789""], limit=45)
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize the tasks for the Rev organization ORG-321 and list any tickets requiring response [/INST]
+","var_1 = search_object_by_name(query=""ORG-321"")
+var_2 = works_list(issue.rev_orgs=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = works_list(ticket.needs_response=True, ticket.rev_org=[var_1], type=[""ticket""])
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find issues related to the ""ENH-456"" enhancement and determine if any require urgent responses [/INST]
+","var_1 = search_object_by_name(query=""ENH-456"")
+var_2 = works_list(applies_to_part=[var_1], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Provide a summary of all issues raised by user 'UserX' that need a response [/INST]
+","var_1 = works_list(type=[""issue""], created_by=[""UserX""], ticket.needs_response=True)
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add tasks related to the ""CAPL-789"" part to the sprint ""Sprint-123"" [/INST]
+","var_1 = search_object_by_name(query=""CAPL-789"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""Sprint-123"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify and prioritize tasks related to the 'Frontend' component and prepare them for the current sprint [/INST]
+","var_1 = search_object_by_name(query=""Frontend"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve my tasks awaiting response and organize them by urgency [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], ticket.needs_response=True, type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve and summarize tasks of type 'issue' and 'ticket' for CAPL-567 [/INST]
+","var_1 = search_object_by_name(query=""CAPL-567"")
+var_2 = works_list(type=[""issue"", ""ticket""], applies_to_part=[var_1])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get the current user's issues with priority 'p2' that are in the 'development' stage, and summarize the list. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], issue.priority=[""p2""], stage.name=[""development""], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize all tasks that need a response and are in a 'QA' stage [/INST]
+","var_1 = works_list(stage.name=[""QA""], ticket.needs_response=True, type=[""task""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate a summary of issues tagged with 'Urgent-Fix' and assign them to the 'Hotfix' sprint. [/INST]
+","var_1 = search_object_by_name(query=""Urgent-Fix"")
+var_2 = works_list(issue.rev_orgs=[var_1], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""Hotfix"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and summarize all tickets from Rev organization REV-555 that need a response [/INST]
+","var_1 = works_list(ticket.rev_org=[""REV-555""], ticket.needs_response=True, type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate a list of tasks from the executive meeting notes and summarize the outcomes. [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""executive meeting notes"")
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve and summarize tickets that require a response from support channel ""Email"" [/INST]
+","var_1 = works_list(ticket.needs_response=True, ticket.source_channel=[""Email""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What are the top-rated tourist attractions in Rome, Italy? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get the ID for the current sprint and list all low severity tickets for it [/INST]
+","var_1 = get_sprint_id()
+var_2 = works_list(ticket.severity=[""low""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find tickets needing a response, summarize, and prioritize for the REV-456 organization [/INST]
+","var_1 = search_object_by_name(query=""REV-456"")
+var_2 = works_list(type=[""ticket""], ticket.needs_response=True, ticket.rev_org=[var_1])
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve the current sprint's ID and summarize the tasks within it [/INST]
+","var_1 = get_sprint_id()
+var_2 = works_list(type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate a list of medium severity tickets and add them to sprint spr5 [/INST]
+","var_1 = works_list(ticket.severity=[""medium""], type=[""ticket""])
+var_2 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""spr5"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Given the name ""LeadTech"", find associated work items, create tasks for urgent issues, and add them to the sprint [/INST]
+","var_1 = search_object_by_name(query=""LeadTech"")
+var_2 = works_list(created_by=[var_1], ticket.severity=[""blocker""], type=[""issue""])
+var_3 = create_actionable_tasks_from_text(text=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Prioritize and summarize all P2 issues under the PRODUCT rev organization with a limit of 20 work items. [/INST]
+","var_1 = works_list(issue.rev_orgs=[""PRODUCT""], issue.priority=[""p2""], type=[""issue""], limit=20)
+var_2 = prioritize_objects(objects=var_1)
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize the tasks related to project 'Alpha' [/INST]
+","var_1 = search_object_by_name(query=""Alpha"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Aggregate all tickets requiring a response for the engineering team [/INST]
+","var_1 = works_list(ticket.needs_response=True, owned_by=[""engineering team""], type=[""ticket""])
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify work items linked to part PROD-456, filter by Rev organization ORG-678, and provide a summary. [/INST]
+","var_1 = search_object_by_name(query=""ORG-678"")
+var_2 = works_list(applies_to_part=[""PROD-456""], issue.rev_orgs=[var_1])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Give me a summary of tickets needing response for the ""Beta"" department [/INST]
+","var_1 = search_object_by_name(query=""Beta"")
+var_2 = works_list(ticket.rev_org=[var_1], ticket.needs_response=True, type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve the sprint ID and add all my tasks with 'blocker' severity to it [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], ticket.severity=[""blocker""], type=[""task""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find issues assigned to me with high priority and summarize them. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], issue.priority=[""high""], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find all work items with type ""issue"" that involve Rev organization ""REV-456"", prioritize and add to sprint ""SPRINT-123"" [/INST]
+","var_1 = works_list(issue.rev_orgs=[""REV-456""], type=[""issue""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-123"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Is knowledge a limitation, and ignorance a form of liberation? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find work items for component 'UIX-987' and list them by priority [/INST]
+","var_1 = works_list(applies_to_part=[""UIX-987""], type=[""issue"", ""ticket"", ""task""])
+var_2 = prioritize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize tickets requiring response for Rev organization ""REV-321"" [/INST]
+","var_1 = works_list(ticket.rev_org=[""REV-321""], ticket.needs_response=True, type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find tasks related to project Alpha and summarize them [/INST]
+","var_1 = search_object_by_name(query=""project Alpha"")
+var_2 = works_list(type=[""task""], applies_to_part=[var_1])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add tasks related to customer 'InnovateCorp' to the sprint after summarizing [/INST]
+","var_1 = search_object_by_name(query=""InnovateCorp"")
+var_2 = works_list(ticket.rev_org=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: For part CAPL-987, summarize all P1 and P2 issues and tickets requiring high priority attention [/INST]
+","var_1 = search_object_by_name(query=""CAPL-987"")
+var_2 = works_list(applies_to_part=[var_1], issue.priority=[""p1"", ""p2""], ticket.severity=[""high""], type=[""issue"", ""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve my work of the type ""issue"" and ""task"", add them to the current sprint, and then get a summary of the sprint contents. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(created_by=[var_1], type=[""issue"", ""task""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+var_5 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve and summarize all tickets marked as blocker severity associated with ""REV-Engineering"". [/INST]
+","var_1 = search_object_by_name(query=""REV-Engineering"")
+var_2 = works_list(ticket.severity=[""blocker""], ticket.rev_org=[var_1])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find similar issues to ENG-432, summarize them, and then find work items similar to the summary [/INST]
+","var_1 = get_similar_work_items(work_id=""ENG-432"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = get_similar_work_items(work_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate tasks from the discussion notes in the document Doc567 and add them to my sprint [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""Doc567"")
+var_2 = who_am_i()
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Locate the current sprint and add any urgent tasks created by user ""UserABC"" to it [/INST]
+","var_1 = search_object_by_name(query=""UserABC"")
+var_2 = get_sprint_id()
+var_3 = works_list(created_by=[var_1], ticket.severity=[""blocker""], type=[""task""])
+var_4 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find work items for the ""Alpha"" project, filter by tasks, and get the list of high priority tasks [/INST]
+","var_1 = search_object_by_name(query=""Alpha"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What are the upcoming video game releases for this year? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify and summarize low priority tasks in the design phase for the project PROJ-789 [/INST]
+","var_1 = works_list(type=[""task""], stage.name=[""design""], ticket.severity=[""low""], applies_to_part=[""PROJ-789""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add my 'urgent-fix' issues to the current sprint and prioritize the sprint items [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], issue.priority=[""urgent-fix""], type=[""issue""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+var_5 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List all tasks created by user USER-XYZ, prioritize them, and add them to the sprint with ID SPRINT-789. [/INST]
+","var_1 = works_list(created_by=[""USER-XYZ""], type=[""task""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-789"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and summarize work items related to ""ENH-789"" and identify their severity [/INST]
+","var_1 = search_object_by_name(query=""ENH-789"")
+var_2 = works_list(applies_to_part=[var_1], type=[""work""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize all tickets that require a response from the engineering team [/INST]
+","var_1 = search_object_by_name(query=""engineering team"")
+var_2 = works_list(ticket.needs_response=True, owned_by=[var_1], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Extract actionable tasks from the meeting notes ""M"" and assign to ""Delta"" team members [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""M"")
+var_2 = search_object_by_name(query=""Delta"")
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What if time is not a linear progression but a complex web of interconnected moments? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find open issues assigned to me and summarise them [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate tasks from meeting notes X and get the sprint ID [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""X"")
+var_2 = get_sprint_id()
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add tasks for customer follow-ups mentioned in document 'Notes-123' to my task list [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""Notes-123"")
+var_2 = who_am_i()
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize the current sprint's tasks for user USER-ABC [/INST]
+","var_1 = search_object_by_name(query=""USER-ABC"")
+var_2 = get_sprint_id()
+var_3 = works_list(owned_by=[var_1], type=[""task""])
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve the current sprint's tasks and filter by the ""Development"" stage [/INST]
+","var_1 = get_sprint_id()
+var_2 = works_list(stage.name=[""Development""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve and prioritize tasks related to CAPL-123 that need a response [/INST]
+","var_1 = works_list(applies_to_part=[""CAPL-123""], ticket.needs_response=True, type=[""task""])
+var_2 = prioritize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Return a list of my open tickets that need a response and are associated with ""TechCorp"" [/INST]
+","var_1 = who_am_i()
+var_2 = search_object_by_name(query=""TechCorp"")
+var_3 = works_list(owned_by=[var_1], ticket.needs_response=True, ticket.rev_org=[var_2], type=[""ticket""])
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add my recently created high priority tickets to the current sprint [/INST]
+","var_1 = who_am_i()
+var_2 = get_sprint_id()
+var_3 = works_list(created_by=[var_1], issue.priority=[""high""], type=[""ticket""])
+var_4 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and summarize work items related to component COMP-456, then prioritize and add them to my sprint [/INST]
+","var_1 = search_object_by_name(query=""COMP-456"")
+var_2 = works_list(type=[""issue"", ""ticket"", ""task""], applies_to_part=[var_1])
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+var_5 = get_sprint_id()
+var_6 = add_work_items_to_sprint(work_ids=var_4, sprint_id=var_5)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add all tasks related to the Epic EPIC-789 to the current sprint [/INST]
+","var_1 = search_object_by_name(query=""EPIC-789"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Create tasks from the insights of a project update and add them to the sprint for user USER-123. [/INST]
+","var_1 = search_object_by_name(query=""USER-123"")
+var_2 = create_actionable_tasks_from_text(text=""project update"")
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get similar tasks to TASK-789, summarize and prioritize for current sprint [/INST]
+","var_1 = get_similar_work_items(work_id=""TASK-789"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve and summarize all tickets needing a response for user DEVU-123 [/INST]
+","var_1 = search_object_by_name(query=""DEVU-123"")
+var_2 = works_list(ticket.needs_response=True, owned_by=[var_1], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify tickets labeled as ""high"" severity for component ""UI-Component"", summarize them, and prioritize for the current release. [/INST]
+","var_1 = search_object_by_name(query=""UI-Component"")
+var_2 = works_list(applies_to_part=[var_1], ticket.severity=[""high""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize my tickets with ""medium"" severity and response needed [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], ticket.severity=[""medium""], ticket.needs_response=True, type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add all P1 issues related to service ""ServiceY"" to the upcoming sprint [/INST]
+","var_1 = search_object_by_name(query=""ServiceY"")
+var_2 = works_list(applies_to_part=[var_1], issue.priority=[""p1""], type=[""issue""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Create a list of action items from the meeting notes and add to my 'To-Do' tasks [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""meeting notes"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize tasks related to project PROJ-456 and check for any that need response [/INST]
+","var_1 = search_object_by_name(query=""PROJ-456"")
+var_2 = works_list(applies_to_part=[var_1], ticket.needs_response=True, type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What if our emotions are not just personal experiences but a shared energy connecting all living beings? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify tasks for ""EpsilonExpansion"" requiring response, summarize and add to my tasks [/INST]
+","var_1 = search_object_by_name(query=""EpsilonExpansion"")
+var_2 = works_list(type=[""task""], ticket.needs_response=True, ticket.rev_org=[var_1])
+var_3 = summarize_objects(objects=var_2)
+var_4 = who_am_i()
+var_5 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add new high priority issues to current sprint [/INST]
+","var_1 = works_list(issue.priority=[""high""], type=[""issue""])
+var_2 = get_sprint_id()
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize high and blocker severity tickets for the mobile team [/INST]
+","var_1 = works_list(ticket.severity=[""high"", ""blocker""], owned_by=[""mobile team""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Extract tasks from the ""project update"" notes and add them to the sprint for execution [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""project update"")
+var_2 = get_sprint_id()
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify tasks created by 'UserX', prioritize them, and summarize the top priority tasks [/INST]
+","var_1 = works_list(created_by=[""UserX""], type=[""task""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = summarize_objects(objects=[var_2[0]])
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Collect my issues from Rev organization REV-321 and summarize the urgent ones [/INST]
+","var_1 = who_am_i()
+var_2 = search_object_by_name(query=""REV-321"")
+var_3 = works_list(owned_by=[var_1], issue.rev_orgs=[var_2], type=[""issue""])
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve and prioritize issues from Rev organization REV-456 with priority p2 and then add them to sprint SPRINT-789 [/INST]
+","var_1 = search_object_by_name(query=""REV-456"")
+var_2 = works_list(issue.priority=[""p2""], issue.rev_orgs=[var_1], type=[""issue""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = add_work_items_to_sprint(work_ids=var_3, sprint_id=""SPRINT-789"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve a list of tickets with 'blocker' severity from REV-456 and summarize them for review [/INST]
+","var_1 = search_object_by_name(query=""REV-456"")
+var_2 = works_list(ticket.severity=[""blocker""], ticket.rev_org=[var_1], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Is there a purpose to existence, or do we create our own meaning in a seemingly indifferent universe? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query:  Prioritize and add to the current sprint all tasks related to part SEC-999, limiting the results to 25. [/INST]
+","var_1 = search_object_by_name(query=""SEC-999"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""], limit=25)
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find all tasks related to the ""DEV-OPS"" project and list them by ascending priority [/INST]
+","var_1 = search_object_by_name(query=""DEV-OPS"")
+var_2 = works_list(issue.rev_orgs=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find issues that need a response for Rev organization REV-256 and summarize them [/INST]
+","var_1 = works_list(issue.rev_orgs=[""REV-256""], ticket.needs_response=True, type=[""issue""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify my tasks in ""QA-Testing"" stage and assign to the upcoming sprint [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(type=[""task""], owned_by=[var_1], stage.name=[""QA-Testing""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve all tasks created by user USER-321, filter for stage 'development', and add to sprint SPRINT-ID-123. [/INST]
+","var_1 = works_list(type=[""task""], created_by=[""USER-321""], stage.name=[""development""])
+var_2 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""SPRINT-ID-123"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find p0 priority tasks assigned to user USER-456 and summarize them [/INST]
+","var_1 = works_list(issue.priority=[""p0""], owned_by=[""USER-456""], type=[""task""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize tasks from the 'QA Team' and list them by priority for the upcoming sprint [/INST]
+","var_1 = works_list(created_by=[""QA Team""], type=[""task""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find the current sprint ID and list all tasks within it, then summarize those tasks and search for any similar to ""TASK-456"". [/INST]
+","var_1 = get_sprint_id()
+var_2 = works_list(stage.name=[""current""], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = search_object_by_name(query=""TASK-456"")
+var_5 = get_similar_work_items(work_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and summarize work items related to the ""Analytics"" project created by user ""ANALYT-321"" [/INST]
+","var_1 = search_object_by_name(query=""Analytics"")
+var_2 = works_list(created_by=[""ANALYT-321""], applies_to_part=[var_1], type=[""issue"", ""ticket"", ""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find tasks related to the ""Release 2.1"" feature and organize them by priority. [/INST]
+","var_1 = search_object_by_name(query=""Release 2.1"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Search for work items from 'REV-321', prioritize and add to sprint 'SPRINT-789' [/INST]
+","var_1 = works_list(owned_by=[""REV-321""], type=[""issue"", ""ticket"", ""task""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-789"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize all tickets that need a response and are associated with the Rev organization ORG-789 [/INST]
+","var_1 = search_object_by_name(query=""ORG-789"")
+var_2 = works_list(ticket.needs_response=True, ticket.rev_org=[var_1], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add new high-priority tickets from REV-456 to my sprint [/INST]
+","var_1 = search_object_by_name(query=""REV-456"")
+var_2 = works_list(ticket.severity=[""high""], ticket.rev_org=[var_1], type=[""ticket""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve the current user's ID and summarize their tasks. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Search for customer 'Enterprise123', list their P2 issues, and summarize [/INST]
+","var_1 = search_object_by_name(query=""Enterprise123"")
+var_2 = works_list(issue.priority=[""p2""], ticket.rev_org=[var_1], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What are the new features in the latest iPhone model? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Check for tickets that need a response, summarize them, and prioritize. [/INST]
+","var_1 = works_list(ticket.needs_response=True, type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Prioritize tasks related to project Alpha and present a summary [/INST]
+","var_1 = search_object_by_name(query=""Alpha"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What if our thoughts have the power to shape the fabric of reality, influencing the course of events? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add all P1 enhancement issues created by user DEVU-456 to the sprint [/INST]
+","var_1 = search_object_by_name(query=""DEVU-456"")
+var_2 = works_list(created_by=[var_1], issue.priority=[""p1""], type=[""issue""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query:  Find and summarize tickets with severity high that need a response, limiting the results to 50. [/INST]
+","var_1 = works_list(ticket.severity=[""high""], ticket.needs_response=True, limit=50, type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Determine my tasks in the 'development' stage and organize them by urgency [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], stage.name=[""development""], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Can you provide the lyrics to the song ""Bohemian Rhapsody"" by Queen? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find all P2 tickets related to ""CustomerX"" and then summarize the results. [/INST]
+","var_1 = search_object_by_name(query=""CustomerX"")
+var_2 = works_list(issue.rev_orgs=[var_1], issue.priority=[""p2""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find tickets needing response for REV-456 and add them to my sprint [/INST]
+","var_1 = search_object_by_name(query=""REV-456"")
+var_2 = works_list(ticket.needs_response=True, ticket.rev_org=[var_1], type=[""ticket""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: For the user DEVU-456, find all their 'task' type work items and generate a summary [/INST]
+","var_1 = works_list(type=[""task""], owned_by=[""DEVU-456""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find the current user's P1 issues and summarize them [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], issue.priority=[""p1""], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find my tasks that are in the backlog stage and organize them by priority. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(stage.name=[""backlog""], owned_by=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Display tasks for user DEVU-789 and filter those associated with Rev organization REV-456 [/INST]
+","var_1 = search_object_by_name(query=""DEVU-789"")
+var_2 = works_list(created_by=[var_1], issue.rev_orgs=[""REV-456""], type=[""task""])
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find work related to the ""ProjectX"" enhancement and get a summary [/INST]
+","var_1 = search_object_by_name(query=""ProjectX"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify my tasks that are in the 'development' stage and add them to my current sprint [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(stage.name=[""development""], owned_by=[var_1], type=[""task""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify work items for customer BetaCorp and sort by priority [/INST]
+","var_1 = search_object_by_name(query=""BetaCorp"")
+var_2 = works_list(type=[""issue"", ""ticket"", ""task""], ticket.rev_org=[var_1])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Assign p3 priority issues to the current sprint for the ""frontend"" team [/INST]
+","var_1 = get_sprint_id()
+var_2 = works_list(issue.priority=[""p3""], owned_by=[""frontend""], type=[""issue""])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Look up the ID of the user 'UserX' and summarize all their owned work items [/INST]
+","var_1 = search_object_by_name(query=""UserX"")
+var_2 = works_list(owned_by=[var_1], type=[""issue"", ""ticket"", ""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get my tasks related to `DOC-321` that need a response, prioritize and summarize them. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(type=[""task""], applies_to_part=[""DOC-321""], owned_by=[var_1], ticket.needs_response=True)
+var_3 = prioritize_objects(objects=var_2)
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Search for a user named DevLead, list all tickets they own, and summarize the tickets from the channel 'email' [/INST]
+","var_1 = search_object_by_name(query=""DevLead"")
+var_2 = works_list(owned_by=[var_1], ticket.source_channel=[""email""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List all tickets requiring a response and add them to sprint SPRINT-456 [/INST]
+","var_1 = works_list(ticket.needs_response=True, type=[""ticket""])
+var_2 = add_work_items_to_sprint(work_ids=var_1, sprint_id=""SPRINT-456"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate a list of work items owned by user ""DEV_LEAD_456"" and filter for those in ""QAReview"" [/INST]
+","var_1 = works_list(owned_by=[""DEV_LEAD_456""], stage.name=[""QAReview""], type=[""work""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What if our existence is a result of a cosmic coincidence, and life is a rare anomaly in the universe? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify and prioritize tickets from Rev organization REV-321 and add them to my sprint [/INST]
+","var_1 = search_object_by_name(query=""REV-321"")
+var_2 = works_list(ticket.rev_org=[var_1], type=[""ticket""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Extract tasks from meeting notes M and summarize them for review. [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""M"")
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query:  Locate and summarize tickets from the PHONE source channel with severity high, limiting the results to 40. [/INST]
+","var_1 = works_list(ticket.source_channel=[""PHONE""], ticket.severity=[""high""], type=[""ticket""], limit=40)
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and summarize all 'blocker' severity tickets [/INST]
+","var_1 = works_list(type=[""ticket""], ticket.severity=[""blocker""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: For user DEVU-789, summarize tasks with 'low' priority that are associated with Rev organization 'REV-456' [/INST]
+","var_1 = search_object_by_name(query=""REV-456"")
+var_2 = works_list(type=[""task""], owned_by=[""DEVU-789""], ticket.severity=[""low""], ticket.rev_org=[var_1])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find work items for part CAPL-123 created by user DEVU-456 and filter by p2 priority [/INST]
+","var_1 = search_object_by_name(query=""CAPL-123"")
+var_2 = search_object_by_name(query=""DEVU-456"")
+var_3 = works_list(applies_to_part=[var_1], created_by=[var_2], issue.priority=[""p2""], type=[""issue""])
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Prioritize and summarize tickets from the SALES source channel, limiting the results to 35. [/INST]
+","var_1 = works_list(ticket.source_channel=[""SALES""], limit=35, type=[""ticket""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve the current sprint ID, list all tasks within it, and then provide a summary of these tasks. [/INST]
+","var_1 = get_sprint_id()
+var_2 = works_list(stage.name=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find similar tasks to TASK-321, summarize and rank them by priority [/INST]
+","var_1 = get_similar_work_items(work_id=""TASK-321"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve and summarize my work items of type 'issue' that are related to the 'QA' part [/INST]
+","var_1 = who_am_i()
+var_2 = search_object_by_name(query=""QA"")
+var_3 = works_list(type=[""issue""], owned_by=[var_1], applies_to_part=[var_2])
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify tasks linked to the product CORE-789, determine their urgency, and summarize the urgent ones [/INST]
+","var_1 = search_object_by_name(query=""CORE-789"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize all P1 tickets from the support channel 'email' that are pending review [/INST]
+","var_1 = works_list(ticket.severity=[""p1""], ticket.source_channel=[""email""], stage.name=[""pending review""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify issues owned by me that need a response, and return a prioritized list [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], ticket.needs_response=True, type=[""issue""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Create tasks for each actionable item from the email content 'E' and summarize these tasks [/INST]
+","var_1 = create_actionable_tasks_from_text(text='E')
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get the current user's tickets that need a response and organize them by severity [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], ticket.needs_response=True, type=[""ticket""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find tickets from REV-456, summarize and prioritize them [/INST]
+","var_1 = search_object_by_name(query=""REV-456"")
+var_2 = works_list(ticket.rev_org=[var_1], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Filter my P2 tickets, prioritize them, and retrieve the sprint ID. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], ticket.severity=[""p2""], type=[""ticket""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Create a report of all open tickets from the Tech Support channel [/INST]
+","var_1 = works_list(ticket.source_channel=[""Tech Support""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Organize my `p1` issues into the `QA-Testing` stage and prioritize them. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(type=[""issue""], owned_by=[var_1], stage.name=[""QA-Testing""], issue.priority=[""p1""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find similar work items to TASK-321, summarize and associate them with Rev organization ORG-789 [/INST]
+","var_1 = get_similar_work_items(work_id=""TASK-321"")
+var_2 = search_object_by_name(query=""ORG-789"")
+var_3 = works_list(issue.rev_orgs=[var_2], type=[""task""])
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Identify similar work items to ""ISSUE-999"" and prepare a summary [/INST]
+","var_1 = get_similar_work_items(work_id=""ISSUE-999"")
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve my own work items that are tasks and add them to sprint ID SPRINT-123 [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], type=[""task""])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=""SPRINT-123"")
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve my tickets that need a response and sort them by severity [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], ticket.needs_response=True, type=[""ticket""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: For the new ""UX Improvement"" initiative, find related tasks and create a summary for the design team meeting. [/INST]
+","var_1 = search_object_by_name(query=""UX Improvement"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize and prioritize issues with priority P1 from the QA team, limiting the results to 25. [/INST]
+","var_1 = search_object_by_name(query=""QA team"")
+var_2 = works_list(issue.priority=[""p1""], created_by=[var_1], limit=25, type=[""issue""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate a report of P1 tickets owned by user USER-567 and summarize the findings [/INST]
+","var_1 = search_object_by_name(query=""USER-567"")
+var_2 = works_list(type=[""ticket""], issue.priority=[""p1""], owned_by=[var_1])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find work items related to specific parts 'PART-456', 'PART-789' and get their summary [/INST]
+","var_1 = works_list(applies_to_part=[""PART-456"", ""PART-789""], type=[""issue"", ""ticket"", ""task""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: create actionable tasks from summarized tasks of issue 'REV-789' [/INST]
+","var_1 = get_similar_work_items(work_id=""REV-789"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = create_actionable_tasks_from_text(text=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find similar issues to ISSU-123, summarize them, and add them to the current sprint, limiting the number of work items to 10. [/INST]
+","var_1 = get_similar_work_items(work_id=""ISSU-123"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve the ID of the current user, list their tasks of type 'issue', then add any P2 priority issues to the current sprint. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], issue.priority=[""p2""], type=[""issue""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Could the concept of good and evil be fluid, evolving with the changing dynamics of society? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Generate a list of tickets from ""REV-456"" organization, summarize the tickets with medium severity, and create tasks for them. [/INST]
+","var_1 = works_list(ticket.rev_org=[""REV-456""], type=[""ticket""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = create_actionable_tasks_from_text(text=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize tasks related to the Epic EPIC-456 [/INST]
+","var_1 = search_object_by_name(query=""EPIC-456"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find tasks related to project X, prioritize them, and add to sprint [/INST]
+","var_1 = search_object_by_name(query=""Project X"")
+var_2 = works_list(applies_to_part=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find work items for part CAPL-123 created by user DEVU-456, then prioritize and summarize them [/INST]
+","var_1 = search_object_by_name(query=""DEVU-456"")
+var_2 = works_list(created_by=[var_1], applies_to_part=[""CAPL-123""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get all work items similar to TKT-123, summarize them, and prioritize them [/INST]
+","var_1 = get_similar_work_items(work_id=""TKT-123"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve my tasks, summarize them, and prioritize issues for this week [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+var_4 = works_list(owned_by=[var_1], type=[""issue""])
+var_5 = prioritize_objects(objects=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What if our understanding of the cosmos is limited by the constraints of our three-dimensional perception? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get all tickets from the current sprint with priority p3 and create a detailed summary [/INST]
+","var_1 = get_sprint_id()
+var_2 = works_list(issue.priority=[""p3""], type=[""ticket""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find tasks related to product enhancement, summarize [/INST]
+","var_1 = works_list(type=[""task""], applies_to_part=[""product enhancement""])
+var_2 = summarize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Prioritize tasks created by ""USER-789"" and filter by ""issue.rev_orgs"" with value ""ORG-101"" [/INST]
+","var_1 = search_object_by_name(query=""USER-789"")
+var_2 = works_list(created_by=[var_1], issue.rev_orgs=[""ORG-101""], type=[""issue""])
+var_3 = prioritize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add all P2 issues from customer BigCorp to the sprint and list them [/INST]
+","var_1 = search_object_by_name(query=""BigCorp"")
+var_2 = works_list(issue.rev_orgs=[var_1], issue.priority=[""p2""], type=[""issue""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Search for P1 issues related to the 'User Experience' part and provide a summary [/INST]
+","var_1 = search_object_by_name(query=""User Experience"")
+var_2 = works_list(applies_to_part=[var_1], issue.priority=[""p1""], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Prioritize and add to sprint all blocker tickets from the REV-789 organization [/INST]
+","var_1 = search_object_by_name(query=""REV-789"")
+var_2 = works_list(ticket.rev_org=[var_1], ticket.severity=[""blocker""], type=[""ticket""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = get_sprint_id()
+var_5 = add_work_items_to_sprint(work_ids=var_3, sprint_id=var_4)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List latest tickets by 'user123', prioritize by severity, and summarize for the weekly review [/INST]
+","var_1 = search_object_by_name(query=""user123"")
+var_2 = works_list(type=[""ticket""], created_by=[var_1])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get a list of all open issues from the customer 'MegaCorp', summarize and then add to the backlog [/INST]
+","var_1 = search_object_by_name(query=""MegaCorp"")
+var_2 = works_list(type=[""issue""], ticket.rev_org=[var_1])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Summarize my tasks related to the ""BetaLaunch"" project created by ""Beta"" [/INST]
+","var_1 = search_object_by_name(query=""BetaLaunch"")
+var_2 = who_am_i()
+var_3 = works_list(created_by=[""Beta""], owned_by=[var_2], applies_to_part=[var_1], type=[""task""])
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List p3 priority tickets for response and add to sprint [/INST]
+","var_1 = get_sprint_id()
+var_2 = works_list(issue.priority=[""p3""], ticket.needs_response=True, type=[""ticket""])
+var_3 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve the ID of the sprint for this month and list all P2 tickets owned by me in that sprint. [/INST]
+","var_1 = get_sprint_id()
+var_2 = who_am_i()
+var_3 = works_list(issue.priority=[""p2""], owned_by=[var_2], stage.name=[var_1], type=[""ticket""])
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Organize and summarize tickets by medium severity for 'Team Alpha', and output p0-priority  tasks from the issue [/INST]
+","var_1 = search_object_by_name(query=""Team Alpha"")
+var_2 = works_list(type=[""ticket""], ticket.severity=[""medium""], owned_by=[var_1])
+var_3 = summarize_objects(objects=var_2)
+var_4 = works_list(type=[""task""], issue.priority=[""p0""], owned_by=[var_1])
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What if the purpose of life is not to find answers but to embrace the beauty of uncertainty? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find work items similar to task Task-234 and add them to the current sprint [/INST]
+","var_1 = get_similar_work_items(work_id=""Task-234"")
+var_2 = get_sprint_id()
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: How do I backup my computer files to an external hard drive? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and prioritize tasks assigned to me that are related to ENH-999 [/INST]
+","var_1 = who_am_i()
+var_2 = search_object_by_name(query=""ENH-999"")
+var_3 = works_list(owned_by=[var_1], applies_to_part=[var_2], type=[""task""])
+var_4 = prioritize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Get current sprint ID and add new critical task 'TASK-911' to it. [/INST]
+","var_1 = get_sprint_id()
+var_2 = add_work_items_to_sprint(work_ids=[""TASK-911""], sprint_id=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Prioritize and summarize my tasks that are currently in the 'not-completed' stage. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], stage.name=[""not-completed""], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = summarize_objects(objects=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Add all my tasks in 'development' stage to the current sprint [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], stage.name=[""development""], type=[""task""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Hi, my name is Arya. What's yours? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query:  Locate tasks in the Design stage, summarize them, and add them to the current sprint, limiting the results to 10. [/INST]
+","var_1 = works_list(stage.name=[""Design""], type=[""task""], limit=10)
+var_2 = summarize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve my tasks, filter by p2 priority, and prepare for current sprint inclusion [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], issue.priority=[""p2""], type=[""task""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: What are my all issues in the triage stage under part FEAT-123? Summarize them. [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(stage.name=[""triage""], applies_to_part=[""FEAT-123""], owned_by=[var_1], type=[""issue""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve and sort issues of type 'task' that need a response [/INST]
+","var_1 = works_list(ticket.needs_response=True, type=[""task""])
+var_2 = prioritize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: List my issues tagged as 'p0', summarize, and get current sprint ID [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(type=[""issue""], issue.priority=[""p0""], owned_by=[var_1])
+var_3 = summarize_objects(objects=var_2)
+var_4 = get_sprint_id()
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve my tasks, filter by 'in-progress' stage, and summarize [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(owned_by=[var_1], stage.name=[""in-progress""], type=[""task""])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Is reality a shared illusion, and do we collectively agree on its parameters? [/INST]
+",#Unanswerable_Invalid_Query_Error
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find work items for REV-456 and summarize them [/INST]
+","var_1 = search_object_by_name(query=""REV-456"")
+var_2 = works_list(ticket.rev_org=[var_1])
+var_3 = summarize_objects(objects=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Retrieve and add any P2 tasks I own to the current sprint [/INST]
+","var_1 = who_am_i()
+var_2 = works_list(issue.priority=[""p2""], owned_by=[var_1], type=[""task""])
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Create tasks from project kickoff notes and add them to the team's sprint [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""project kickoff notes"")
+var_2 = get_sprint_id()
+var_3 = add_work_items_to_sprint(work_ids=var_1, sprint_id=var_2)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Create tasks from customer feedback text 'FeedbackText' and prioritize them [/INST]
+","var_1 = create_actionable_tasks_from_text(text=""FeedbackText"")
+var_2 = prioritize_objects(objects=var_1)
+"
+"
+<s>
+[INST]
+Added Tools: 
+
+
+
+Query: Find and summarize work items in the 'development' stage for part 'WidgetX' that need a response. [/INST]
+","var_1 = search_object_by_name(query=""WidgetX"")
+var_2 = works_list(type=[""issue""], stage.name=[""development""], applies_to_part=[var_1], ticket.needs_response=True)
+var_3 = summarize_objects(objects=var_2)
+"

@@ -12,7 +12,7 @@ from transformers import (
 )
 from peft import PeftModel
 import time
-class P1_inferecening():    
+class P1_inferencing():    
     def __init__(self) -> None:
       self.sample_query = open('./Queries/sample_query_bonus_P1.txt', 'r').read()
       self.sample_query_bonus = open('./Queries/sample_query_bonus_P1.txt', 'r').read()

@@ -212,6 +212,30 @@ class Preprocessing():
         self.staticTool_list = [row[0] for row in csv.reader(open('./Tool_list/final-static-toollist.csv', 'r'))]
         self.dynamicTool_list = [row[0] for row in csv.reader(open('./Tool_list/final-dynamic-toolset.csv', 'r'))]
 
+    def p1_static(self, additional_tools=list()):
+        used_tools = additional_tools + self.staticTool_list
+        used_len = len(used_tools)
+        add_len = math.floor(np.random.uniform(0, 18-used_len))
+        random_tools = random.sample(self.dynamicTool_list, add_len)
+        added_tools = list(set(used_tools + random_tools))
+        added_tools = '\n'.join(added_tools)
+        return added_tools
+
+    def p1_dynamic(self, additional_tools):
+        used_tools = additional_tools + self.staticTool_list
+        used_len = len(used_tools)
+        add_len = math.floor(np.random.uniform(0, 18-used_len))
+        random_tools = random.sample(self.dynamicTool_list, add_len)
+        added_tools = list(set(used_tools + random_tools))
+        added_tools = '\n'.join(added_tools)
+        return added_tools
+
+    def p1_bonus(self, additional_tools):
+        used_tools = additional_tools + self.staticTool_list
+        added_tools = list(set(used_tools))
+        added_tools = '\n'.join(added_tools)
+        return added_tools
+
     def prompt_p2_pipeline(self, query, output, additional_tools=list()):
         len_add = len(additional_tools)
         add_len = math.floor(np.random.uniform(0, 10-len_add))

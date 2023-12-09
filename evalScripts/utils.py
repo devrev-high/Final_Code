@@ -131,6 +131,8 @@ class P2_P3_inferencing():
         op = self.tokenizer.decode(out[0], skip_special_tokens=True)
         end = time.time()
         latency = end - start
+
         return op, latency
+       
 
   

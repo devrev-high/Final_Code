@@ -8,9 +8,9 @@ from openai import OpenAI
 
 class Static_dataGen():
     def __init__(self,key) -> None:
-        self.tools_list = open('../input/Tool_list/tool_list.txt', 'r').read()
-        self.sample_query = open('../input/Tool_list/sample_queries.txt', 'r').read()
-        self.sample_query_with_op = open('../input/Tool_list/sample_queries_with_output.txt', 'r').read()
+        self.tools_list = open('../resources/Tool_list/tool_list.txt', 'r').read()
+        self.sample_query = open('../resources/Tool_list/sample_queries.txt', 'r').read()
+        self.sample_query_with_op = open('../resources/Tool_list/sample_queries_with_output.txt', 'r').read()
         self.query_list = []
         self.outputCompletion = []
         self.client = OpenAI(api_key=key) 
@@ -80,9 +80,9 @@ class Static_dataGen():
 
 class Dynamic_dataGen():
     def __init__(self,key) -> None:
-        self.tools_list = open('../input/Tool_list/tool_list.txt','r').read()
-        self.dyQuGenPrompt = open('../input/Prompts/DynamicQueryGenPrompt.txt', 'r').read()
-        self.dyOpGenPrompt = open('../input/Prompts/DynamicOutputGenPrompt.txt', 'r').read()
+        self.tools_list = open('../resources/Tool_list/tool_list.txt','r').read()
+        self.dyQuGenPrompt = open('../resources/Prompts/DynamicQueryGenPrompt.txt', 'r').read()
+        self.dyOpGenPrompt = open('../resources/Prompts/DynamicOutputGenPrompt.txt', 'r').read()
         self.query_list = []
         self.DynamicTool_list = []
         self.outputCompletion = []
@@ -155,10 +155,10 @@ class Dynamic_dataGen():
 
 class Bonus_dataGen():
     def __init__(self,key) -> None:
-        self.tools_list = open('../input/Tool_list/tool_list.txt', 'r').read()
-        self.extra_tools = open('../input/Tool_list/bonustools.txt','r').read()
-        self.user_prompt_output_content = open('../input/Prompts/BonusOutputPrompt.txt','r').read()
-        self.user_prompt_query_content = open('../input/Prompts/BonusQueryPrompt.txt','r').read()
+        self.tools_list = open('../resources/Tool_list/tool_list.txt', 'r').read()
+        self.extra_tools = open('../resources/Tool_list/bonustools.txt','r').read()
+        self.user_prompt_output_content = open('../resources/Prompts/BonusOutputPrompt.txt','r').read()
+        self.user_prompt_query_content = open('../resources/Prompts/BonusQueryPrompt.txt','r').read()
         self.query_list = []
         self.outputCompletion = []
         self.client = OpenAI(api_key=key) 
@@ -210,8 +210,8 @@ class Bonus_dataGen():
         
 class Preprocessing():
     def __init__(self) -> None:
-        self.staticTool_list = [row[0] for row in csv.reader(open('../input/Tool_list/final-static-toollist.csv', 'r'))]
-        self.dynamicTool_list = [row[0] for row in csv.reader(open('../input/Tool_list/final-dynamic-toolset.csv', 'r'))]
+        self.staticTool_list = [row[0] for row in csv.reader(open('../resources/Tool_list/final-static-toollist.csv', 'r'))]
+        self.dynamicTool_list = [row[0] for row in csv.reader(open('../resources/Tool_list/final-dynamic-toolset.csv', 'r'))]
 
     def p1_static(self, additional_tools=list()):
         used_tools = additional_tools + self.staticTool_list

@@ -262,15 +262,15 @@ class Preprocessing():
         added_tools = '\n'.join(added_tools)
         return added_tools
     
-    def prompt_p1_static_dynamic(self, data_dict):
-        prompt = self.prompt_begin+data_dict['docstring']+"Here are some sample queries \
-        and their respective responses:"+self.sample_query+self.prompt_end+data_dict['query']
+    def prompt_p1_static_dynamic(self, query='', docstring=''):
+        prompt = self.prompt_begin+docstring+"Here are some sample queries \
+        and their respective responses:"+self.sample_query+self.prompt_end+query
 
         prompt = "<s> [INST] <<SYS>>\\n"+self.sys_prompt+"\\n<</SYS>>\\n\\n"+prompt+"[/INST]"
         return prompt
     
-    def prompt_p1_bonus(self, data_dict):     
-        prompt = self.prompt_begin+data_dict['docstring']+ "If the query requires the use of conditional logic or iterations, use if, else or for loop,\
+    def prompt_p1_bonus(self, query='', docstring=''):     
+        prompt = self.prompt_begin+docstring+ "If the query requires the use of conditional logic or iterations, use if, else or for loop,\
           in the same format shown in the examples below. In case of a condition or loop, use temp_x in place of var_i inside the block, where x \
           is an integer starting from 1, denoting the index of variable.Do not use temp except in case of a condition or iteration. Variables var_i \
           cannot be called inside the block, only temp_x variables can be used as function arguments in this case. The format is as follows-\
@@ -283,7 +283,7 @@ class Preprocessing():
             for loop_var in <list or range only>:\
                 temp_1 = function_call(function_argument)\
                 temp_2 = ...\
-          Here are some sample queries and their respective responses:"+self.sample_query+self.prompt_end+data_dict['query']
+          Here are some sample queries and their respective responses:"+self.sample_query+self.prompt_end+query
       
         prompt = "<s> [INST] <<SYS>>\\n"+self.sys_prompt+"\\n<</SYS>>\\n\\n"+prompt+"[/INST]"
       

@@ -1,56 +1,10 @@
-Prompt
+Prompt,Output
 "
         <s>
         [INST]
         Allowed Tools: 
 
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
-''
+        ''
 def estimate_work_hours(work_id):
 """"""
 Estimates the number of hours required to complete a specific work item
@@ -75,53 +29,6 @@ Returns:
     bool: True if assignment was successful, otherwise False
 """"""
 '''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
-
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
-
-
-def reassign_work_item_owner(work_id, new_owner_id):
-""""""
-Reassigns the owner of a work item to a new user
-
-Parameters:
-    work_id (str): The ID of the work item to be reassigned
-    new_owner_id (str): The user ID of the new owner
-
-Returns:
-    bool: True if reassignment is successful, False otherwise
-""""""
 ''
 def generate_report(report_type, subject_id, include_summary=True):
 """"""
@@ -136,6 +43,28 @@ Returns:
     str: The ID of the generated report
 """"""
 '''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
 
 def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
 """"""
@@ -159,30 +88,16 @@ Returns:
     list: Matching work items
 """"""
 
-
-
-def generate_report(report_type, subject_id, include_summary=True):
+         
+def summarize_objects(objects):
 """"""
-Generates a report of a specific type for a subject in the system
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
 
 Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
+    objects (list): List of objects to summarize
 
 Returns:
-    str: The ID of the generated report
-""""""
-
-def prioritize_objects(objects):
-""""""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
-
-Parameters:
-    objects (list): A list of objects to be prioritized
-
-Returns:
-    list: Prioritized objects
+    text: Summarized text of the objects
 """"""
 
 
@@ -209,46 +124,6 @@ Returns:
     str: ID of matching object
 """"""
 
-
-        Query: Retrieve work items with type ""ticket"" and severity ""high"", summarize them, and assign the first 10 to user USER-123. [/INST]
-
-        ```
-        var_1 = works_list(type=[""ticket""], ticket.severity=[""high""])
-var_2 = summarize_objects(objects=var_1)
-var_3 = search_object_by_name(query=""USER-123"")
-for loop_var in range(0, 10):
-     temp_1 = assign_task_to_user(task_id=var_1[loop_var], user_id=var_3)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
 ''
 def find_team_members(team_id):
 """"""
@@ -261,42 +136,12 @@ Returns:
     list: User IDs of the team members
 """"""
 '''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
 
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
+def who_am_i():
 """"""
-'''
-''
-def estimate_work_hours(work_id):
+Returns the string ID of the current user
 """"""
-Estimates the number of hours required to complete a specific work item
 
-Parameters:
-    work_id (str): The ID of the work item for which the estimation is to be made
-
-Returns:
-    float: Estimated hours required to complete the work item
-""""""
-''',
-'''
-def assign_task_to_user(task_id, user_id):
-""""""
-Assigns a specific task to a user
-
-Parameters:
-    task_id (str): The ID of the task to be assigned
-    user_id (str): The ID of the user to whom the task will be assigned
-
-Returns:
-    bool: True if assignment was successful, otherwise False
-""""""
-'''
 
 def get_similar_work_items(work_id):
 """"""
@@ -307,65 +152,6 @@ Parameters:
 
 Returns:
     list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
-
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
-
-Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
-
-Returns:
-    str: The ID of the generated report
-""""""
-'''
-
-def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
-""""""
-Returns a list of work items matching the request
-
-Parameters:
-    applies_to_part (list): Filters for work belonging to any of the provided parts
-    created_by (list): Filters for work created by any of these users
-    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
-    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
-    limit (int): The maximum number of works to return. The default is '50'
-    owned_by (list): Filters for work owned by any of these users
-    stage.name (list): Filters for records in the provided stage(s) by name
-    ticket.needs_response (bool): Filters for tickets that need a response
-    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
-    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
-    ticket.source_channel (list): Filters for tickets with any of the provided source channels
-    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
-
-Returns:
-    list: Matching work items
 """"""
 
 
@@ -381,141 +167,6 @@ Returns:
 """"""
 
 
-def create_actionable_tasks_from_text(text):
-""""""
-Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
-
-Parameters:
-    text (str): The text from which the actionable insights need to be created
-
-Returns:
-    list: tasks created from the given text
-""""""
-
-
-def search_object_by_name(query):
-""""""
-Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
-
-Parameters:
-    query (str): The search string, could be for example customer’s name, part name, user name
-
-Returns:
-    str: ID of matching object
-""""""
-
-
-        Query: Find work items with priority ""p1"" and type ""issue"", prioritize them, and add the top 3 to sprint SPRINT-321. [/INST]
-
-        ```
-        var_1 = works_list(issue.priority=[""p1""], type=[""issue""])
-var_2 = prioritize_objects(objects=var_1)
-var_3 = search_object_by_name(query=""SPRINT-321"")
-var_4 = add_work_items_to_sprint(work_ids=var_2[0:3], sprint_id=var_3)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
-
-
-def get_project_timeline(project_id):
-""""""
-Retrieves the timeline and key milestones of a project
-
-Parameters:
-    project_id (str): The ID of the project for which the timeline is requested
-
-Returns:
-    list: Key milestones and dates for the project timeline
-""""""
-''
-def estimate_work_hours(work_id):
-""""""
-Estimates the number of hours required to complete a specific work item
-
-Parameters:
-    work_id (str): The ID of the work item for which the estimation is to be made
-
-Returns:
-    float: Estimated hours required to complete the work item
-""""""
-''',
-'''
-def assign_task_to_user(task_id, user_id):
-""""""
-Assigns a specific task to a user
-
-Parameters:
-    task_id (str): The ID of the task to be assigned
-    user_id (str): The ID of the user to whom the task will be assigned
-
-Returns:
-    bool: True if assignment was successful, otherwise False
-""""""
-'''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
 def add_work_items_to_sprint(work_ids, sprint_id):
 """"""
 Adds the given work items to the sprint
@@ -526,825 +177,18 @@ Parameters:
 """"""
 
 
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
 
-
-def get_sprint_id():
+def calculate_budget_allocation(project_id, cost_limit):
 """"""
-Returns the ID of the current sprint
-""""""
-
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
+Calculates and assigns the budget allocation for a project
 
 Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
+    project_id (str): The ID of the project for which the budget is calculated
+    cost_limit (float): The cost limit for the project's budget
 
 Returns:
-    str: The ID of the generated report
+    float: The amount allocated to the project budget
 """"""
-'''
-
-def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
-""""""
-Returns a list of work items matching the request
-
-Parameters:
-    applies_to_part (list): Filters for work belonging to any of the provided parts
-    created_by (list): Filters for work created by any of these users
-    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
-    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
-    limit (int): The maximum number of works to return. The default is '50'
-    owned_by (list): Filters for work owned by any of these users
-    stage.name (list): Filters for records in the provided stage(s) by name
-    ticket.needs_response (bool): Filters for tickets that need a response
-    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
-    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
-    ticket.source_channel (list): Filters for tickets with any of the provided source channels
-    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
-
-Returns:
-    list: Matching work items
-""""""
-
-
-def prioritize_objects(objects):
-""""""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
-
-Parameters:
-    objects (list): A list of objects to be prioritized
-
-Returns:
-    list: Prioritized objects
-""""""
-
-
-def create_actionable_tasks_from_text(text):
-""""""
-Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
-
-Parameters:
-    text (str): The text from which the actionable insights need to be created
-
-Returns:
-    list: tasks created from the given text
-""""""
-
-
-def search_object_by_name(query):
-""""""
-Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
-
-Parameters:
-    query (str): The search string, could be for example customer’s name, part name, user name
-
-Returns:
-    str: ID of matching object
-""""""
-
-
-        Query: Extract tasks from the text ""ReleaseNotes"", prioritize them, and assign the first 5 to the current sprint. [/INST]
-
-        ```
-        var_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
-var_2 = prioritize_objects(objects=var_1)
-var_3 = get_sprint_id()
-var_4 = add_work_items_to_sprint(work_ids=var_2[0:5], sprint_id=var_3)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
-''
-def estimate_work_hours(work_id):
-""""""
-Estimates the number of hours required to complete a specific work item
-
-Parameters:
-    work_id (str): The ID of the work item for which the estimation is to be made
-
-Returns:
-    float: Estimated hours required to complete the work item
-""""""
-''',
-'''
-def assign_task_to_user(task_id, user_id):
-""""""
-Assigns a specific task to a user
-
-Parameters:
-    task_id (str): The ID of the task to be assigned
-    user_id (str): The ID of the user to whom the task will be assigned
-
-Returns:
-    bool: True if assignment was successful, otherwise False
-""""""
-'''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
-
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
-
-Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
-
-Returns:
-    str: The ID of the generated report
-""""""
-'''
-
-def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
-""""""
-Returns a list of work items matching the request
-
-Parameters:
-    applies_to_part (list): Filters for work belonging to any of the provided parts
-    created_by (list): Filters for work created by any of these users
-    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
-    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
-    limit (int): The maximum number of works to return. The default is '50'
-    owned_by (list): Filters for work owned by any of these users
-    stage.name (list): Filters for records in the provided stage(s) by name
-    ticket.needs_response (bool): Filters for tickets that need a response
-    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
-    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
-    ticket.source_channel (list): Filters for tickets with any of the provided source channels
-    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
-
-Returns:
-    list: Matching work items
-""""""
-
-
-def prioritize_objects(objects):
-""""""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
-
-Parameters:
-    objects (list): A list of objects to be prioritized
-
-Returns:
-    list: Prioritized objects
-""""""
-
-
-def create_actionable_tasks_from_text(text):
-""""""
-Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
-
-Parameters:
-    text (str): The text from which the actionable insights need to be created
-
-Returns:
-    list: tasks created from the given text
-""""""
-
-
-def search_object_by_name(query):
-""""""
-Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
-
-Parameters:
-    query (str): The search string, could be for example customer’s name, part name, user name
-
-Returns:
-    str: ID of matching object
-""""""
-
-
-        Query: For all tickets with source channel ""email"", prioritize them, and assign the most critical one to the current sprint. [/INST]
-
-        ```
-        var_1 = works_list(ticket.source_channel=[""email""], type=[""ticket""])
-var_2 = prioritize_objects(objects=var_1)
-var_3 = get_sprint_id()
-var_4 = add_work_items_to_sprint(work_ids=[var_2[0]], sprint_id=var_3)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-
-
-def generate_report_for_sprint(sprint_id):
-""""""
-Generates a performance report for a specified sprint
-
-Parameters:
-    sprint_id (str): The ID of the sprint for which to generate the report
-
-Returns:
-    str: The ID of the generated report
-""""""
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
-''
-def estimate_work_hours(work_id):
-""""""
-Estimates the number of hours required to complete a specific work item
-
-Parameters:
-    work_id (str): The ID of the work item for which the estimation is to be made
-
-Returns:
-    float: Estimated hours required to complete the work item
-""""""
-''',
-'''
-def assign_task_to_user(task_id, user_id):
-""""""
-Assigns a specific task to a user
-
-Parameters:
-    task_id (str): The ID of the task to be assigned
-    user_id (str): The ID of the user to whom the task will be assigned
-
-Returns:
-    bool: True if assignment was successful, otherwise False
-""""""
-'''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
-
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
-
-Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
-
-Returns:
-    str: The ID of the generated report
-""""""
-'''
-
-def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
-""""""
-Returns a list of work items matching the request
-
-Parameters:
-    applies_to_part (list): Filters for work belonging to any of the provided parts
-    created_by (list): Filters for work created by any of these users
-    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
-    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
-    limit (int): The maximum number of works to return. The default is '50'
-    owned_by (list): Filters for work owned by any of these users
-    stage.name (list): Filters for records in the provided stage(s) by name
-    ticket.needs_response (bool): Filters for tickets that need a response
-    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
-    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
-    ticket.source_channel (list): Filters for tickets with any of the provided source channels
-    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
-
-Returns:
-    list: Matching work items
-""""""
-
-
-def prioritize_objects(objects):
-""""""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
-
-Parameters:
-    objects (list): A list of objects to be prioritized
-
-Returns:
-    list: Prioritized objects
-""""""
-
-
-def create_actionable_tasks_from_text(text):
-""""""
-Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
-
-Parameters:
-    text (str): The text from which the actionable insights need to be created
-
-Returns:
-    list: tasks created from the given text
-""""""
-
-
-def search_object_by_name(query):
-""""""
-Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
-
-Parameters:
-    query (str): The search string, could be for example customer’s name, part name, user name
-
-Returns:
-    str: ID of matching object
-""""""
-
-
-        Query: Find work items owned by USER-222, summarize them, and estimate the work hours for each item. [/INST]
-
-        ```
-        var_1 = search_object_by_name(query=""USER-222"")
-var_2 = works_list(owned_by=[var_1])
-var_3 = summarize_objects(objects=var_2)
-for loop_var in var_2:
-    temp_1 = estimate_work_hours(work_id=loop_var)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
-
-
-def validate_work_item_completeness(work_id):
-""""""
-Checks if a work item has all necessary information completed
-
-Parameters:
-    work_id (str): The ID of the work item to check
-
-Returns:
-    bool: True if the work item is complete, False if it lacks information
-""""""
-''
-def estimate_work_hours(work_id):
-""""""
-Estimates the number of hours required to complete a specific work item
-
-Parameters:
-    work_id (str): The ID of the work item for which the estimation is to be made
-
-Returns:
-    float: Estimated hours required to complete the work item
-""""""
-''',
-'''
-def assign_task_to_user(task_id, user_id):
-""""""
-Assigns a specific task to a user
-
-Parameters:
-    task_id (str): The ID of the task to be assigned
-    user_id (str): The ID of the user to whom the task will be assigned
-
-Returns:
-    bool: True if assignment was successful, otherwise False
-""""""
-'''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
-
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
-
-Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
-
-Returns:
-    str: The ID of the generated report
-""""""
-'''
-
-def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
-""""""
-Returns a list of work items matching the request
-
-Parameters:
-    applies_to_part (list): Filters for work belonging to any of the provided parts
-    created_by (list): Filters for work created by any of these users
-    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
-    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
-    limit (int): The maximum number of works to return. The default is '50'
-    owned_by (list): Filters for work owned by any of these users
-    stage.name (list): Filters for records in the provided stage(s) by name
-    ticket.needs_response (bool): Filters for tickets that need a response
-    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
-    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
-    ticket.source_channel (list): Filters for tickets with any of the provided source channels
-    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
-
-Returns:
-    list: Matching work items
-""""""
-
-
-def prioritize_objects(objects):
-""""""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
-
-Parameters:
-    objects (list): A list of objects to be prioritized
-
-Returns:
-    list: Prioritized objects
-""""""
-
-
-def create_actionable_tasks_from_text(text):
-""""""
-Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
-
-Parameters:
-    text (str): The text from which the actionable insights need to be created
-
-Returns:
-    list: tasks created from the given text
-""""""
-
-
-def search_object_by_name(query):
-""""""
-Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
-
-Parameters:
-    query (str): The search string, could be for example customer’s name, part name, user name
-
-Returns:
-    str: ID of matching object
-""""""
-
-
-        Query: Retrieve all tasks created by USER-333, prioritize them, and assign the one with the highest priority to USER-444. [/INST]
-
-        ```
-        var_1 = search_object_by_name(query=""USER-333"")
-var_2 = works_list(created_by=[var_1], type=[""task""])
-var_3 = prioritize_objects(objects=var_2)
-var_4 = search_object_by_name(query=""USER-444"")
-var_5 = assign_task_to_user(task_id=var_3[0], user_id=var_4)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-
-
-def validate_data_integrity(data_point_ids):
-""""""
-Checks the integrity of a list of data points in the system
-
-Parameters:
-    data_point_ids (list): List of data point IDs to validate
-
-Returns:
-    list: Validation results with status (True or False) for each data point
-""""""
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
-''
-def estimate_work_hours(work_id):
-""""""
-Estimates the number of hours required to complete a specific work item
-
-Parameters:
-    work_id (str): The ID of the work item for which the estimation is to be made
-
-Returns:
-    float: Estimated hours required to complete the work item
-""""""
-''',
-'''
-def assign_task_to_user(task_id, user_id):
-""""""
-Assigns a specific task to a user
-
-Parameters:
-    task_id (str): The ID of the task to be assigned
-    user_id (str): The ID of the user to whom the task will be assigned
-
-Returns:
-    bool: True if assignment was successful, otherwise False
-""""""
-'''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
 
 def get_sprint_id():
 """"""
@@ -1353,786 +197,16 @@ Returns the ID of the current sprint
 
 
 
-def mark_ticket_for_review(ticket_id, reviewer_id):
+def get_sprint_history(sprint_id):
 """"""
-Marks a ticket for review by a specific user
+Retrieves the change history of a sprint
 
 Parameters:
-    ticket_id (str): The ID of the ticket to be marked for review
-    reviewer_id (str): The ID of the user who should review the ticket
+    sprint_id (str): The ID of the ticket
 
 Returns:
-    None
+    list: A list of changes made to the sprint
 """"""
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
-
-Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
-
-Returns:
-    str: The ID of the generated report
-""""""
-'''
-
-def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
-""""""
-Returns a list of work items matching the request
-
-Parameters:
-    applies_to_part (list): Filters for work belonging to any of the provided parts
-    created_by (list): Filters for work created by any of these users
-    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
-    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
-    limit (int): The maximum number of works to return. The default is '50'
-    owned_by (list): Filters for work owned by any of these users
-    stage.name (list): Filters for records in the provided stage(s) by name
-    ticket.needs_response (bool): Filters for tickets that need a response
-    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
-    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
-    ticket.source_channel (list): Filters for tickets with any of the provided source channels
-    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
-
-Returns:
-    list: Matching work items
-""""""
-
-
-def prioritize_objects(objects):
-""""""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
-
-Parameters:
-    objects (list): A list of objects to be prioritized
-
-Returns:
-    list: Prioritized objects
-""""""
-
-
-def create_actionable_tasks_from_text(text):
-""""""
-Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
-
-Parameters:
-    text (str): The text from which the actionable insights need to be created
-
-Returns:
-    list: tasks created from the given text
-""""""
-
-
-def search_object_by_name(query):
-""""""
-Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
-
-Parameters:
-    query (str): The search string, could be for example customer’s name, part name, user name
-
-Returns:
-    str: ID of matching object
-""""""
-
-
-        Query: Extract tasks from the text ""ClientFeedback"", create a report of type ""A"" for each task without including summary, and assign the tasks to USER-555. [/INST]
-
-        ```
-        var_1 = create_actionable_tasks_from_text(text=""ClientFeedback"")
-var_2 = search_object_by_name(query = ""USER-555"")
-for loop_var in var_1:
-    temp_1 = generate_report(report_type=""A"", subject_id=loop_var, include_summary=False)
-    temp_2 = assign_task_to_user(task_id=loop_var, user_id=var_2)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
-''
-def estimate_work_hours(work_id):
-""""""
-Estimates the number of hours required to complete a specific work item
-
-Parameters:
-    work_id (str): The ID of the work item for which the estimation is to be made
-
-Returns:
-    float: Estimated hours required to complete the work item
-""""""
-''',
-'''
-def assign_task_to_user(task_id, user_id):
-""""""
-Assigns a specific task to a user
-
-Parameters:
-    task_id (str): The ID of the task to be assigned
-    user_id (str): The ID of the user to whom the task will be assigned
-
-Returns:
-    bool: True if assignment was successful, otherwise False
-""""""
-'''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
-
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
-
-Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
-
-Returns:
-    str: The ID of the generated report
-""""""
-'''
-
-def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
-""""""
-Returns a list of work items matching the request
-
-Parameters:
-    applies_to_part (list): Filters for work belonging to any of the provided parts
-    created_by (list): Filters for work created by any of these users
-    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
-    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
-    limit (int): The maximum number of works to return. The default is '50'
-    owned_by (list): Filters for work owned by any of these users
-    stage.name (list): Filters for records in the provided stage(s) by name
-    ticket.needs_response (bool): Filters for tickets that need a response
-    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
-    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
-    ticket.source_channel (list): Filters for tickets with any of the provided source channels
-    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
-
-Returns:
-    list: Matching work items
-""""""
-
-
-def prioritize_objects(objects):
-""""""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
-
-Parameters:
-    objects (list): A list of objects to be prioritized
-
-Returns:
-    list: Prioritized objects
-""""""
-
-
-def create_actionable_tasks_from_text(text):
-""""""
-Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
-
-Parameters:
-    text (str): The text from which the actionable insights need to be created
-
-Returns:
-    list: tasks created from the given text
-""""""
-
-
-def search_object_by_name(query):
-""""""
-Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
-
-Parameters:
-    query (str): The search string, could be for example customer’s name, part name, user name
-
-Returns:
-    str: ID of matching object
-""""""
-
-
-
-def get_object_history(object_id):
-""""""
-Retrieves the change history of a specified object
-
-Parameters:
-    object_id (str): The ID of the object for which history is requested
-
-Returns:
-    list: A list of changes made to the object
-""""""
-
-        Query: Create tasks from the text ""ClientMeetingSummary"", prioritize them, and assign the first 3 to user USER-999. [/INST]
-
-        ```
-        var_1 = create_actionable_tasks_from_text(text=""ClientMeetingSummary"")
-var_2 = prioritize_objects(objects=var_1)
-var_3 = search_object_by_name(query=""USER-999"")
-for loop_var in range(0,3):
-    temp_1 = assign_task_to_user(task_id=var_2[loop_var], user_id=var_3)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
-''
-def estimate_work_hours(work_id):
-""""""
-Estimates the number of hours required to complete a specific work item
-
-Parameters:
-    work_id (str): The ID of the work item for which the estimation is to be made
-
-Returns:
-    float: Estimated hours required to complete the work item
-""""""
-''',
-'''
-def assign_task_to_user(task_id, user_id):
-""""""
-Assigns a specific task to a user
-
-Parameters:
-    task_id (str): The ID of the task to be assigned
-    user_id (str): The ID of the user to whom the task will be assigned
-
-Returns:
-    bool: True if assignment was successful, otherwise False
-""""""
-'''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
-
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
-
-Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
-
-Returns:
-    str: The ID of the generated report
-""""""
-'''
-
-def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
-""""""
-Returns a list of work items matching the request
-
-Parameters:
-    applies_to_part (list): Filters for work belonging to any of the provided parts
-    created_by (list): Filters for work created by any of these users
-    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
-    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
-    limit (int): The maximum number of works to return. The default is '50'
-    owned_by (list): Filters for work owned by any of these users
-    stage.name (list): Filters for records in the provided stage(s) by name
-    ticket.needs_response (bool): Filters for tickets that need a response
-    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
-    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
-    ticket.source_channel (list): Filters for tickets with any of the provided source channels
-    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
-
-Returns:
-    list: Matching work items
-""""""
-
-
-def prioritize_objects(objects):
-""""""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
-
-Parameters:
-    objects (list): A list of objects to be prioritized
-
-Returns:
-    list: Prioritized objects
-""""""
-
-
-def create_actionable_tasks_from_text(text):
-""""""
-Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
-
-Parameters:
-    text (str): The text from which the actionable insights need to be created
-
-Returns:
-    list: tasks created from the given text
-""""""
-
-
-def search_object_by_name(query):
-""""""
-Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
-
-Parameters:
-    query (str): The search string, could be for example customer’s name, part name, user name
-
-Returns:
-    str: ID of matching object
-""""""
-
-
-        Query: Find work items related to part PART-234, summarize them, and estimate the work hours for each. [/INST]
-
-        ```
-        var_1 = search_object_by_name(query=""PART-234"")
-var_2 = works_list(applies_to_part=[var_1])
-var_3 = summarize_objects(objects=var_2)
-for loop_var in var_2:
-    temp_1 = estimate_work_hours(work_id=loop_var)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-
-
-def calculate_estimated_completion(project_id):
-""""""
-Calculates the estimated completion date for a project based on current progress
-
-Parameters:
-    project_id (str): The ID of the project to be analyzed
-
-Returns:
-    str: Estimated date of completion
-""""""
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
-''
-def estimate_work_hours(work_id):
-""""""
-Estimates the number of hours required to complete a specific work item
-
-Parameters:
-    work_id (str): The ID of the work item for which the estimation is to be made
-
-Returns:
-    float: Estimated hours required to complete the work item
-""""""
-''',
-'''
-def assign_task_to_user(task_id, user_id):
-""""""
-Assigns a specific task to a user
-
-Parameters:
-    task_id (str): The ID of the task to be assigned
-    user_id (str): The ID of the user to whom the task will be assigned
-
-Returns:
-    bool: True if assignment was successful, otherwise False
-""""""
-'''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
-
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
-
-
-def calculate_budget_remaining(budget_id):
-""""""
-Calculates the remaining budget for a given budget ID
-
-Parameters:
-    budget_id (str): The ID of the budget to calculate
-
-Returns:
-    float: The amount of remaining budget
-""""""
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
-
-Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
-
-Returns:
-    str: The ID of the generated report
-""""""
-'''
-
-def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
-""""""
-Returns a list of work items matching the request
-
-Parameters:
-    applies_to_part (list): Filters for work belonging to any of the provided parts
-    created_by (list): Filters for work created by any of these users
-    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
-    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
-    limit (int): The maximum number of works to return. The default is '50'
-    owned_by (list): Filters for work owned by any of these users
-    stage.name (list): Filters for records in the provided stage(s) by name
-    ticket.needs_response (bool): Filters for tickets that need a response
-    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
-    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
-    ticket.source_channel (list): Filters for tickets with any of the provided source channels
-    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
-
-Returns:
-    list: Matching work items
-""""""
-
-
-def prioritize_objects(objects):
-""""""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
-
-Parameters:
-    objects (list): A list of objects to be prioritized
-
-Returns:
-    list: Prioritized objects
-""""""
-
-
-def create_actionable_tasks_from_text(text):
-""""""
-Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
-
-Parameters:
-    text (str): The text from which the actionable insights need to be created
-
-Returns:
-    list: tasks created from the given text
-""""""
-
-
-def search_object_by_name(query):
-""""""
-Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
-
-Parameters:
-    query (str): The search string, could be for example customer’s name, part name, user name
-
-Returns:
-    str: ID of matching object
-""""""
-
-
-
-def list_recent_activities(user_id, limit=10):
-""""""
-Lists the most recent activities performed by a user
-
-Parameters:
-    user_id (str): The ID of the user whose activities are to be listed
-    limit (int): The maximum number of recent activities to return
-
-Returns:
-    list: Recent activities of the user
-""""""
-
-        Query: Extract tasks from the text ""DevelopmentPlan"", prioritize them, and assign them to the current sprint. [/INST]
-
-        ```
-        var_1 = create_actionable_tasks_from_text(text=""DevelopmentPlan"")
-var_2 = prioritize_objects(objects=var_1)
-var_3 = get_sprint_id()
-var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
-''
-def find_team_members(team_id):
-""""""
-Returns a list of user IDs that are members of the specified team
-
-Parameters:
-    team_id (str): The ID of the team
-
-Returns:
-    list: User IDs of the team members
-""""""
-'''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
-
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
-""""""
-'''
 
 
 def extend_sprint_end_date(sprint_id, new_end_date):
@@ -2146,7 +220,28 @@ Parameters:
 Returns:
     bool: True if the sprint end date was extended, False otherwise
 """"""
-''
+
+        Query: Retrieve work items with type ""ticket"" and severity ""high"", summarize them, and assign the first 10 to user USER-123. [/INST]
+
+        ```
+        var_1 = works_list(type=[""ticket""], ticket.severity=[""high""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = search_object_by_name(query=""USER-123"")
+for loop_var in range(0, 10):
+     temp_1 = assign_task_to_user(task_id=var_1[loop_var], user_id=var_3)
+        ```
+        </s>
+        ","var_1 = works_list(type=[""ticket""], ticket.severity=[""high""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = search_object_by_name(query=""USER-123"")
+for loop_var in range(0, 10):
+     temp_1 = assign_task_to_user(task_id=var_1[loop_var], user_id=var_3)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
 def estimate_work_hours(work_id):
 """"""
 Estimates the number of hours required to complete a specific work item
@@ -2171,53 +266,6 @@ Returns:
     bool: True if assignment was successful, otherwise False
 """"""
 '''
-
-def get_similar_work_items(work_id):
-""""""
-Returns a list of work items that are similar to the given work item
-
-Parameters:
-    work_id (str): The ID of the work item for which you want to find similar items
-
-Returns:
-    list: Similar work items
-""""""
-
-
-def add_work_items_to_sprint(work_ids, sprint_id):
-""""""
-Adds the given work items to the sprint
-
-Parameters:
-    work_ids (list): A list of work item IDs to be added to the sprint
-    sprint_id (str): The ID of the sprint to which the work items should be added
-""""""
-
-
-def who_am_i():
-""""""
-Returns the string ID of the current user
-""""""
-
-
-
-def calculate_time_until_deadline(work_item_id):
-""""""
-Calculates the amount of time remaining until the deadline of a work item
-
-Parameters:
-    work_item_id (str): The ID of the work item
-
-Returns:
-    float: The number of hours until the deadline
-""""""
-
-
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
 ''
 def generate_report(report_type, subject_id, include_summary=True):
 """"""
@@ -2232,6 +280,28 @@ Returns:
     str: The ID of the generated report
 """"""
 '''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
 
 def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
 """"""
@@ -2255,16 +325,16 @@ Returns:
     list: Matching work items
 """"""
 
-
-def prioritize_objects(objects):
+         
+def summarize_objects(objects):
 """"""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
 
 Parameters:
-    objects (list): A list of objects to be prioritized
+    objects (list): List of objects to summarize
 
 Returns:
-    list: Prioritized objects
+    text: Summarized text of the objects
 """"""
 
 
@@ -2291,59 +361,6 @@ Returns:
     str: ID of matching object
 """"""
 
-
-
-def list_user_permissions(user_id):
-""""""
-Lists all the permissions that a user has within the system
-
-Parameters:
-    user_id (str): The ID of the user for whom permissions are being listed
-
-Returns:
-    list: A list of permissions that the user possesses
-""""""
-
-        Query: Get similar work items to ISSUE-345, summarize them, and assign the most critical one to USER-1111. [/INST]
-
-        ```
-        var_1 = search_object_by_name(query=""ISSUE-345"")
-var_2 = get_similar_work_items(work_id=var_1)
-var_3 = summarize_objects(objects=var_2)
-var_4 = prioritize_objects(objects=var_2)
-var_5 = search_object_by_name(query=""USER-1111"")
-var_6 = assign_task_to_user(task_id=var_4[0], user_id=var_5)
-        ```
-        </s>
-        "
-"
-        <s>
-        [INST]
-        Allowed Tools: 
-
-                 
-def summarize_objects(objects):
-""""""
-Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
-
-Parameters:
-    objects (list): List of objects to summarize
-
-Returns:
-    text: Summarized text of the objects
-""""""
-
-''
-def mark_task_as_completed(task_id):
-""""""
-Marks a task as completed in the system.
-
-Parameters:
- task_id (str): The ID of the task to be marked as complete
-
-Returns:
- bool: True if marked successfully, False otherwise
-""""""
 ''
 def find_team_members(team_id):
 """"""
@@ -2356,31 +373,72 @@ Returns:
     list: User IDs of the team members
 """"""
 '''
-''
-def delete_object_by_id(object_id):
-""""""
-Deletes object from the system based on its ID
-Parameters:
-    object_id : Object ID to delete
 
-Returns:
-    bool: True if objects were successfully deleted, False otherwise
+def who_am_i():
 """"""
-'''
+Returns the string ID of the current user
+""""""
 
 
-def generate_progress_report(project_id, report_format=""summary""):
+def get_similar_work_items(work_id):
 """"""
-Generates a progress report for the specified project
+Returns a list of work items that are similar to the given work item
 
 Parameters:
-    project_id (str): The ID of the project for which the progress report is needed
-    report_format (str): The format of the report; 'summary' or 'detailed'. The default is 'summary'
+    work_id (str): The ID of the work item for which you want to find similar items
 
 Returns:
-    str: The generated progress report
+    list: Similar work items
 """"""
-''
+
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+        Query: Find work items with priority ""p1"" and type ""issue"", prioritize them, and add the top 3 to sprint SPRINT-321. [/INST]
+
+        ```
+        var_1 = works_list(issue.priority=[""p1""], type=[""issue""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = search_object_by_name(query=""SPRINT-321"")
+var_4 = add_work_items_to_sprint(work_ids=var_2[0:3], sprint_id=var_3)
+        ```
+        </s>
+        ","var_1 = works_list(issue.priority=[""p1""], type=[""issue""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = search_object_by_name(query=""SPRINT-321"")
+var_4 = add_work_items_to_sprint(work_ids=var_2[0:3], sprint_id=var_3)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
 def estimate_work_hours(work_id):
 """"""
 Estimates the number of hours required to complete a specific work item
@@ -2406,6 +464,132 @@ Returns:
 """"""
 '''
 
+
+def update_work_item_due_date(work_item_id, due_date):
+""""""
+Updates the due date for the specified work item
+
+Parameters:
+    work_item_id (str): The ID of the work item to be updated
+    due_date (str): The new due date for the work item
+
+Returns:
+    None: Indicates that the operation was executed without returning any value
+""""""
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
+
+def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
+""""""
+Returns a list of work items matching the request
+
+Parameters:
+    applies_to_part (list): Filters for work belonging to any of the provided parts
+    created_by (list): Filters for work created by any of these users
+    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+    limit (int): The maximum number of works to return. The default is '50'
+    owned_by (list): Filters for work owned by any of these users
+    stage.name (list): Filters for records in the provided stage(s) by name
+    ticket.needs_response (bool): Filters for tickets that need a response
+    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+    ticket.source_channel (list): Filters for tickets with any of the provided source channels
+    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Matching work items
+""""""
+
+         
+def summarize_objects(objects):
+""""""
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
+
+Parameters:
+    objects (list): List of objects to summarize
+
+Returns:
+    text: Summarized text of the objects
+""""""
+
+
+def create_actionable_tasks_from_text(text):
+""""""
+Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+
+Parameters:
+    text (str): The text from which the actionable insights need to be created
+
+Returns:
+    list: tasks created from the given text
+""""""
+
+
+def search_object_by_name(query):
+""""""
+Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+    str: ID of matching object
+""""""
+
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
+def who_am_i():
+""""""
+Returns the string ID of the current user
+""""""
+
+
 def get_similar_work_items(work_id):
 """"""
 Returns a list of work items that are similar to the given work item
@@ -2415,6 +599,30 @@ Parameters:
 
 Returns:
     list: Similar work items
+""""""
+
+
+
+def generate_summary_report(object_ids):
+""""""
+Generates a summary report for the specified objects
+
+Parameters:
+    object_ids (list): A list of object IDs
+
+Returns:
+    str: The ID of the generated report
+""""""
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
 """"""
 
 
@@ -2428,11 +636,300 @@ Parameters:
 """"""
 
 
+
+def get_task_dependencies(task_id):
+""""""
+Returns a list of task IDs that are dependencies for the given task
+
+Parameters:
+    task_id (str): The ID of the task for which dependencies are requested
+
+Returns:
+    list: Dependency task IDs
+""""""
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+        Query: Extract tasks from the text ""ReleaseNotes"", prioritize them, and assign the first 5 to the current sprint. [/INST]
+
+        ```
+        var_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2[0:5], sprint_id=var_3)
+        ```
+        </s>
+        ","var_1 = create_actionable_tasks_from_text(text=""ReleaseNotes"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2[0:5], sprint_id=var_3)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
+def estimate_work_hours(work_id):
+""""""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+""""""
+''',
+'''
+def assign_task_to_user(task_id, user_id):
+""""""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+""""""
+'''
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
+
+def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
+""""""
+Returns a list of work items matching the request
+
+Parameters:
+    applies_to_part (list): Filters for work belonging to any of the provided parts
+    created_by (list): Filters for work created by any of these users
+    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+    limit (int): The maximum number of works to return. The default is '50'
+    owned_by (list): Filters for work owned by any of these users
+    stage.name (list): Filters for records in the provided stage(s) by name
+    ticket.needs_response (bool): Filters for tickets that need a response
+    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+    ticket.source_channel (list): Filters for tickets with any of the provided source channels
+    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Matching work items
+""""""
+
+         
+def summarize_objects(objects):
+""""""
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
+
+Parameters:
+    objects (list): List of objects to summarize
+
+Returns:
+    text: Summarized text of the objects
+""""""
+
+
+def create_actionable_tasks_from_text(text):
+""""""
+Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+
+Parameters:
+    text (str): The text from which the actionable insights need to be created
+
+Returns:
+    list: tasks created from the given text
+""""""
+
+
+def search_object_by_name(query):
+""""""
+Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+    str: ID of matching object
+""""""
+
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
 def who_am_i():
 """"""
 Returns the string ID of the current user
 """"""
 
+
+def get_similar_work_items(work_id):
+""""""
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+    list: Similar work items
+""""""
+
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+        Query: For all tickets with source channel ""email"", prioritize them, and assign the most critical one to the current sprint. [/INST]
+
+        ```
+        var_1 = works_list(ticket.source_channel=[""email""], type=[""ticket""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=[var_2[0]], sprint_id=var_3)
+        ```
+        </s>
+        ","var_1 = works_list(ticket.source_channel=[""email""], type=[""ticket""])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=[var_2[0]], sprint_id=var_3)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
+def estimate_work_hours(work_id):
+""""""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+""""""
+''',
+'''
+def assign_task_to_user(task_id, user_id):
+""""""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+""""""
+'''
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
 
 
 def filter_work_by_date_range(start_date, end_date, work_type=None):
@@ -2448,26 +945,6 @@ Returns:
     list: Work items in the specified date range
 """"""
 
-def get_sprint_id():
-""""""
-Returns the ID of the current sprint
-""""""
-
-''
-def generate_report(report_type, subject_id, include_summary=True):
-""""""
-Generates a report of a specific type for a subject in the system
-
-Parameters:
-    report_type (str): The type of report to generate
-    subject_id (str): The ID of the subject for the report
-    include_summary (bool): Whether to include a summary in the report; defaults to True
-
-Returns:
-    str: The ID of the generated report
-""""""
-'''
-
 def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
 """"""
 Returns a list of work items matching the request
@@ -2490,16 +967,16 @@ Returns:
     list: Matching work items
 """"""
 
-
-def prioritize_objects(objects):
+         
+def summarize_objects(objects):
 """"""
-Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
 
 Parameters:
-    objects (list): A list of objects to be prioritized
+    objects (list): List of objects to summarize
 
 Returns:
-    list: Prioritized objects
+    text: Summarized text of the objects
 """"""
 
 
@@ -2526,6 +1003,1597 @@ Returns:
     str: ID of matching object
 """"""
 
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
+def who_am_i():
+""""""
+Returns the string ID of the current user
+""""""
+
+
+
+def list_completed_items_by_user(user_id):
+""""""
+Lists items that have been completed by the given user
+
+Parameters:
+    user_id (str): The ID of the user whose completed items are being requested
+
+Returns:
+    list: Completed items by the user
+""""""
+
+def get_similar_work_items(work_id):
+""""""
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+    list: Similar work items
+""""""
+
+
+
+def get_user_workload(user_id):
+""""""
+Determines the current workload for a user based on assigned tasks
+
+Parameters:
+    user_id (str): The ID of the user whose workload is to be determined
+
+Returns:
+    int: The number of tasks assigned to the user
+""""""
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+        Query: Find work items owned by USER-222, summarize them, and estimate the work hours for each item. [/INST]
+
+        ```
+        var_1 = search_object_by_name(query=""USER-222"")
+var_2 = works_list(owned_by=[var_1])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)
+        ```
+        </s>
+        ","var_1 = search_object_by_name(query=""USER-222"")
+var_2 = works_list(owned_by=[var_1])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
+def estimate_work_hours(work_id):
+""""""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+""""""
+''',
+'''
+def assign_task_to_user(task_id, user_id):
+""""""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+""""""
+'''
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
+
+def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
+""""""
+Returns a list of work items matching the request
+
+Parameters:
+    applies_to_part (list): Filters for work belonging to any of the provided parts
+    created_by (list): Filters for work created by any of these users
+    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+    limit (int): The maximum number of works to return. The default is '50'
+    owned_by (list): Filters for work owned by any of these users
+    stage.name (list): Filters for records in the provided stage(s) by name
+    ticket.needs_response (bool): Filters for tickets that need a response
+    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+    ticket.source_channel (list): Filters for tickets with any of the provided source channels
+    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Matching work items
+""""""
+
+         
+def summarize_objects(objects):
+""""""
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
+
+Parameters:
+    objects (list): List of objects to summarize
+
+Returns:
+    text: Summarized text of the objects
+""""""
+
+
+def create_actionable_tasks_from_text(text):
+""""""
+Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+
+Parameters:
+    text (str): The text from which the actionable insights need to be created
+
+Returns:
+    list: tasks created from the given text
+""""""
+
+
+def search_object_by_name(query):
+""""""
+Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+    str: ID of matching object
+""""""
+
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
+def who_am_i():
+""""""
+Returns the string ID of the current user
+""""""
+
+
+def get_similar_work_items(work_id):
+""""""
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+    list: Similar work items
+""""""
+
+
+
+def generate_summary_report(object_ids):
+""""""
+Generates a summary report for the specified objects
+
+Parameters:
+    object_ids (list): A list of object IDs
+
+Returns:
+    str: The ID of the generated report
+""""""
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+        Query: Retrieve all tasks created by USER-333, prioritize them, and assign the one with the highest priority to USER-444. [/INST]
+
+        ```
+        var_1 = search_object_by_name(query=""USER-333"")
+var_2 = works_list(created_by=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = search_object_by_name(query=""USER-444"")
+var_5 = assign_task_to_user(task_id=var_3[0], user_id=var_4)
+        ```
+        </s>
+        ","var_1 = search_object_by_name(query=""USER-333"")
+var_2 = works_list(created_by=[var_1], type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = search_object_by_name(query=""USER-444"")
+var_5 = assign_task_to_user(task_id=var_3[0], user_id=var_4)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
+def estimate_work_hours(work_id):
+""""""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+""""""
+''',
+'''
+def assign_task_to_user(task_id, user_id):
+""""""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+""""""
+'''
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
+
+
+def estimate_completion_time(task_id):
+""""""
+Estimates the completion time for a given task
+
+Parameters:
+    task_id (str): The ID of the task for which to estimate completion time
+
+Returns:
+    float: The estimated number of hours to complete the task
+""""""
+
+def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
+""""""
+Returns a list of work items matching the request
+
+Parameters:
+    applies_to_part (list): Filters for work belonging to any of the provided parts
+    created_by (list): Filters for work created by any of these users
+    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+    limit (int): The maximum number of works to return. The default is '50'
+    owned_by (list): Filters for work owned by any of these users
+    stage.name (list): Filters for records in the provided stage(s) by name
+    ticket.needs_response (bool): Filters for tickets that need a response
+    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+    ticket.source_channel (list): Filters for tickets with any of the provided source channels
+    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Matching work items
+""""""
+
+         
+def summarize_objects(objects):
+""""""
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
+
+Parameters:
+    objects (list): List of objects to summarize
+
+Returns:
+    text: Summarized text of the objects
+""""""
+
+
+def create_actionable_tasks_from_text(text):
+""""""
+Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+
+Parameters:
+    text (str): The text from which the actionable insights need to be created
+
+Returns:
+    list: tasks created from the given text
+""""""
+
+
+def search_object_by_name(query):
+""""""
+Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+    str: ID of matching object
+""""""
+
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
+def who_am_i():
+""""""
+Returns the string ID of the current user
+""""""
+
+
+def get_similar_work_items(work_id):
+""""""
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+    list: Similar work items
+""""""
+
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+
+def generate_unique_identifier(prefix, use_timestamp=True):
+""""""
+Generates a unique identifier with an optional timestamp
+
+Parameters:
+    prefix (str): A prefix for the identifier
+    use_timestamp (bool): If true, appends a timestamp to the prefix; defaults to True
+
+Returns:
+    str: The generated unique identifier
+""""""
+
+        Query: Extract tasks from the text ""ClientFeedback"", create a report of type ""A"" for each task without including summary, and assign the tasks to USER-555. [/INST]
+
+        ```
+        var_1 = create_actionable_tasks_from_text(text=""ClientFeedback"")
+var_2 = search_object_by_name(query = ""USER-555"")
+for loop_var in var_1:
+    temp_1 = generate_report(report_type=""A"", subject_id=loop_var, include_summary=False)
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=var_2)
+        ```
+        </s>
+        ","var_1 = create_actionable_tasks_from_text(text=""ClientFeedback"")
+var_2 = search_object_by_name(query = ""USER-555"")
+for loop_var in var_1:
+    temp_1 = generate_report(report_type=""A"", subject_id=loop_var, include_summary=False)
+    temp_2 = assign_task_to_user(task_id=loop_var, user_id=var_2)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
+def estimate_work_hours(work_id):
+""""""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+""""""
+''',
+'''
+def assign_task_to_user(task_id, user_id):
+""""""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+""""""
+'''
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
+
+def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
+""""""
+Returns a list of work items matching the request
+
+Parameters:
+    applies_to_part (list): Filters for work belonging to any of the provided parts
+    created_by (list): Filters for work created by any of these users
+    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+    limit (int): The maximum number of works to return. The default is '50'
+    owned_by (list): Filters for work owned by any of these users
+    stage.name (list): Filters for records in the provided stage(s) by name
+    ticket.needs_response (bool): Filters for tickets that need a response
+    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+    ticket.source_channel (list): Filters for tickets with any of the provided source channels
+    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Matching work items
+""""""
+
+         
+def summarize_objects(objects):
+""""""
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
+
+Parameters:
+    objects (list): List of objects to summarize
+
+Returns:
+    text: Summarized text of the objects
+""""""
+
+
+def create_actionable_tasks_from_text(text):
+""""""
+Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+
+Parameters:
+    text (str): The text from which the actionable insights need to be created
+
+Returns:
+    list: tasks created from the given text
+""""""
+
+
+def search_object_by_name(query):
+""""""
+Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+    str: ID of matching object
+""""""
+
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
+def who_am_i():
+""""""
+Returns the string ID of the current user
+""""""
+
+
+def get_similar_work_items(work_id):
+""""""
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+    list: Similar work items
+""""""
+
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+
+def update_stage_of_work_item(work_item_id, new_stage):
+""""""
+Updates the stage of a work item
+
+Parameters:
+    work_item_id (str): The ID of the work item to update
+    new_stage (str): The new stage to which the work item should be moved
+
+Returns:
+    bool: True if the stage is successfully updated, False otherwise
+""""""
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+        Query: Create tasks from the text ""ClientMeetingSummary"", prioritize them, and assign the first 3 to user USER-999. [/INST]
+
+        ```
+        var_1 = create_actionable_tasks_from_text(text=""ClientMeetingSummary"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = search_object_by_name(query=""USER-999"")
+for loop_var in range(0,3):
+    temp_1 = assign_task_to_user(task_id=var_2[loop_var], user_id=var_3)
+        ```
+        </s>
+        ","var_1 = create_actionable_tasks_from_text(text=""ClientMeetingSummary"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = search_object_by_name(query=""USER-999"")
+for loop_var in range(0,3):
+    temp_1 = assign_task_to_user(task_id=var_2[loop_var], user_id=var_3)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
+def estimate_work_hours(work_id):
+""""""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+""""""
+''',
+'''
+def assign_task_to_user(task_id, user_id):
+""""""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+""""""
+'''
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
+
+def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
+""""""
+Returns a list of work items matching the request
+
+Parameters:
+    applies_to_part (list): Filters for work belonging to any of the provided parts
+    created_by (list): Filters for work created by any of these users
+    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+    limit (int): The maximum number of works to return. The default is '50'
+    owned_by (list): Filters for work owned by any of these users
+    stage.name (list): Filters for records in the provided stage(s) by name
+    ticket.needs_response (bool): Filters for tickets that need a response
+    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+    ticket.source_channel (list): Filters for tickets with any of the provided source channels
+    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Matching work items
+""""""
+
+         
+def summarize_objects(objects):
+""""""
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
+
+Parameters:
+    objects (list): List of objects to summarize
+
+Returns:
+    text: Summarized text of the objects
+""""""
+
+
+def create_actionable_tasks_from_text(text):
+""""""
+Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+
+Parameters:
+    text (str): The text from which the actionable insights need to be created
+
+Returns:
+    list: tasks created from the given text
+""""""
+
+
+def search_object_by_name(query):
+""""""
+Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+    str: ID of matching object
+""""""
+
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
+
+def log_system_event(event_type, description, user_id=None):
+""""""
+Logs an event in the system with an optional user ID associated with it
+
+Parameters:
+    event_type (str): The type of event to log
+    description (str): A brief description of the event
+    user_id (str): The ID of the user involved in the event, if applicable
+
+Returns:
+    str: The ID of the logged event
+""""""
+
+def who_am_i():
+""""""
+Returns the string ID of the current user
+""""""
+
+
+
+def calculate_estimated_completion(project_id):
+""""""
+Calculates the estimated completion date for a project based on current progress
+
+Parameters:
+    project_id (str): The ID of the project to be analyzed
+
+Returns:
+    str: Estimated date of completion
+""""""
+
+def get_similar_work_items(work_id):
+""""""
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+    list: Similar work items
+""""""
+
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+        Query: Find work items related to part PART-234, summarize them, and estimate the work hours for each. [/INST]
+
+        ```
+        var_1 = search_object_by_name(query=""PART-234"")
+var_2 = works_list(applies_to_part=[var_1])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)
+        ```
+        </s>
+        ","var_1 = search_object_by_name(query=""PART-234"")
+var_2 = works_list(applies_to_part=[var_1])
+var_3 = summarize_objects(objects=var_2)
+for loop_var in var_2:
+    temp_1 = estimate_work_hours(work_id=loop_var)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
+def estimate_work_hours(work_id):
+""""""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+""""""
+''',
+'''
+def assign_task_to_user(task_id, user_id):
+""""""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+""""""
+'''
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
+
+def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
+""""""
+Returns a list of work items matching the request
+
+Parameters:
+    applies_to_part (list): Filters for work belonging to any of the provided parts
+    created_by (list): Filters for work created by any of these users
+    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+    limit (int): The maximum number of works to return. The default is '50'
+    owned_by (list): Filters for work owned by any of these users
+    stage.name (list): Filters for records in the provided stage(s) by name
+    ticket.needs_response (bool): Filters for tickets that need a response
+    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+    ticket.source_channel (list): Filters for tickets with any of the provided source channels
+    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Matching work items
+""""""
+
+         
+def summarize_objects(objects):
+""""""
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
+
+Parameters:
+    objects (list): List of objects to summarize
+
+Returns:
+    text: Summarized text of the objects
+""""""
+
+
+def create_actionable_tasks_from_text(text):
+""""""
+Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+
+Parameters:
+    text (str): The text from which the actionable insights need to be created
+
+Returns:
+    list: tasks created from the given text
+""""""
+
+
+def search_object_by_name(query):
+""""""
+Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+    str: ID of matching object
+""""""
+
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
+
+def update_object_status(object_id, new_status, changed_by):
+""""""
+Updates the status of an object and records the user that made the change
+
+Parameters:
+    object_id (str): The ID of the object for which the status is updated
+    new_status (str): The new status for the object
+    changed_by (str): The ID of the user who is changing the status
+
+Returns:
+    None
+""""""
+
+def who_am_i():
+""""""
+Returns the string ID of the current user
+""""""
+
+
+def get_similar_work_items(work_id):
+""""""
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+    list: Similar work items
+""""""
+
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+        Query: Extract tasks from the text ""DevelopmentPlan"", prioritize them, and assign them to the current sprint. [/INST]
+
+        ```
+        var_1 = create_actionable_tasks_from_text(text=""DevelopmentPlan"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)
+        ```
+        </s>
+        ","var_1 = create_actionable_tasks_from_text(text=""DevelopmentPlan"")
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+var_4 = add_work_items_to_sprint(work_ids=var_2, sprint_id=var_3)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
+def estimate_work_hours(work_id):
+""""""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+""""""
+''',
+'''
+def assign_task_to_user(task_id, user_id):
+""""""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+""""""
+'''
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
+
+
+def validate_user_permissions(user_id, required_permissions):
+""""""
+Checks if the user has the specified permissions
+
+Parameters:
+    user_id (str): The ID of the user whose permissions need to be checked
+    required_permissions (list): A list of permissions to check against the user's permissions
+
+Returns:
+    bool: True if the user has all the required permissions, False otherwise
+""""""
+
+def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
+""""""
+Returns a list of work items matching the request
+
+Parameters:
+    applies_to_part (list): Filters for work belonging to any of the provided parts
+    created_by (list): Filters for work created by any of these users
+    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+    limit (int): The maximum number of works to return. The default is '50'
+    owned_by (list): Filters for work owned by any of these users
+    stage.name (list): Filters for records in the provided stage(s) by name
+    ticket.needs_response (bool): Filters for tickets that need a response
+    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+    ticket.source_channel (list): Filters for tickets with any of the provided source channels
+    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Matching work items
+""""""
+
+         
+def summarize_objects(objects):
+""""""
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
+
+Parameters:
+    objects (list): List of objects to summarize
+
+Returns:
+    text: Summarized text of the objects
+""""""
+
+
+def create_actionable_tasks_from_text(text):
+""""""
+Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+
+Parameters:
+    text (str): The text from which the actionable insights need to be created
+
+Returns:
+    list: tasks created from the given text
+""""""
+
+
+def search_object_by_name(query):
+""""""
+Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+    str: ID of matching object
+""""""
+
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
+def who_am_i():
+""""""
+Returns the string ID of the current user
+""""""
+
+
+def get_similar_work_items(work_id):
+""""""
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+    list: Similar work items
+""""""
+
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+
+def extract_contact_info(text_id, entity_type):
+""""""
+Extracts contact information from a text source based on a given entity type
+
+Parameters:
+    text_id (str): The ID of the text source from which to extract contact information
+    entity_type (str): The type of entity to extract info from. Allowed values: 'individual', 'company'
+
+Returns:
+    list: Extracted contact information
+""""""
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
+
+        Query: Get similar work items to ISSUE-345, summarize them, and assign the most critical one to USER-1111. [/INST]
+
+        ```
+        var_1 = search_object_by_name(query=""ISSUE-345"")
+var_2 = get_similar_work_items(work_id=var_1)
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+var_5 = search_object_by_name(query=""USER-1111"")
+var_6 = assign_task_to_user(task_id=var_4[0], user_id=var_5)
+        ```
+        </s>
+        ","var_1 = search_object_by_name(query=""ISSUE-345"")
+var_2 = get_similar_work_items(work_id=var_1)
+var_3 = summarize_objects(objects=var_2)
+var_4 = prioritize_objects(objects=var_2)
+var_5 = search_object_by_name(query=""USER-1111"")
+var_6 = assign_task_to_user(task_id=var_4[0], user_id=var_5)"
+"
+        <s>
+        [INST]
+        Allowed Tools: 
+
+        ''
+def estimate_work_hours(work_id):
+""""""
+Estimates the number of hours required to complete a specific work item
+
+Parameters:
+    work_id (str): The ID of the work item for which the estimation is to be made
+
+Returns:
+    float: Estimated hours required to complete the work item
+""""""
+''',
+'''
+def assign_task_to_user(task_id, user_id):
+""""""
+Assigns a specific task to a user
+
+Parameters:
+    task_id (str): The ID of the task to be assigned
+    user_id (str): The ID of the user to whom the task will be assigned
+
+Returns:
+    bool: True if assignment was successful, otherwise False
+""""""
+'''
+''
+def generate_report(report_type, subject_id, include_summary=True):
+""""""
+Generates a report of a specific type for a subject in the system
+
+Parameters:
+    report_type (str): The type of report to generate
+    subject_id (str): The ID of the subject for the report
+    include_summary (bool): Whether to include a summary in the report; defaults to True
+
+Returns:
+    str: The ID of the generated report
+""""""
+'''
+''
+def delete_object_by_id(object_id):
+""""""
+Deletes object from the system based on its ID
+Parameters:
+    object_id : Object ID to delete
+
+Returns:
+    bool: True if objects were successfully deleted, False otherwise
+""""""
+'''
+''
+def mark_task_as_completed(task_id):
+""""""
+Marks a task as completed in the system.
+
+Parameters:
+ task_id (str): The ID of the task to be marked as complete
+
+Returns:
+ bool: True if marked successfully, False otherwise
+""""""
+
+def works_list(applies_to_part=None, created_by=None, issue.priority=None, issue.rev_orgs=None, limit=50, owned_by=None, stage.name=None, ticket.needs_response=False, ticket.rev_org=None, ticket.severity=None, ticket.source_channel=None, work_type=None):
+""""""
+Returns a list of work items matching the request
+
+Parameters:
+    applies_to_part (list): Filters for work belonging to any of the provided parts
+    created_by (list): Filters for work created by any of these users
+    issue.priority (list): Filters for issues with any of the provided priorities. Allowed values: p0, p1, p2, p3
+    issue.rev_orgs (list): Filters for issues with any of the provided Rev organizations
+    limit (int): The maximum number of works to return. The default is '50'
+    owned_by (list): Filters for work owned by any of these users
+    stage.name (list): Filters for records in the provided stage(s) by name
+    ticket.needs_response (bool): Filters for tickets that need a response
+    ticket.rev_org (list): Filters for tickets associated with any of the provided Rev organizations
+    ticket.severity (list): Filters for tickets with any of the provided severities. Allowed values: blocker, high, low, medium
+    ticket.source_channel (list): Filters for tickets with any of the provided source channels
+    type (list): Filters for work of the provided types. Allowed values: issue, ticket, task
+
+Returns:
+    list: Matching work items
+""""""
+
+         
+def summarize_objects(objects):
+""""""
+Summarizes a list of objects. The logic of how to summarize a particular object type is an internal implementation detail
+
+Parameters:
+    objects (list): List of objects to summarize
+
+Returns:
+    text: Summarized text of the objects
+""""""
+
+
+def create_actionable_tasks_from_text(text):
+""""""
+Given a text, extracts actionable insights, and creates tasks for them, which are kind of a work item
+
+Parameters:
+    text (str): The text from which the actionable insights need to be created
+
+Returns:
+    list: tasks created from the given text
+""""""
+
+
+def search_object_by_name(query):
+""""""
+Given a search string, returns the ID of a matching object in the system of record. If multiple matches are found, it returns the one where the confidence is highest
+
+Parameters:
+    query (str): The search string, could be for example customer’s name, part name, user name
+
+Returns:
+    str: ID of matching object
+""""""
+
+''
+def find_team_members(team_id):
+""""""
+Returns a list of user IDs that are members of the specified team
+
+Parameters:
+    team_id (str): The ID of the team
+
+Returns:
+    list: User IDs of the team members
+""""""
+'''
+
+def who_am_i():
+""""""
+Returns the string ID of the current user
+""""""
+
+
+def get_similar_work_items(work_id):
+""""""
+Returns a list of work items that are similar to the given work item
+
+Parameters:
+    work_id (str): The ID of the work item for which you want to find similar items
+
+Returns:
+    list: Similar work items
+""""""
+
+
+def prioritize_objects(objects):
+""""""
+Returns a list of objects sorted by priority. The logic of what constitutes priority for a given object is an internal implementation detail
+
+Parameters:
+    objects (list): A list of objects to be prioritized
+
+Returns:
+    list: Prioritized objects
+""""""
+
+
+def add_work_items_to_sprint(work_ids, sprint_id):
+""""""
+Adds the given work items to the sprint
+
+Parameters:
+    work_ids (list): A list of work item IDs to be added to the sprint
+    sprint_id (str): The ID of the sprint to which the work items should be added
+""""""
+
+
+def get_sprint_id():
+""""""
+Returns the ID of the current sprint
+""""""
+
 
         Query: Search for the object ID with the name ""ProjectAlpha"" and generate a report for it, including a summary. [/INST]
 
@@ -2534,4 +2602,5 @@ Returns:
 var_2 = generate_report(report_type=""object"", subject_id=var_1, include_summary=True)
         ```
         </s>
-        "
+        ","var_1 = search_object_by_name(query=""ProjectAlpha"")
+var_2 = generate_report(report_type=""object"", subject_id=var_1, include_summary=True)"

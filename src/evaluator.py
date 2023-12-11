@@ -1,27 +1,4 @@
-import re
-import json
-import Levenshtein
 from langchain.evaluation.parsing.json_distance import JsonEditDistanceEvaluator
-
-def diff(string1, string2):
-  string1 = json.dumps(string1)
-  string2 = json.dumps(string2)
-  if(len(string1) == 0 and len(string2) == 0):
-    return 1
-  else:
-    maxm = max(len(string1) , len(string2))
-    return (1-(Levenshtein.distance(string1, string2))/maxm)
-
-def jaccard_similarity(actual, predicted):
-  actual = re.sub('[^A-Za-z]+', ' ', actual).split()
-  predicted = re.sub('[^A-Za-z]+', ' ', predicted).split()
-  intersection = 0
-  for a in actual:
-    if a in predicted:
-      intersection += 1
-      predicted.remove(a)
-  union = len(actual+predicted)
-  return intersection/union if union!=0 else 0
 
 def langeval(json1,json2):
     eval = JsonEditDistanceEvaluator()

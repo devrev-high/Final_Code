@@ -1,9 +1,12 @@
 import re
-import ast
 import csv
+import ast
 import json
 
 def modify_args(args):
+    """
+    Removes comments (if present somehow)
+    """
     s = ''
     cnt = 1
     for j in args:
@@ -15,6 +18,11 @@ def modify_args(args):
     return s
 
 def get_avl_tools():
+    """
+    Function to get available tools as a dictionary in the format {"tool_name": {"arg_name":["allowed_arg_value"]}}
+    If no restrictions on arg_value, replace list with "anything"
+    """
+
     base = {
         "works_list": {
             "applies_to_part": "anything",
@@ -54,20 +62,7 @@ def get_avl_tools():
         "who_am_i":{
         }
     }
-
-    # return base
-    
-    # with open("newTools.json","r") as readfile:
-    #     newTools = json.load(readfile)
-    #     for tool in newTools:
-    #         base[tool]= {}
-    #         for arg in newTools[tool]["Arguments"]:
-    #             base[tool][arg["ArgumentName"]] = arg["AllowedValues"]
-
-    # print(base)
-    # return base
-
-    with open("dynamicDicts.csv","r") as csvfile:
+    with open("../resources/Tool_list/dynamicDicts.csv","r") as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             base[row[0]] = ast.literal_eval(row[1])
@@ -76,8 +71,8 @@ def get_avl_tools():
 
 def edit_distance(str1, str2):
     """
-    An optimized version of the edit distance algorithm for better performance.
-    This implementation reduces unnecessary operations and improves cache locality.
+    Function to calculate edit distance between two strings. 
+    Few hardcoded variants that correct common model mistakes.
     """
 
     if str1 == "whoami" and str2 == "who_am_i" : 
@@ -106,7 +101,10 @@ def edit_distance(str1, str2):
     return previous_row[-1]
 
 def general_update(name,nameslist):
-
+    """
+    Returns the closest match to the the given name in the nameslist.
+    If the closest edit distance is more than 50% of the of given names length, returns None.
+    """
     d = len(name)
     cur_name = name
     for key in nameslist:
@@ -121,22 +119,33 @@ def general_update(name,nameslist):
     return None
 
 def update_tool(tool_name):
+    """
+    Gets the closest tool name to the one given using general_update
+    """
     avl_tools = get_avl_tools()
 
     return general_update(tool_name,avl_tools.keys())
 
 def update_arg_name(arg_name,tool_name):
+    """
+    Gets the closest arg name to the one given(for the given tool) using general_update
+    """
     avl_tools = get_avl_tools()
 
     return general_update(arg_name,avl_tools[tool_name].keys())
 
 def update_arg_val(arg_value,arg_name,tool_name,arg_index,tools,start,temp_index=None):
+    """
+    Returns an updated arg val corresponding to the specific tool and argument given. 
+    If given argument is determined to be invalid, returns "$$INV_ARG".
+    Handles the cases of argument values being function calls, and recursively calls itself to handle lists
+    """
     if len(arg_value) == 0:
         return None
 
     avl_tools = get_avl_tools()
     arg_value = arg_value.strip()
-    print("upargval1",arg_value)
+
     if arg_value[0] == '[':
         if arg_value[-1] != ']':
             arg_value += ']'
@@ -148,11 +157,7 @@ def update_arg_val(arg_value,arg_name,tool_name,arg_index,tools,start,temp_index
             value = update_arg_val(value,arg_name,tool_name,arg_index,tools,start,temp_index)
             arg_val_list.append(value)
 
-        if len(arg_val_list) == 0:
-            return avl_tools[tool_name][arg_name]
-
         return arg_val_list
-        #print(arg_value)
 
     if arg_value.startswith("$$"):
         return arg_value
@@ -171,14 +176,18 @@ def update_arg_val(arg_value,arg_name,tool_name,arg_index,tools,start,temp_index
 
     return "$$INV_ARG"
     
-def wrong_name_handler(index,tool_name,args,tools,arg_index,start,temp_index=None):
-
+def wrong_name_handler(tool_name,args,arg_index,start,temp_index=None):
+    """
+    Handles the case of a hallucinated tool(or any tool that was unable to be resolved by the edit distance)
+    Is similar to update_arg_val but since there are no restrictions on argument names or values, 
+    it returns them as they are
+    """
     if start == "var_":
         for var_ind in arg_index:
             args = args.replace(start+str(var_ind),f"$$PREV[{arg_index[var_ind]}]")
 
     elif start == "temp_":
-        for temp_ind in arg_index:
+        for temp_ind in temp_index:
             args = args.replace(start+str(temp_ind),f"$$PREV[{temp_index[temp_ind]}]")
         for var_ind in arg_index:
             args = args.replace("var_"+str(var_ind),f"$$GLOB_PREV[{arg_index[var_ind]}]")
@@ -205,13 +214,15 @@ def wrong_name_handler(index,tool_name,args,tools,arg_index,start,temp_index=Non
     return tool
 
 def process_tool(index,tool_name,args,tools,arg_index,start,temp_index=None):
-
+    """
+    Processes a line into a valid tool dictionary. Makes use of multiple helper functions.
+    """
     args = modify_args(args)
 
     copy_of_tool_name = tool_name
     tool_name = update_tool(tool_name)
     if not tool_name:
-        tool = wrong_name_handler(index,copy_of_tool_name,args,tools,arg_index,start,temp_index)
+        tool = wrong_name_handler(copy_of_tool_name,args,arg_index,start,temp_index)
     else:
         tool = make_tool(tool_name,args,arg_index,tools,start,temp_index)
     
@@ -225,8 +236,16 @@ def process_tool(index,tool_name,args,tools,arg_index,start,temp_index=None):
     return tool
 
 def if_handler(condition,arg_index):
+    """
+    Returns the processed if case as a conditional_magic dictionary
+    """
 
-    condition = condition.strip().strip('(').strip(')')
+    condition = condition.strip()
+
+    if condition[-1] == ':':
+        condition = condition[:-1]
+
+    condition = condition.strip('(').strip(')')
 
     for var_ind in arg_index:
         condition = condition.replace("var_"+str(var_ind),f"$$PREV[{arg_index[var_ind]}]")   
@@ -241,6 +260,10 @@ def if_handler(condition,arg_index):
     }
 
 def for_handler(looping_var,arg_index,tools):
+    """
+    Returns the processed for case as a iterational_magic dictionary
+    """
+
     base =  {
         "tool_name": "iterational_magic",
         "looping_var": "",
@@ -278,6 +301,9 @@ def for_handler(looping_var,arg_index,tools):
     return base
 
 def arg_splitter(args):
+    """
+    Returns the args split on the basis of different argument names
+    """
     split_args = []
     cur_arg = ""
     brack_count = 0
@@ -302,7 +328,9 @@ def arg_splitter(args):
     return split_args
         
 def make_tool(tool_name,args,arg_index,tools,start,temp_index):
-
+    """
+    The correct tool name counterpart to wrong_name_handler. Returns each tool as a processed dictionary
+    """
     if start == "var_":
         for var_ind in arg_index:
             args = args.replace(start+str(var_ind),f"$$PREV[{arg_index[var_ind]}]")
@@ -324,8 +352,6 @@ def make_tool(tool_name,args,arg_index,tools,start,temp_index):
             arg_name, arg_value = arg.split("=", 1)
             arg_name = arg_name.strip()
             arg_value = arg_value.strip().strip("\"").strip("\'")
-
-            #print("make_tool",arg_value)
 
             arg_name = update_arg_name(arg_name,tool_name)
             if not arg_name:
@@ -359,6 +385,9 @@ def make_tool(tool_name,args,arg_index,tools,start,temp_index):
     return tool
 
 def converter(string):
+    """
+    The driver function. Processed each line individually and calls functions on the basis of matches.
+    """
 
     try:
 
@@ -372,7 +401,6 @@ def converter(string):
             match = re.match(r"\s*var_(\d+)\s*=\s*(\w+)\((.*)\)", i)
 
             if match:
-                #print(match.group(0))
                 inIf = False
                 inElse = False
                 inFor = False
@@ -383,13 +411,12 @@ def converter(string):
                 process_tool(index,tool_name,args,tools,arg_index,start="var_")
                 continue
 
-            match = re.match(r"\s*if\s*(.*)\s*:", i)
+            match = re.match(r"\s*if\s*(.*)", i)
 
             if match:
                 inIf = True
                 inFor = False
                 temp_index = {}
-                #print(match.group(0))
 
                 condition = match.group(1)
 
@@ -402,15 +429,13 @@ def converter(string):
                 match = re.match(r"\s*temp_(\d+)\s*=\s*(\w+)\((.*)\)", i)
 
                 if match:
-                    #print(match.group(0))
                     index = int(match.group(1))
                     tool_name = match.group(2)
                     args = match.group(3)
 
                     process_tool(index,tool_name,args,tools[ifInd]["true"],arg_index,"temp_",temp_index)
                     continue
-                    #print(temp_index)
-
+                    
                 match = re.match(r"\s*else:\s*",i)
 
                 if match:
@@ -424,7 +449,6 @@ def converter(string):
                 match = re.match(r"\s*temp_(\d+)\s*=\s*(\w+)\((.*)\)", i)
 
                 if match:
-                    #print(match.group(0))
                     index = int(match.group(1))
                     tool_name = match.group(2)
                     args = match.group(3)
@@ -435,7 +459,6 @@ def converter(string):
             match = re.match(r"\s*for\s*loop_var\s*in\s*(.*)",i)
 
             if match:
-                #print(match.group(1))
                 inIf = False
                 looping_var = match.group(1)
                 temp_index = {}
@@ -449,7 +472,6 @@ def converter(string):
                 match = re.match(r"\s*temp_(\d+)\s*=\s*(\w+)\((.*)\)", i)
 
                 if match:
-                    #print(match.group(0))
                     index = int(match.group(1))
                     tool_name = match.group(2)
                     args = match.group(3)
@@ -457,14 +479,7 @@ def converter(string):
                     process_tool(index,tool_name,args,tools[forInd]["loop"],arg_index,"temp_",temp_index)
                     continue
 
-        return json.dumps(tools, indent=2)
+        return tools
 
     except Exception as e:
-        #print("Error: " ,e)
         return []
-
-
-print(converter("""
-var_1 = works_list(issue.priority = ["p4","p3"])
-
-"""))

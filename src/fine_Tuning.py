@@ -51,14 +51,19 @@ def get_max_length(model):
 # function to preprocess the dataset
 def preprocess_dataset(model, tokenizer: AutoTokenizer, max_length: int, dataset: str, seed: int = 42):
     # Format each prompt.
-    print("Preprocessing dataset...")
     tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+    tokenizer.add_special_tokens({'bos_token': '<s>'})
+    tokenizer.add_special_tokens({'eos_token': '</s>'})
+    
     with torch.no_grad():
       model.resize_token_embeddings(len(tokenizer))
     model.config.pad_token_id = tokenizer.pad_token_id
+    model.config.bos_token_id = tokenizer.bos_token_id
+    model.config.eos_token_id = tokenizer.eos_token_id
+
     def preprocess_batch(batch, tokenizer, max_length):
         return tokenizer(
-            batch["data"],
+            batch["Prompt"],
             max_length=max_length,
             truncation=True,
         )
@@ -68,7 +73,7 @@ def preprocess_dataset(model, tokenizer: AutoTokenizer, max_length: int, dataset
     dataset = dataset.map(
         _preprocessing_function,
         batched=True,
-        remove_columns=["data"],
+        remove_columns=["prompt", 'Output'],
     )
     # Shuffle dataset.
     dataset = dataset.shuffle(seed=seed)
@@ -76,10 +81,15 @@ def preprocess_dataset(model, tokenizer: AutoTokenizer, max_length: int, dataset
 
 def main(args):
     repo_dir = args.repo_dir
-    dataset_name = args.dataset
-    model_name = args.model
-    epochs = args.n
+    dataset_name_1 = args.dataset_1
+    dataset_name_2 = args.dataset_2
+    model_name = args.base_model
+    epochs_1 = args.n_1
+    epochs_2 = args.n_2
     tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+    tokenizer.add_special_tokens({'bos_token': '<s>'})
+    tokenizer.add_special_tokens({'eos_token': '</s>'})
     # Quantization configurations
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
@@ -92,14 +102,21 @@ def main(args):
         quantization_config=bnb_config,
         device_map="auto",
     )
+    
+    with torch.no_grad():
+        model.resize_token_embeddings(len(tokenizer))
+    model.config.pad_token_id = tokenizer.pad_token_id
+    model.config.bos_token_id = tokenizer.bos_token_id
+    model.config.eos_token_id = tokenizer.eos_token_id
     model.config.use_cache = False
+
     model.gradient_checkpointing_enable()
     model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
     # Finding LORA supporting layers
     modules = find_all_linear_names(model)
-    lora_alpha = args.lora_alpha
-    lora_dropout = args.lora_dropout
-    lora_r = args.lora_r
+    lora_alpha = args.lora_alpha_1
+    lora_dropout = args.lora_dropout_1
+    lora_r = args.lora_r_1
     peft_config = LoraConfig(
         lora_alpha=lora_alpha,
         lora_dropout=lora_dropout,
@@ -110,10 +127,10 @@ def main(args):
     )
     model = get_peft_model(model, peft_config)
     if repo_dir == 2:
-        data_files = {'train':'train.csv','validation':'validation.csv'}
-        dataset = load_dataset(dataset_name,data_files=data_files)
+        data_files = {'train':'../datasets/Generated/P3_datasets/train_val/Stage-1/P3prompt_stage_1_train.csv','validation':'../datasets/Generated/P3_datasets/train_val/Stage-1/P3prompt_stage_1_val.csv'}
+        dataset = load_dataset(dataset_name_1,data_files=data_files)
     else:
-        dataset = load_dataset(dataset_name)
+        dataset = load_dataset(dataset_name_1)
 
     # Change the max length depending on hardware constraints.
     max_length = get_max_length(model)
@@ -124,7 +141,7 @@ def main(args):
         output_dir="./checkpoints/outputs",
         per_device_train_batch_size=1,
         gradient_accumulation_steps=4,  # Powers of 2.
-        learning_rate=args.learning_rate,
+        learning_rate=args.learning_rate_1,
         max_grad_norm=1.0,
         lr_scheduler_type="linear",
         warmup_steps=5,
@@ -133,7 +150,7 @@ def main(args):
         logging_steps=1,
         save_strategy="epoch",
         optim="paged_adamw_8bit",
-        num_train_epochs=args.n,
+        num_train_epochs=args.n_1,
         evaluation_strategy='steps',
         eval_steps=100
     )
@@ -147,20 +164,97 @@ def main(args):
     )
 
     results = trainer.train()  # Now we just run train()!
-    trainer.save_model('./checkpoints/outputs_best')
+    trainer.save_model('../models/Stage-1/checkpoints/outputs_best')
+    # Stage 2
+    model_name_2 = '../models/Stage-1/checkpoints/outputs_best'
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name,
+        quantization_config=bnb_config,
+        device_map="auto",
+    )
+    model = PeftModel.from_pretrained(model, model_name_2, device_map='auto')
+    with torch.no_grad():
+        model.resize_token_embeddings(len(tokenizer))
+    model.config.pad_token_id = tokenizer.pad_token_id
+    model.config.bos_token_id = tokenizer.bos_token_id
+    model.config.eos_token_id = tokenizer.eos_token_id
+    model.config.use_cache = False
+
+    model.gradient_checkpointing_enable()
+    model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
+    # Finding LORA supporting layers
+    modules = find_all_linear_names(model)
+    lora_alpha = args.lora_alpha_2
+    lora_dropout = args.lora_dropout_2
+    lora_r = args.lora_r_2
+    peft_config = LoraConfig(
+        lora_alpha=lora_alpha,
+        lora_dropout=lora_dropout,
+        target_modules=modules,
+        r=lora_r,
+        bias="none",
+        task_type="CAUSAL_LM"
+    )
+    model = get_peft_model(model, peft_config)
+    if repo_dir == 2:
+        data_files = {'train':'../datasets/Generated/P3_datasets/train_val/Stage-2/P3prompt_stage_1_train.csv','validation':'../datasets/Generated/P3_datasets/train_val/Stage-2/P3prompt_stage_1_val.csv'}
+        dataset = load_dataset(dataset_name_2,data_files=data_files)
+    else:
+        dataset = load_dataset(dataset_name_2)
+
+    # Change the max length depending on hardware constraints.
+    max_length = get_max_length(model)
+    #preprocess the dataset
+    formatted_dataset = deepcopy(dataset)
+    dataset = preprocess_dataset(model, tokenizer, max_length, dataset)
+    training_args = TrainingArguments(
+        output_dir="./checkpoints/outputs",
+        per_device_train_batch_size=1,
+        gradient_accumulation_steps=4,  # Powers of 2.
+        learning_rate=args.learning_rate_2,
+        max_grad_norm=1.0,
+        lr_scheduler_type="linear",
+        warmup_steps=5,
+        fp16=True,
+        logging_strategy="steps",
+        logging_steps=1,
+        save_strategy="epoch",
+        optim="paged_adamw_8bit",
+        num_train_epochs=args.n_2,
+        evaluation_strategy='steps',
+        eval_steps=100
+    )
+
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
+        train_dataset=dataset['train'],
+        eval_dataset=dataset['validation']
+    )
+
+    results = trainer.train()  # Now we just run train()!
+    trainer.save_model('../models/Stage-2/checkpoints/outputs_best')
+
     return
 
 if '__name__' == '__main__':
     parser = argparse.ArgumentParser(description="Script for fine-tuning")
     # Add argument(s) here
     parser.add_argument("--repo_dir", type=int, default=1, help="Enter 1 for hf repo, 2 for local dir")
-    parser.add_argument("--dataset", type=str, default="Insight244/p3-stage-1-data-no-dynamic-no-random-no-bonus", help="Name of dataset to finetune")
-    parser.add_argument("--model", type=str, default="codellama/CodeLlama-7b-Instruct-hf", help="Name of model to finetune")
-    parser.add_argument("--n", type=int, default=5, help="Number of epochs")
-    parser.add_argument("--lora_alpha", type=int, default=16, help="Alpha parameter value for LoRA")
-    parser.add_argument("--lora_dropout", type=float, default=0.1, help="Dropout parameter value for LoRA")
-    parser.add_argument("--lora_r", type=int, default=8, help="R parameter value for LoRA")
-    parser.add_argument("--learning_rate", type=float, default=2e-4, help="Value of learning rate")
+    parser.add_argument("--dataset_1", type=str, default="Insight244/p3-final-stage-1", help="Name of stage 1 dataset to finetune")
+    parser.add_argument("--dataset_2", type=str, default="Insight244/p3-final-stage-2", help="Name of stage 2 dataset to finetune")
+    parser.add_argument("--base_model", type=str, default="codellama/CodeLlama-7b-Instruct-hf", help="Name of base model to finetune")
+    parser.add_argument("--n_1", type=int, default=5, help="Number of stage 1 epochs")
+    parser.add_argument("--n_2", type=int, default=5, help="Number of stage 2 epochs")
+    parser.add_argument("--lora_alpha_1", type=int, default=16, help="Alpha parameter value for stage 1 LoRA")
+    parser.add_argument("--lora_alpha_2", type=int, default=16, help="Alpha parameter value for stage 2 LoRA")
+    parser.add_argument("--lora_dropout_1", type=float, default=0.1, help="Dropout parameter value for stage 1 LoRA")
+    parser.add_argument("--lora_dropout_2", type=float, default=0.1, help="Dropout parameter value for stage 2 LoRA")
+    parser.add_argument("--lora_r_1", type=int, default=8, help="R parameter value for stage 1 LoRA")
+    parser.add_argument("--lora_r_2", type=int, default=8, help="R parameter value for stage 2 LoRA")
+    parser.add_argument("--learning_rate_1", type=float, default=2e-4, help="Value of learning rate for stage 1")
+    parser.add_argument("--learning_rate_2", type=float, default=2e-4, help="Value of learning rate for stage 2")
     args = parser.parse_args()
 
     main(args)

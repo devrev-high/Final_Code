@@ -1,0 +1,41 @@
+1. query: Get and summarize all tasks in the 'completed' stage owned by the current user, then prioritize them.
+1. output:
+var_1 = who_am_i()
+var_2 = works_list(stage.name = ['completed'], owned_by = var1)
+var_3 = summarize_objects(objects = var2)
+var_4 = prioritize_objects(objects = var3)
+
+2. query: Retrieve and summarize all tickets marked as blocker severity associated with "REV-Engineering"
+2. output:
+var_1 = search_object_by_name(query="REV-Engineering")
+var_2 = works_list(ticket.severity=["blocker"], ticket.rev_org=[var_1])
+var_3 = summarize_objects(objects=var_2)
+
+3. query: Generate a list of my P1 and P2 issues and create action items for them
+3. output:
+var_1 = who_am_i()
+var_2 = works_list(issue.priority=["p1", "p2"], owned_by=[var_1], type=["issue"])
+var_3 = create_actionable_tasks_from_text(text=var_2)
+
+4. Query: Identify work items of type 'issue' that need to be added to sprint with ID SPRINT-678.
+4. Output: var_1 = works_list(type=["issue"])
+var_2 = add_to_sprint(objects=var_1, sprint_id=["SPRINT-678"])
+
+5. Query: Summarize and prioritize issues created by user USER-XYZ
+5. Output:
+var_1 = works_list(created_by=["USER-XYZ"], type=["issue"])
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_2)
+
+6. Query: Find work items associated with feature PROD-999, prioritize them, and get the sprint ID
+6. Output:
+var_1 = works_list(applies_to_part=["PROD-999"])
+var_2 = prioritize_objects(objects=var_1)
+var_3 = get_sprint_id()
+
+7. Query: Identify my tasks related to the "X1-Project" and summarize them
+7. Output:
+var_1 = who_am_i()
+var_2 = search_object_by_name(query="X1-Project")
+var_3 = works_list(owned_by=[var_1], applies_to_part=[var_2], type=["task"])
+var_4 = summarize_objects(objects=var_3)

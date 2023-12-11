@@ -1,27 +1,5 @@
-import re
-import json
-import Levenshtein
+from json_converter import converter
 from langchain.evaluation.parsing.json_distance import JsonEditDistanceEvaluator
-
-def diff(string1, string2):
-  string1 = json.dumps(string1)
-  string2 = json.dumps(string2)
-  if(len(string1) == 0 and len(string2) == 0):
-    return 1
-  else:
-    maxm = max(len(string1) , len(string2))
-    return (1-(Levenshtein.distance(string1, string2))/maxm)
-
-def jaccard_similarity(actual, predicted):
-  actual = re.sub('[^A-Za-z]+', ' ', actual).split()
-  predicted = re.sub('[^A-Za-z]+', ' ', predicted).split()
-  intersection = 0
-  for a in actual:
-    if a in predicted:
-      intersection += 1
-      predicted.remove(a)
-  union = len(actual+predicted)
-  return intersection/union if union!=0 else 0
 
 def langeval(json1,json2):
     eval = JsonEditDistanceEvaluator()
@@ -68,4 +46,15 @@ def f1_score(output, ground_truth):
     prec = precision(output, ground_truth)
     rec = recall(output, ground_truth)
     f1 = 2 * prec * rec / (prec + rec + 1e-5)
-    return f1
+    return f1 
+
+def evaluator(eval_df):
+    eval_df['Output'] = eval_df['Output'].apply(lambda x: converter(x))
+    eval_df['Ground_Truth'] = eval_df['Ground_Truth'].apply(lambda x: converter(x))
+    eval_df['Precision'] = eval_df.apply(lambda x: precision(x['Output'],x['Ground_Truth'],axis =1))
+    eval_df['Recall'] = eval_df.apply(lambda x: recall(x['Output'],x['Ground_Truth'],axis =1))
+    eval_df['F1_Score'] = eval_df.apply(lambda x: f1_score(x['Output'],x['Ground_Truth'],axis =1))
+    eval_df['Langchain'] = eval_df.apply(lambda x: 1 - langeval(x['Output'],x['Ground_Truth'],axis =1))
+
+    return eval_df['Precision'].mean(), eval_df['Recall'].mean(), eval_df['F1_Score'].mean(), eval_df['Langchain'].mean(), eval_df['Latency'].mean()
+ 

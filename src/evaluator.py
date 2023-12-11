@@ -1,3 +1,4 @@
+from json_converter import converter
 from langchain.evaluation.parsing.json_distance import JsonEditDistanceEvaluator
 
 def langeval(json1,json2):
@@ -45,4 +46,15 @@ def f1_score(output, ground_truth):
     prec = precision(output, ground_truth)
     rec = recall(output, ground_truth)
     f1 = 2 * prec * rec / (prec + rec + 1e-5)
-    return f1
+    return f1 
+
+def evaluator(eval_df):
+    eval_df['Output'] = eval_df['Output'].apply(lambda x: converter(x))
+    eval_df['Ground_Truth'] = eval_df['Ground_Truth'].apply(lambda x: converter(x))
+    eval_df['Precision'] = eval_df.apply(lambda x: precision(x['Output'],x['Ground_Truth'],axis =1))
+    eval_df['Recall'] = eval_df.apply(lambda x: recall(x['Output'],x['Ground_Truth'],axis =1))
+    eval_df['F1_Score'] = eval_df.apply(lambda x: f1_score(x['Output'],x['Ground_Truth'],axis =1))
+    eval_df['Langchain'] = eval_df.apply(lambda x: 1 - langeval(x['Output'],x['Ground_Truth'],axis =1))
+
+    return eval_df['Precision'].mean(), eval_df['Recall'].mean(), eval_df['F1_Score'].mean(), eval_df['Langchain'].mean(), eval_df['Latency'].mean()
+ 

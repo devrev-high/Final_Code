@@ -1,4 +1,4 @@
-Additional Tools,Queries,Completion
+Added_Tools,Query,Output
 "['
  def list_user_tasks(user_id, completed=False):
  """"""

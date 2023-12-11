@@ -1,4 +1,4 @@
-Queries,Outputs
+Query,Output
 "Retrieve work items with type ""ticket"" and severity ""high"", summarize them, and assign the first 10 to user USER-123.","var_1 = works_list(type=[""ticket""], ticket.severity=[""high""])
 var_2 = summarize_objects(objects=var_1)
 var_3 = search_object_by_name(query=""USER-123"")
@@ -292,10 +292,10 @@ var_2 = works_list(owned_by=[var_1], type=[""task""])
 var_3 = summarize_objects(objects=var_2)
 var_4 = create_actionable_tasks_from_text(text=var_3)"
 "Find all work items with p0 priority , summarize them and create actionable task for them if the current user is ""ABC"" else add them to my current sprint.","var_1 = who_am_i()
-var_2 = works_list(issue.priority = [“p0”], type =[‘issue’])
+var_2 = works_list(issue.priority = [ï¿½p0ï¿½], type =[ï¿½issueï¿½])
 var_3 = summarize_objects(objects = var_2)
 var_4 = get_sprint_id()
-if(var_1 == “ABC”):
+if(var_1 == ï¿½ABCï¿½):
 temp_1 = create_actionable_tasks_from_text(text = var_3)
 else:
 temp_1 = add_work_items_to_sprint(work_ids = var_2 , sprint_id = var_4)"
@@ -322,15 +322,15 @@ temp_3 = create_actionable_tasks_from_text(text=temp_2)"
 var_2 = search_object_by_name(query=""USER-567"")
 for loop_var in var_1:
 temp_1 = assign_task_to_user(task_id=loop_var, user_id=var_2)"
-"Find issues related to part “ENG-101” and priority “p2”, prioritize and summarize, create tasks and add these tasks to “SPRINT-101” if user is “USER-22” or to “SPRINT-15” otherwise.","var_1 = works_list(applies_to_part= [“ENG-101”], issue.priority=[""p2""], type=[""issue""])
+"Find issues related to part ï¿½ENG-101ï¿½ and priority ï¿½p2ï¿½, prioritize and summarize, create tasks and add these tasks to ï¿½SPRINT-101ï¿½ if user is ï¿½USER-22ï¿½ or to ï¿½SPRINT-15ï¿½ otherwise.","var_1 = works_list(applies_to_part= [ï¿½ENG-101ï¿½], issue.priority=[""p2""], type=[""issue""])
 var_2 = prioritize_objects(objects=var_1)
 var_3 = summarize_objects(objects=var_2)
 var_4 = create_actionable_tasks_from_text(text = var_3)
 var_5 = who_am_i()
-if(var_5 == “USER-22”):
-temp_1 = add_work_items_to_sprint(work_ids=var_4, sprint_id= “SPRINT-101”)
+if(var_5 == ï¿½USER-22ï¿½):
+temp_1 = add_work_items_to_sprint(work_ids=var_4, sprint_id= ï¿½SPRINT-101ï¿½)
 else:
-temp_1 = add_work_items_to_sprint(work_ids=var_4, sprint_id=“SPRINT-15”)"
+temp_1 = add_work_items_to_sprint(work_ids=var_4, sprint_id=ï¿½SPRINT-15ï¿½)"
 Search for objects owned by UserX and delete them after marking them as completed,"var_1 = search_object_by_name(query=""UserX"")
 var_2 = works_list(owned_by=[var_1])
 for loop_var in var_2:
@@ -339,16 +339,16 @@ temp_2 = delete_object_by_id(object_id=loop_var)"
 "Find work items with issue priority ""p2"" and ticket severity ""medium,"" and if any, estimate work hours for each.","var_1 = works_list(issue.priority=[""p2""], ticket.severity=[""medium""], type=[""issue"", ""ticket""])
 for loop_var in var_1:
 temp_1 = estimate_work_hours(work_id=loop_var)"
-"Find tasks similar to “TASK-56”, mark task as completed and assign task to user “USER-76” if marking was successful else assign task to user “USER-14”.","var_1 = get_similar_work_items(work_id=“TASK-56”)
-var_2 = mark_task_as_completed(task_id=“TASK-56”)
+"Find tasks similar to ï¿½TASK-56ï¿½, mark task as completed and assign task to user ï¿½USER-76ï¿½ if marking was successful else assign task to user ï¿½USER-14ï¿½.","var_1 = get_similar_work_items(work_id=ï¿½TASK-56ï¿½)
+var_2 = mark_task_as_completed(task_id=ï¿½TASK-56ï¿½)
 if(var_2==True):
-temp_1 = assign_task_to_user(task_id=""TASK-56"", user_id=“USER-76”)
+temp_1 = assign_task_to_user(task_id=""TASK-56"", user_id=ï¿½USER-76ï¿½)
 else:
-temp_1 = assign_task_to_user(task_id=""TASK-56"", user_id=“USER-14”)"
-"Assign item “TASK-94” to user “ADMIN” if estimated time is greater than 2 hours.
-","var_1 = estimate_work_hours(work_id=“TASK-94”)
+temp_1 = assign_task_to_user(task_id=""TASK-56"", user_id=ï¿½USER-14ï¿½)"
+"Assign item ï¿½TASK-94ï¿½ to user ï¿½ADMINï¿½ if estimated time is greater than 2 hours.
+","var_1 = estimate_work_hours(work_id=ï¿½TASK-94ï¿½)
 if(var_1>2):
-temp_1 = assign_task_to_user(task_id=“TASK-94”, user_id=“ADMIN”)
+temp_1 = assign_task_to_user(task_id=ï¿½TASK-94ï¿½, user_id=ï¿½ADMINï¿½)
 "
 "Find work items with issue priority ""p1"" and ticket severity ""blocker"" , prioritize them and check if the user is not ""XYZ"" then assign it to current sprint","var_1 = works_list(issue.priority = [""p1""], ticket.severity = [""blocker""], type=[""issue"", ""ticket""])
 var_2 = prioritize_objects(objects = var_2)
@@ -356,40 +356,40 @@ var_3 = who_am_i()
 if var_3 != ""XYZ"":
 temp_1 = get_sprint_id()
 temp_2 = add_work_items_to_sprint(work_ids = var_2 , sprint_id = temp_1)"
-"Delete “TASK-81” if current sprint is “SPRINT-99” else mark it as complete.
+"Delete ï¿½TASK-81ï¿½ if current sprint is ï¿½SPRINT-99ï¿½ else mark it as complete.
 ","var_1 = get_sprint_id() 
-if(var_1==“SPRINT-99”): 
-temp_1 = delete_object_by_id(object_id=“TASK-81”) 
+if(var_1==ï¿½SPRINT-99ï¿½): 
+temp_1 = delete_object_by_id(object_id=ï¿½TASK-81ï¿½) 
 else: 
-temp_1 = mark_task_as_completed(task_id=“TASK-81”)"
-Generate a report of type “draft” of subject “S-1” if user-id is “USER-12” else generate a report of type “final” for “S-5” without summary.,"var_1 = who_am_i() 
-if(var_1==“USER-12”): 
-temp_1 = generate_report(report_type=“draft”, subject_id=“S-1”) 
+temp_1 = mark_task_as_completed(task_id=ï¿½TASK-81ï¿½)"
+Generate a report of type ï¿½draftï¿½ of subject ï¿½S-1ï¿½ if user-id is ï¿½USER-12ï¿½ else generate a report of type ï¿½finalï¿½ for ï¿½S-5ï¿½ without summary.,"var_1 = who_am_i() 
+if(var_1==ï¿½USER-12ï¿½): 
+temp_1 = generate_report(report_type=ï¿½draftï¿½, subject_id=ï¿½S-1ï¿½) 
 else: 
-temp_1 = generate_report(report_type=“final”, subject_id=“S-5”, include_summary=False)"
-"Search for work related to tyres, summarize it and if work id is “TYRE-106” then find team members of “TEAM-3” else assign task to user “USER-84”.","var_1 = search_object_by_name(query=“tyres”)
+temp_1 = generate_report(report_type=ï¿½finalï¿½, subject_id=ï¿½S-5ï¿½, include_summary=False)"
+"Search for work related to tyres, summarize it and if work id is ï¿½TYRE-106ï¿½ then find team members of ï¿½TEAM-3ï¿½ else assign task to user ï¿½USER-84ï¿½.","var_1 = search_object_by_name(query=ï¿½tyresï¿½)
 var_2 = summarize_objects(objects=var_1)
-if(var_1==“TYRE-106”):
-temp_1 = find_team_members(team_id=“TEAM-3”)
+if(var_1==ï¿½TYRE-106ï¿½):
+temp_1 = find_team_members(team_id=ï¿½TEAM-3ï¿½)
 else:
-temp_1 = assign_task_to_user(task_id=var_1, user_id=“USER-84”)
+temp_1 = assign_task_to_user(task_id=var_1, user_id=ï¿½USER-84ï¿½)
 
 "
 Find all task related to COMP123 and Delete it if its not deleted successfully then assign it to the current user,"var_1 = who_am_i()
-var_2 = search_object_by_name(query = “COMP123”)
+var_2 = search_object_by_name(query = ï¿½COMP123ï¿½)
 var_3 = delete_object_by_id(object_id = var_2)
 If var_3!=True:
 temp_1= assign_task_to_user(task_id = var_2 , user_id =var_3)"
-"Find all issues with severity “p1” of organization “ORG-123”, summarize it estimate time for task “ABC-156” , if its greater than 2 hours , Delete the task.","var_1 = works_list(issue.severity = [“p1”] , issue.rev_orgs = [“ORG-123”])
+"Find all issues with severity ï¿½p1ï¿½ of organization ï¿½ORG-123ï¿½, summarize it estimate time for task ï¿½ABC-156ï¿½ , if its greater than 2 hours , Delete the task.","var_1 = works_list(issue.severity = [ï¿½p1ï¿½] , issue.rev_orgs = [ï¿½ORG-123ï¿½])
 var_2 = summarize_objects(objects = var_1)
-var_3 = estimate_work_hours(work_id = “ABC-156”)
+var_3 = estimate_work_hours(work_id = ï¿½ABC-156ï¿½)
 if(var_3 > 2):
-temp_1 = delete_object_by_id(object_id = “ABC-156”)"
-"Find all work items of type 'task' with limit 1 , summarize it and get the object id matching to it , mark it as completed and delete it if its marked completed succesfully","var_1 = works_list(limit = 1 , type = [‘task’])
+temp_1 = delete_object_by_id(object_id = ï¿½ABC-156ï¿½)"
+"Find all work items of type 'task' with limit 1 , summarize it and get the object id matching to it , mark it as completed and delete it if its marked completed succesfully","var_1 = works_list(limit = 1 , type = [ï¿½taskï¿½])
 var_2 = summarize_objects(objects = var_1)
 var_3 = search_object_by_name(query = var_2)
 var_4 = mark_task_as_completed(task_id = var_3)
-if(var_4==”True”):
+if(var_4==ï¿½Trueï¿½):
 temp_1 = delete_object_by_id(object_id = var_3)"
 "Find tasks created by me, prioritize them and allot the one with highest priority to the team members of ""Strategy321"".","var_1 = who_am_i()
 var_2 = works_list(created_by = [var_1], type = [""task""])
@@ -403,13 +403,13 @@ var_3 = estimate_work_hours(work_id = var_2[0])
 if var_3<7:
 temp_1 = get_sprint_id()-
 temp_2 = add_work_items_to_sprint(work_ids = var_2 , sprint_id = temp_1)"
-If current sprint is “SPRINT-101” then assign task “TASK-35” to user “USER-3” else mark it as completed.,"var_1 = get_sprint_id()
-if(var_1==“SPRINT-101”):
-temp_1 = assign_task_to_user(task_id=“TASK-35”, user_id=“USER-3”)
+If current sprint is ï¿½SPRINT-101ï¿½ then assign task ï¿½TASK-35ï¿½ to user ï¿½USER-3ï¿½ else mark it as completed.,"var_1 = get_sprint_id()
+if(var_1==ï¿½SPRINT-101ï¿½):
+temp_1 = assign_task_to_user(task_id=ï¿½TASK-35ï¿½, user_id=ï¿½USER-3ï¿½)
 else:
-temp_1 = mark_task_as_completed(task_id=“TASK-35”)
+temp_1 = mark_task_as_completed(task_id=ï¿½TASK-35ï¿½)
 "
-"Search for work item in ""CITY-01"", summarize it and if work id is “ALPHA-106” then assign item “TASK-94” to user “ADMIN” else delete the task","var_1 = search_object_by_name(query=""CITY-01"") 
+"Search for work item in ""CITY-01"", summarize it and if work id is ï¿½ALPHA-106ï¿½ then assign item ï¿½TASK-94ï¿½ to user ï¿½ADMINï¿½ else delete the task","var_1 = search_object_by_name(query=""CITY-01"") 
 var_2 = summarize_objects(objects = var_2) 
 if var_1 == ""ALPHA-106"": 
 temp_1 = assign_task_to_user(task_id = ""TASK-94"", user_id = ""ADMIN"") 
@@ -501,7 +501,7 @@ var_2 = prioritize_objects(objects = var_1)
 var_3 = estimate_work_hours(work_id = var_1[0])
 if var_3 < 67:
 temp_1 = add_work_items_to_sprint(work_ids = var_2 , sprint_id = ""SPRINT-32"")"
-Delete “TASK-75” if current sprint is “SPRINT-37” else mark it as complete.,"var_1 = get_sprint_id() 
+Delete ï¿½TASK-75ï¿½ if current sprint is ï¿½SPRINT-37ï¿½ else mark it as complete.,"var_1 = get_sprint_id() 
 if var_1 == ""SPRINT-37"": 
 temp_1 = delete_object_by_id(object_id = ""TASK-75"") 
 else: 
@@ -511,13 +511,13 @@ var_2 = delete_object_by_id(object_id = var_1)
 if var_2 == False: 
 temp_1 = who_am_i() 
 temp_2 = assign_task_to_user(task_id = var_1, user_id = temp_1)"
-"Generate a report of type “template” of subject “S-3” if user-id is “USER-51” else generate a report of type “final” for “S-7”.
+"Generate a report of type ï¿½templateï¿½ of subject ï¿½S-3ï¿½ if user-id is ï¿½USER-51ï¿½ else generate a report of type ï¿½finalï¿½ for ï¿½S-7ï¿½.
 ","var_1 = who_am_i() 
 if var_1 == ""USER-51"": 
 temp_1 = generate_report(report_type = ""template"", report_subject = ""S-3"") 
 else: 
 temp_1 = generate_report(report_type = ""final"", report_subject = ""S-7"")"
-"Find issues related to part “PRT-911” and priority “p0”, prioritize and summarize, create tasks and add these tasks to “SPRINT-88” if user is “USER-21” else to “SPRINT-17”.","var_1 = works_list(applies_to_part = [""PRT-911""], issue.priority = [""p0""], type = [""issue""])
+"Find issues related to part ï¿½PRT-911ï¿½ and priority ï¿½p0ï¿½, prioritize and summarize, create tasks and add these tasks to ï¿½SPRINT-88ï¿½ if user is ï¿½USER-21ï¿½ else to ï¿½SPRINT-17ï¿½.","var_1 = works_list(applies_to_part = [""PRT-911""], issue.priority = [""p0""], type = [""issue""])
 var_2 = prioritize_objects(objects = var_1)
 var_3 = summarize_objects(objects = var_2)
 var_4 = create_actionable_tasks_from_text(work_ids = var_3)
@@ -550,7 +550,7 @@ var_3 = summarize_objects(objects = var_1)"
 if var_1 == ""SPRINT-747"":
 temp_1 = get_similar_work_items(work_id = ""SHSWT-123"")
 temp_2 = assign_task_to_user(task_id = temp_1[0], user_id = ""USR-PQR"")"
-"Search for work related to spark plug, summarize it and if work id is “PLUG-106” then find team members of “TEAM-508” else assign task to user “USER-13”.","var_1 = search_object_by_name(query = ""spark plug"") 
+"Search for work related to spark plug, summarize it and if work id is ï¿½PLUG-106ï¿½ then find team members of ï¿½TEAM-508ï¿½ else assign task to user ï¿½USER-13ï¿½.","var_1 = search_object_by_name(query = ""spark plug"") 
 var_2 = summarize_objects(objects = var_1) 
 if var_1 == ""PLUG-106"": 
 temp_1 = find_team_members(team_id = ""TEAM-508"") 

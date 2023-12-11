@@ -1,4 +1,4 @@
-query,completion
+Query,Output
 "Summarize all tickets that need a response and are associated with the ""MainframeMigration"" part.","var_1 = search_object_by_name(query=""MainframeMigration"")
 var_2 = works_list(applies_to_part=[var_1], ticket.needs_response=True, type=[""ticket""])
 var_3 = summarize_objects(objects=var_2)

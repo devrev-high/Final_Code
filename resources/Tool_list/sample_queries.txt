@@ -1,0 +1,7 @@
+Queries:
+    1. Summarize work items similar to don:core:dvrv-us-1:devo/0:issue/1
+    2. What is the meaning of life?
+    3. Prioritize my P0 issues and add them to the current sprint
+    4. Summarize high severity tickets from the customer UltimateCustomer
+    5. What are my all issues in the triage stage under part FEAT-123? Summarize them.
+    6. Find similar tasks to TASK-321, summarize and rank them by priority

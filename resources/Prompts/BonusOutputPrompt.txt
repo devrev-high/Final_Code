@@ -1,0 +1,136 @@
+The only code you know to write are of 2 types:
+"var_i = function_call(function_argument)" for the parts of queries not involving loops and if/else statements, where j is the jth variable in use for such parts of the query.
+"temp_j = function_call(function_arguemnt)" for parts of the queries involving for loops and if/else statements, where j is the jth variable in use for such parts of queries. You never output anything else other than this format. You follow the sequence of completing query religiously.
+
+DO NOT INTRODUCE "var_x" in the part of queries involving for loop and if-else statements. DO NOT USE temp_x in the part of queries not invlolving for loop and if-else statements. Make sure that any new variable declared inside for loops or if/else statements are named "temp_x" where x is some integer.
+Here are some sample queries and their respective responses that I want from you:
+
+Example output:
+
+Queries:
+1. Extract tasks from project update notes "N" and assign to current sprint if the current user is "USER-123". Otherwise assign it to sprint id "SPRINT-456"
+2. Identify and prioritize tasks related to the Rev "HelloWorld" while limiting the number of items to 20 and assign the first 15 to sprint id "SPRINT-123" and the remaining 5 to sprint id "SPRINT-456"
+3. Extract actionable tasks from meeting notes "MeetingNotes" and project description "ProjectDescription"and summarize them for review
+4. Generate a summary of issues tagged with 'Need-Fix' and if the current sprint is 'HotFix' assign the top 5 to the current sprint. Otherwise, assign all the issues to 'GeneralFix' sprint.
+5. Find work items for part CAPL-123 created by user DEVU-456 and filter by p2 priority. Add these to the current sprint id if "ISSUE-XYZ" is part of the list.
+6. Find all work items created by user "TeamLead", summarize them, prioritize the resulting list, and mark each task as completed.
+7. Extract all my current tasks and delete the 5 tasks with lowest priority.
+8. Extract all the tasks for "USER-123" and "USER-456", combine them and summarise them
+9. Find similar work items to "TASK-456", summarize them for a report, estimate the work hours for each similar task, and assign the 7 most critical one to user "QAEngineer".
+10. For team "TeamKappa", get the team member IDs, find all tickets with severity "medium" associated with these members, summarize the tickets, prioritize them, and add one of the top prioritized tickets of each member to the current sprint.
+
+Answers:
+
+1.
+var_1 = who_am_i()
+if(var_1==""USER-123""):
+    temp_1 = create_actionable_tasks_from_text(text = ""N"")
+    temp_2 = get_sprint_id()
+    temp_3 = add_work_items_to_sprint(work_ids = temp_1, sprint_id = temp_2)
+else:
+    temp_1 = create_actionable_tasks_from_text(text = ""N"")
+    temp_2 = add_work_items_to_sprint(work_ids = temp_1, sprint_id = ""SPRINT-456"")
+
+2.
+var_1 = search_object_by_name(query=""HelloWorld"")
+var_2 = works_list(issue.rev_orgs=[var_1], limit=20, type=[""task""])
+var_3 = prioritize_objects(objects=var_2)
+var_4 = add_work_items_to_sprint(work_ids = var_3[0:15], sprint_id = ""SPRINT-123"")
+var_5 = add_work_items_to_sprint(work_ids = var_3[15:20], sprint_id = ""SPRINT-456"")
+
+3.
+var_1 = create_actionable_tasks_from_text(text=""MeetingNotes""+""ProjectDescription"")
+var_2 = summarize_objects(objects=var_1)
+
+4.
+var_1 = get_sprint_id()
+if(var_1==""HotFix""):
+    temp_1 = search_object_by_name(query=""Need-Fix"")
+    temp_2 = works_list(issue.rev_orgs=[temp_1], type=[""issue""])
+    temp_3 = summarize_objects(objects=temp_2)
+    temp_4 = add_work_items_to_sprint(work_ids=temp_2[0:5], sprint_id=""HotFix"")
+else:
+    temp_1 = search_object_by_name(query=""Need-Fix"")
+    temp_2 = works_list(issue.rev_orgs=[temp_1], type=[""issue""])
+    temp_3 = summarize_objects(objects=temp_2)
+    temp_4 = add_work_items_to_sprint(work_ids=temp_2, sprint_id=""GeneralFix"")
+
+5.
+var_1 = search_object_by_name(query=""CAPL-123"")
+var_2 = search_object_by_name(query=""DEVU-456"")
+var_3 = works_list(applies_to_part=[var_1], created_by=[var_2], issue.priority=[""p2""], type=[""issue""])
+if(""ISSUE-XYZ"" in var_3):
+    temp_1 = get_sprint_id()
+    temp_2 = search_object_by_name(query=""CAPL-123"")
+    temp_3 = search_object_by_name(query=""DEVU-456"")
+    temp_4 = works_list(applies_to_part=[temp_2], created_by=[temp_3], issue.priority=[""p2""], type=[""issue""])
+    temp_3 = add_work_items_to_sprint(work_ids=temp_4, sprint_id=temp_1)
+
+6.
+var_1 = works_list(created_by=[""TeamLead""])
+var_2 = summarize_objects(objects=var_1)
+var_3 = prioritize_objects(objects=var_1)
+for loop_var in var_3:
+    temp_1 = mark_task_as_completed(task_id=loop_var)
+
+7.
+for loop_var in range(1,6):
+    temp_1 = who_am_i()
+    temp_2 = fetch_user_tasks(user_id=temp_1)
+    temp_3 = prioritize_objects(objects=temp_2)
+    temp_4 = delete_object_by_id(object_ids=temp_3[-1])
+
+8.
+var_1 = fetch_user_tasks(user_id=""USER-123"")
+var_2 = fetch_user_tasks(user_id=""USER-456"")
+var_3 = summarize_objects(objects=var_1+var_2)
+
+9.
+var_1 = get_similar_work_items(work_id=""TASK-456"")
+var_2 = summarize_objects(objects=var_1)
+var_3 = generate_report(report_type=""tasks"", subject_id=""TASK-456"")
+var_4 = estimate_work_hours(work_id=var_1[0])
+var_5 = prioritize_objects(objects=var_1)
+for loop_var in range(0,7)
+    temp_1 = assign_task_to_user(task_id=var_5[loop_var], user_id=""QAEngineer"")
+
+10.
+var_1 = find_team_members(team_id=""TeamKappa"")
+for loop_var in var_1:
+    temp_1 = works_list(type=[""ticket""], owned_by=loop_var, ticket.severity=[""medium""])
+    temp_2 = summarize_objects(objects=temp_1)
+    temp_3 = prioritize_objects(objects=temp_1)
+    temp_4 = get_sprint_id()
+    temp_5 = add_work_items_to_sprint(work_ids=[temp_3[0]], sprint_id=temp_4)
+
+The user will prompt you with a list of queries similar to the example. Answer very strictly in the same format shown above. Use indexing for the output. Make sure to mention type wherever relevant when calling works_list. Any missing type arguments is not acceptable.
+Don't make unnecessary calls to any functions. When given names make sure to call search_object_by_name() to get work_ids. Ensure logical continuity at each step. Ensure that every query is answered fully.
+You are not allowed to nest function calls.
+You are not allowed to output "python" or anything else other than the format given below:
+"query_number. query_answer
+query_number. query_answer
+...."
+Do this till you have answered all queries. Query_number is an integer representing the query you are answering and query_answer is the answer to the query. The answer must be in the format given above. Anything else is not acceptable.
+You follow the task of completing each query religiously.
+You have a given set of tools and you must use them to answer the queries. You are not allowed to use any other tools.
+Note: You do not have to answer the queries directly by yourself or performing the actions required to solve the query, you just have to call the given functions to answer the queries. You need not worry about the output or working of the functions. You only need to call the functions with the given arguments.
+Your answer must only contain function calls assigned to variables, only one function call must be assigned to variable var_x where x is some integer. Format :
+"var_x = function_call(function_arguments)
+var_y = function_call(function_arguments)
+if(condition):
+    temp_x = function_call(function_arguments)
+else:
+    temp_y = function_call(function_arguments)
+var_z = function_call(function_arguments)
+for loop_var in range(0,10):
+    temp_z = function_call(function_arguments)
+    temp_w = function_call(function_arguments)
+...."
+
+Use the variable name "var_x" only for variables outside for loops and if/else statements. Use the variable name "temp_x" only for variables inside for loops and if/else statements. Do not use any other name for variables than "var_x" and "temp_z" where x and z are some integers. Do not use any other format for output than the one given above. But you can use if/else and for structures in the python format. Do not call the var_ variables inside the loop. Declare a new variable temp_ , assign it the value of var_ and use this inside the loop. Do not put any comment in your answer. Anything else other than the format specified is not acceptable.
+Make sure to use for loops and if-else statements whenever required.
+The outputs should not contain any nested for loops or nested if/else statements. Also, the output should not have if/else statements inside a for loop. Similarly, the output should not have for loops inside an if/else statement.
+Make sure that whenever you're answering a query, the var_x functions should start with "var_1", "var_2" etc, and the temp_z functions start with "temp_1", "temp_2" etc.
+You do not have to worry about not being able to answer a query. If you are unable to answer a query, you can output "Unanswerable_query_error" and move on to the next query.
+
+The queries to be answered are as follows:

@@ -1,0 +1,17 @@
+Your task is to generate the given number of queries using any amount of tools from Section-1, but the query must require every tool in Section-2 to be used. Any query not using all tools from section 2 is unnacceptable.
+Your queries must be similar to the following:
+
+1. Extract tasks from project update notes "N" and assign to current sprint if the current user is "USER-123". Otherwise assign it to sprint id "SPRINT-456"
+2. Identify and prioritize tasks related to the Rev "HelloWorld" while limiting the number of items to 20 and assign the first 15 to sprint id "SPRINT-123" and the remaining 5 to sprint id "SPRINT-456"
+3. Extract actionable tasks from meeting notes "MeetingNotes" and project description "ProjectDescription"and summarize them for review
+4. Generate a summary of issues tagged with 'Need-Fix' and if the current sprint is 'HotFix' assign the top 5 to the current sprint. Otherwise, assign all the issues to 'GeneralFix' sprint.
+5. Find work items for part CAPL-123 created by user DEVU-456 and filter by p2 priority. Add these to the current sprint id if "ISSUE-XYZ" is part of the list.
+6. Find all work items created by user "TeamLead", summarize them, prioritize the resulting list, and mark each task as completed.
+7. Extract all my current tasks and delete the 5 tasks with lowest priority.
+8. Extract all the tasks for "USER-123" and "USER-456", combine them and summarise them
+9. Find similar work items to "TASK-456", summarize them for a report, estimate the work hours for each similar task, and assign the 7 most critical one to user "QAEngineer".
+10. For team "TeamKappa", get the team member IDs, find all tickets with severity "medium" associated with these members, summarize the tickets, prioritize them, and add one of the top prioritized tickets of each member to the current sprint.
+
+Note that the given samples do not use tools from Section-2 but all queries you generate must use every tool in Section-2.
+Make sure that the queries do not contain nested for loops or nested if-else statements. Also, make sure that the queries are designed in a way such that the required output should not require if-else statements inside a for loop. Similarly, the output should not require for loops inside an if-else statement.
+Now in this format, generate 1 query with the specifications provided. Always ensure that the query is answerable with the given tools.

@@ -212,6 +212,31 @@ class Preprocessing():
     def __init__(self) -> None:
         self.staticTool_list = [row[0] for row in csv.reader(open('../resources/Tool_list/final-static-toollist.csv', 'r'))]
         self.dynamicTool_list = [row[0] for row in csv.reader(open('../resources/Tool_list/final-dynamic-toolset.csv', 'r'))]
+        self.sample_query = open('../resources/Queries/sample_query_bonus_P1.txt', 'r').read()
+        self.sample_query_bonus = open('../resources/Queries/sample_query_bonus_P1.txt', 'r').read()
+        self.prompt_begin ='''
+        The only code you know to write is of type "var_i = function_call(function_argument)", where i is the ith variable in use.\
+        You never output anything else other than this format. You follow the sequence of completing query religiously.
+        You have a given set of functions and you must use them to answer the query. You are not allowed to use any other functions.
+        Here are the allowed functions-
+        '''
+
+        self.prompt_end ='''
+        Answer very strictly in the same format shown above. Make sure to mention type argument wherever relevant when calling works_list.\
+        Any missing type arguments is not acceptable. Don't make unnecessary calls to any functions. When given names make sure to call \
+        search_object_by_name() to get work_ids. Ensure logical continuity at each step. Ensure that the query is answered fully.
+        You are not allowed to nest function calls. You are not allowed to output "python" or any other statement apart from the given format.
+        Do not use any other format for output than the one given above. Do not put any comment in your answer. Anything else other \
+        than the format specified is not acceptable. Do not define any new helper functions or any other python functions apart from \
+        the ones provided.
+
+        Do not output any text apart from the final output code.
+        If you are unable to answer a query, you can output "Unanswerable_query_error".
+        Answer the query:
+        '''
+        self.sys_prompt = """You are a helpful and faithful coding assistant. You follow the given instructions\
+            meticulously and ensure an efficient interaction by prioritizing user needs."""
+
 
     def p1_static(self, additional_tools=list()):
         used_tools = additional_tools + self.staticTool_list
@@ -236,6 +261,33 @@ class Preprocessing():
         added_tools = list(set(used_tools))
         added_tools = '\n'.join(added_tools)
         return added_tools
+    
+    def prompt_p1_static_dynamic(self, data_dict):
+        prompt = self.prompt_begin+data_dict['docstring']+"Here are some sample queries \
+        and their respective responses:"+self.sample_query+self.prompt_end+data_dict['query']
+
+        prompt = "<s> [INST] <<SYS>>\\n"+self.sys_prompt+"\\n<</SYS>>\\n\\n"+prompt+"[/INST]"
+        return prompt
+    
+    def prompt_p1_bonus(self, data_dict):     
+        prompt = self.prompt_begin+data_dict['docstring']+ "If the query requires the use of conditional logic or iterations, use if, else or for loop,\
+          in the same format shown in the examples below. In case of a condition or loop, use temp_x in place of var_i inside the block, where x \
+          is an integer starting from 1, denoting the index of variable.Do not use temp except in case of a condition or iteration. Variables var_i \
+          cannot be called inside the block, only temp_x variables can be used as function arguments in this case. The format is as follows-\
+            if (<condition>):\
+                temp_1 = function_call(function_argument)\
+                temp_2 = ... \
+            else:\
+                temp_1 = function_call(function_argument)\
+                temp_2 = ...\
+            for loop_var in <list or range only>:\
+                temp_1 = function_call(function_argument)\
+                temp_2 = ...\
+          Here are some sample queries and their respective responses:"+self.sample_query+self.prompt_end+data_dict['query']
+      
+        prompt = "<s> [INST] <<SYS>>\\n"+self.sys_prompt+"\\n<</SYS>>\\n\\n"+prompt+"[/INST]"
+      
+        return prompt    
 
     def prompt_p2_pipeline(self, query, output, additional_tools=list()):
         len_add = len(additional_tools)

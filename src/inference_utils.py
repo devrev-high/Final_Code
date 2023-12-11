@@ -38,43 +38,12 @@ class P1_inferecening():
       '''
       self.sys_prompt = """You are a helpful and faithful coding assistant. You follow the given instructions\
           meticulously and ensure an efficient interaction by prioritizing user needs."""
-
-    def completionP1StaticDynamic(self, model, data_dict):
-      prompt = self.prompt_begin+data_dict['docstring']+"Here are some sample queries \
-        and their respective responses:"+self.sample_query+self.prompt_end+data_dict['query']
-      
-      return self.get_inference(model,prompt)
-
-
-    def completionP1Bonus(self, model, data_dict):
-      
-      prompt = self.prompt_begin+data_dict['docstring']+ "If the query requires the use of conditional logic or iterations, use if, else or for loop,\
-          in the same format shown in the examples below. In case of a condition or loop, use temp_x in place of var_i inside the block, where x \
-          is an integer starting from 1, denoting the index of variable.Do not use temp except in case of a condition or iteration. Variables var_i \
-          cannot be called inside the block, only temp_x variables can be used as function arguments in this case. The format is as follows-\
-            if (<condition>):\
-                temp_1 = function_call(function_argument)\
-                temp_2 = ... \
-            else:\
-                temp_1 = function_call(function_argument)\
-                temp_2 = ...\
-            for loop_var in <list or range only>:\
-                temp_1 = function_call(function_argument)\
-                temp_2 = ...\
-          Here are some sample queries and their respective responses:"+self.sample_query+self.prompt_end+data_dict['query']
-      
-      return self.get_inference(model, prompt)
-    
-    def completionP1Modified(self, model, data_dict):
-      
-      prompt = self.prompt_begin+data_dict['docstring']+ self.prompt_end+ data_dict['query']
-      return self.get_inference(model,prompt)
+          
     
     def get_inference(self, model_name, user_prompt):
       tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
       model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True).cuda()
-      prompt = "<s> [INST] <<SYS>>\\n"+self.sys_prompt+"\\n<</SYS>>\\n\\n"+user_prompt+"[/INST]"
-      inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+      inputs = tokenizer(user_prompt, return_tensors="pt").to(model.device)
       start = time.time()
       outputs = model.generate(**inputs, max_new_tokens=1024, do_sample=False, top_k=50, top_p=0.5, temperature=0.5, num_return_sequences=1, eos_token_id=32021)
       ans = tokenizer.decode(outputs[0], skip_special_tokens=True)

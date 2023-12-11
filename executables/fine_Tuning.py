@@ -73,7 +73,7 @@ def preprocess_dataset(model, tokenizer: AutoTokenizer, max_length: int, dataset
     dataset = dataset.map(
         _preprocessing_function,
         batched=True,
-        remove_columns=["prompt", 'Output'],
+        remove_columns=["Prompt", 'Output'],
     )
     # Shuffle dataset.
     dataset = dataset.shuffle(seed=seed)
@@ -127,7 +127,7 @@ def main(args):
     )
     model = get_peft_model(model, peft_config)
     if repo_dir == 2:
-        data_files = {'train':'../datasets/Generated/P3_datasets/train_val/Stage-1/P3prompt_stage_1_train.csv','validation':'../datasets/Generated/P3_datasets/train_val/Stage-1/P3prompt_stage_1_val.csv'}
+        data_files = {'train':'P3prompt_stage_1_train.csv','validation':'P3prompt_stage_1_val.csv'}
         dataset = load_dataset(dataset_name_1,data_files=data_files)
     else:
         dataset = load_dataset(dataset_name_1)
@@ -138,7 +138,7 @@ def main(args):
     formatted_dataset = deepcopy(dataset)
     dataset = preprocess_dataset(model, tokenizer, max_length, dataset)
     training_args = TrainingArguments(
-        output_dir="./checkpoints/outputs",
+        output_dir="./model/Stage-1/checkpoints/outputs",
         per_device_train_batch_size=1,
         gradient_accumulation_steps=4,  # Powers of 2.
         learning_rate=args.learning_rate_1,
@@ -164,9 +164,9 @@ def main(args):
     )
 
     results = trainer.train()  # Now we just run train()!
-    trainer.save_model('../models/Stage-1/checkpoints/outputs_best')
+    trainer.save_model('./model/Stage-1/checkpoints/outputs_best')
     # Stage 2
-    model_name_2 = '../models/Stage-1/checkpoints/outputs_best'
+    model_name_2 = './model/Stage-1/checkpoints/outputs_best'
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         quantization_config=bnb_config,
@@ -197,7 +197,7 @@ def main(args):
     )
     model = get_peft_model(model, peft_config)
     if repo_dir == 2:
-        data_files = {'train':'../datasets/Generated/P3_datasets/train_val/Stage-2/P3prompt_stage_1_train.csv','validation':'../datasets/Generated/P3_datasets/train_val/Stage-2/P3prompt_stage_1_val.csv'}
+        data_files = {'train':'P3prompt_stage_1_train.csv','validation':'P3prompt_stage_1_val.csv'}
         dataset = load_dataset(dataset_name_2,data_files=data_files)
     else:
         dataset = load_dataset(dataset_name_2)
@@ -208,7 +208,7 @@ def main(args):
     formatted_dataset = deepcopy(dataset)
     dataset = preprocess_dataset(model, tokenizer, max_length, dataset)
     training_args = TrainingArguments(
-        output_dir="./checkpoints/outputs",
+        output_dir="./model/Stage-2/checkpoints/outputs",
         per_device_train_batch_size=1,
         gradient_accumulation_steps=4,  # Powers of 2.
         learning_rate=args.learning_rate_2,
@@ -234,7 +234,7 @@ def main(args):
     )
 
     results = trainer.train()  # Now we just run train()!
-    trainer.save_model('../models/Stage-2/checkpoints/outputs_best')
+    trainer.save_model('./model/Stage-2/checkpoints/outputs_best')
 
     return
 

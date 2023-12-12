@@ -101,7 +101,7 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 Run the below command to install all dependencies automatically:
 ```bash
-conda env create -f environment.yml
+conda env create -f environment_droplet.yml
 ```
 
 

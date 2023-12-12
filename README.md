@@ -136,7 +136,7 @@ Any open-sourced LLM can be fine-tuned using the `fine_Tuning.py` script provide
 Below is a template command to initiate fine-tuning using the `fine_Tuning.py` script. 
 
 ```bash
-python finetuning.py --pipeline <pipeline_version> --repo_dir <finetuning_mode> --dataset_1 <stage_1_dataset_name> --dataset_2 <stage_2_dataset_name> --base_model <model_name> --n_1 <num_epochs_stage_1> --n_2 <num_epochs_stage_2> --lora_alpha_1 <lora_alpha_value_stage_1> --lora_alpha_2 <lora_alpha_value_stage_2> --lora_dropout_1 <lora_dropout_value_stage_1> --lora_dropout_2 <lora_dropout_value_stage_2> --lora_r_1 <lora_r_value_stage_1> --lora_r_2 <lora_r_value_stage_2> --learning_rate_1 <learning_rate_stage_1> --learning_rate_2 <learning_rate_stage_2>
+python executables/finetuning.py --pipeline <pipeline_version> --repo_dir <finetuning_mode> --dataset_1 <stage_1_dataset_name> --dataset_2 <stage_2_dataset_name> --base_model <model_name> --n_1 <num_epochs_stage_1> --n_2 <num_epochs_stage_2> --lora_alpha_1 <lora_alpha_value_stage_1> --lora_alpha_2 <lora_alpha_value_stage_2> --lora_dropout_1 <lora_dropout_value_stage_1> --lora_dropout_2 <lora_dropout_value_stage_2> --lora_r_1 <lora_r_value_stage_1> --lora_r_2 <lora_r_value_stage_2> --learning_rate_1 <learning_rate_stage_1> --learning_rate_2 <learning_rate_stage_2>
 ```
 
 To train under the P2 (tool-memorization) scenario, run the following command:
@@ -171,7 +171,7 @@ For a detailed explanation of each argument, refer to the subsequent table:
 | `--lora_r_2`       | R parameter value for stage 2 LoRA                      | int     | 8                                                 |
 | `--learning_rate_1`| Value of learning rate for stage 1                      | float   | 2e-4                                              |
 | `--learning_rate_2`| Value of learning rate for stage 2                      | float   | 2e-4                                              |
-
+<br>
 ## JSON Converter
 <br>
 <p align="center">

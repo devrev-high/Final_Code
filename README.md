@@ -18,10 +18,10 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 <br>
 
-<h3>
+
 <details>
 
-  <summary>Table of Contents</summary></h3>
+  <summary><h3>Table of Contents</h3></summary>
 
 - [1. Getting Started](#getting-started)
   -  [1.1 Pre-requisites](#pre-requisites)

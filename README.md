@@ -35,7 +35,6 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 </h5>
 </details></h3>
-<br>
 
 # Getting Started
 ## Pre-requisites

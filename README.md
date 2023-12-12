@@ -10,16 +10,18 @@ This repository contains our solution for the ‘AI Agent 007: Tooling up for su
 <div align="center">
   
 
-  <h3 align="center">Figure 1: Our proposed pipeline - RTaC</h3> </div><br>
+  <h3 align="center">Figure 1: Our proposed pipeline - RTaC</h3> </div>
 
+
+<br>
 We present RTaC, which reconceptualizes the task of tooling as a coding task to exploit the powerful code-comprehension capabilities of LLMs. RTaC provides tools to be used in docstring format to instruction-finetuned Coding-Base LLMs, extracts output in Python-inspired code format and then deterministically converts it to JSON. RTaC promotes docstring reading capability in the LLMs, and hence supports tool modification, addition and deletion. Using RTaC, we achieve GPT-4 benchmark performance while employing just DeepSeek 1.3B and CodeLLama 7B LLMs, despite a drastic reduction in parameter count by over 300 times. Cost reduction per query by over 5 times is achieved while matching GPT-4’s latency. Moreover, RTaC supports the processing of complex conditional and iterative logic (Bonus), surpassing GPT-4's capabilities.
 
+<br>
 
 <h3>
 <details>
 
   <summary>Table of Contents</summary>
-  <h6>
 
 - [1. Getting Started](#getting-started)
   -  [1.1 Pre-requisites](#pre-requisites)
@@ -32,12 +34,13 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
   -  [3.4 Inference and Evaluation](#inference-and-evaluation)
 - [4. Project Structure](#project-structure)
 
-</h6>
 </details></h3>
+<br>
 
 # Getting Started
 ## Pre-requisites
->Ensure the following software is installed on your system:
+> [!NOTE]
+> Ensure the following software is installed on your system:
 
 
 ### Docker and Docker Compose
@@ -177,7 +180,7 @@ The model outputs are generated in a Python inspired format. We use this Code to
 
 ## Inference and Evaluation
 
-Inference and Evaluation can be carried out by running the `XYZ` notebook in the `XYZ` folder. The notebook creates a `XYZ` directory within the `XYZ` folder, and stores the generated outputs as csv files.
+Inference and Evaluation can be carried out by running the `inference_main` notebook in the `notebooks` folder. This notebook creates an `output` directory, and stores the generated outputs as csv files.
 
 ## Inference
 
@@ -213,7 +216,4 @@ A sample result from our original set of experiments is shown below:
 
   <h3 align="center">Figure 3: Evaluation Result</h3> </div> <br>
 
-#### Project Structure
-
-[//]: # (Details about the project structure)
 

@@ -248,4 +248,4 @@ model_name
 infer_model_stage_1 
 infer_model_stage_2  
 ```
-Example: The value of the variable: **model_name** changes from `codellama/CodeLlama-7b-Instruct-hf` to `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`
+Example: The value of the variable **model_name** changes from `codellama/CodeLlama-7b-Instruct-hf` to `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`

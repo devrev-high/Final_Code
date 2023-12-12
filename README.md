@@ -79,7 +79,8 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 ### Using Docker
 
->**Note:** Ensure you're in the project's root directory before proceeding.
+> [!NOTE]
+> Ensure you're in the project's root directory before proceeding.
 
 1. **Build the Docker Image**
    ```bash

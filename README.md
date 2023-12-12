@@ -117,9 +117,9 @@ For our experiments, all our datasets were evaluated by a human, often involving
 
 To maintain credibility and verifiability, we generate data for three different scenarios mentioned in the report:
 
-1. Evaluating Few-Shot prompting of CodeLLMs (referred to as P1) (check section 4.2.1 of the report)
-2. Training and Evaluating CodeLLMs for the tool-memorisation methodology (referred to as P2) (check section 4.2.2 of the report)
-3. Training and Evaluating RTaC (our proposed final pipeline) (referred to as P3) (check section 4.2.3 of the report)
+1. Evaluating Few-Shot prompting of CodeLLMs **(referred to as P1)** (check section 4.2.1 of the report)
+2. Training and Evaluating CodeLLMs for the tool-memorisation methodology **(referred to as P2)** (check section 4.2.2 of the report)
+3. Training and Evaluating RTaC (our proposed final pipeline) **(referred to as P3)** (check section 4.2.3 of the report)
 
 We adopt the Self-instruct methodology to generate our datasets, which utilizes GPT-4 to generate queries and outputs, encompassing the tool list passed to it in the prompt. Further, we split the task of query and output generation between two distinct LLM agents to tackle the vulnerability of LLMs to hallucinations.
 
@@ -246,4 +246,4 @@ model_name
 infer_model_stage_1 
 infer_model_stage_2  
 ```
-Example: `codellama/CodeLlama-7b-Instruct-hf` &rarr; `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`
+Example: The value of the variable: **model_name** `codellama/CodeLlama-7b-Instruct-hf` &rarr; `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`

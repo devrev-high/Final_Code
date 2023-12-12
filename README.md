@@ -97,8 +97,9 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 # Build from Scratch
 
 ## Dependencies
->Run the below command to install all dependencies automatically:
-```
+
+Run the below command to install all dependencies automatically:
+```bash
 conda env create -f environment.yml
 ```
 

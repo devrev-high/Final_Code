@@ -239,10 +239,11 @@ A sample result from our original set of experiments is shown below:
 gdown https://drive.google.com/drive/folders/1lpJCVKcnz93K_dvhZa51hVijid-IuwNr?usp=sharing --folder
 ```
 
-These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models. Example: `codellama/CodeLlama-7b-Instruct-hf` &rarr; `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`
+These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models.
 
 ```bash
 model_name
 infer_model_stage_1 
 infer_model_stage_2  
 ```
+Example: `codellama/CodeLlama-7b-Instruct-hf` &rarr; `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`

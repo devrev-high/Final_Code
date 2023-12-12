@@ -173,6 +173,7 @@ For a detailed explanation of each argument, refer to the subsequent table:
 | `--learning_rate_2`| Value of learning rate for stage 2                      | float   | 2e-4                                              |
 <br>
 ## JSON Converter
+
 <br>
 <p align="center">
   <img src="images/JSONConverter.png" />

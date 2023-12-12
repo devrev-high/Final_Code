@@ -100,6 +100,11 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 # Build from Scratch
 
+Change directory to RTaC by running the following command:
+```bash
+cd ./RTaC
+```
+
 ## Dependencies
 
 Run the below command to install all dependencies automatically:
@@ -117,9 +122,9 @@ For our experiments, all our datasets were evaluated by a human, often involving
 
 To maintain credibility and verifiability, we generate data for three different scenarios mentioned in the report:
 
-1. Evaluating Few-Shot prompting of CodeLLMs (referred to as P1) (check section 4.2.1 of the report)
-2. Training and Evaluating CodeLLMs for the tool-memorisation methodology (referred to as P2) (check section 4.2.2 of the report)
-3. Training and Evaluating RTaC (our proposed final pipeline) (referred to as P3) (check section 4.2.3 of the report)
+1. Evaluating Few-Shot prompting of CodeLLMs **(referred to as P1)** (check section 4.2.1 of the report)
+2. Training and Evaluating CodeLLMs for the tool-memorisation methodology **(referred to as P2)** (check section 4.2.2 of the report)
+3. Training and Evaluating RTaC (our proposed final pipeline) **(referred to as P3)** (check section 4.2.3 of the report)
 
 We adopt the Self-instruct methodology to generate our datasets, which utilizes GPT-4 to generate queries and outputs, encompassing the tool list passed to it in the prompt. Further, we split the task of query and output generation between two distinct LLM agents to tackle the vulnerability of LLMs to hallucinations.
 
@@ -201,20 +206,6 @@ Inference and Evaluation can be carried out by running the `inference_main` note
 
 The inference is independently conducted for all three scenarios: P1, P2 and P3. Each of these scenarios is evaluated on three types of test datasets: Static, Dynamic and Bonus. Our trained models have been uploaded on HuggingFace. The inference and evaluation notebook directly loads the models from HuggingFace.
 
-> [!NOTE]
-> For the sake of your convenience, our best models can be downloaded locally using the following command:
-```bash
-link here
-```
-> [!NOTE]
-> These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models.
-```bash
-model_name = base-model
-infer_model_stage_1 
-infer_model_stage_2  
-
-```
-
 #### Usage
 - For each scenario (P1, P2, and P3), run the respective inference code blocks for Static, Dynamic, and Bonus datasets.
 - The outputs are saved in separate CSV files for each dataset type.
@@ -243,6 +234,21 @@ A sample result from our original set of experiments is shown below:
 <div align="center">
   
 
-  <h3 align="center">Figure 3: Evaluation Result</h3> </div> <br>
+  <h3 align="center">Figure 3: Evaluation Result</h3> </div> <be>
 
+<br>
 
+> [!NOTE]
+> For the sake of your convenience, our best RTaC models can be downloaded locally using the following command:
+```bash
+gdown https://drive.google.com/drive/folders/1lpJCVKcnz93K_dvhZa51hVijid-IuwNr?usp=sharing --folder
+```
+
+These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models.
+
+```bash
+model_name
+infer_model_stage_1 
+infer_model_stage_2  
+```
+Example: The value of the variable: **model_name** changes from `codellama/CodeLlama-7b-Instruct-hf` to `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`

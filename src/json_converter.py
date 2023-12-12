@@ -1,7 +1,7 @@
+import json
 import re
 import csv
 import ast
-import json
 
 def modify_args(args):
     """
@@ -62,6 +62,7 @@ def get_avl_tools():
         "who_am_i":{
         }
     }
+
     with open("../resources/Tool_list/dynamicDicts.csv","r") as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
@@ -145,7 +146,7 @@ def update_arg_val(arg_value,arg_name,tool_name,arg_index,tools,start,temp_index
 
     avl_tools = get_avl_tools()
     arg_value = arg_value.strip()
-
+  
     if arg_value[0] == '[':
         if arg_value[-1] != ']':
             arg_value += ']'
@@ -158,6 +159,7 @@ def update_arg_val(arg_value,arg_name,tool_name,arg_index,tools,start,temp_index
             arg_val_list.append(value)
 
         return arg_val_list
+       
 
     if arg_value.startswith("$$"):
         return arg_value
@@ -178,7 +180,7 @@ def update_arg_val(arg_value,arg_name,tool_name,arg_index,tools,start,temp_index
     
 def wrong_name_handler(tool_name,args,arg_index,start,temp_index=None):
     """
-    Handles the case of a hallucinated tool(or any tool that was unable to be resolved by the edit distance)
+    Handles the case of a hallucinated tool (or any tool that was unable to be resolved by the edit distance)
     Is similar to update_arg_val but since there are no restrictions on argument names or values, 
     it returns them as they are
     """
@@ -235,7 +237,7 @@ def process_tool(index,tool_name,args,tools,arg_index,start,temp_index=None):
 
     return tool
 
-def if_handler(condition,arg_index):
+def if_handler(condition,arg_index,tools):
     """
     Returns the processed if case as a conditional_magic dictionary
     """
@@ -245,12 +247,24 @@ def if_handler(condition,arg_index):
     if condition[-1] == ':':
         condition = condition[:-1]
 
-    condition = condition.strip('(').strip(')')
+    if condition[0] == '(' and condition[-1] == ')':
+        condition = condition[1:-1]
 
     for var_ind in arg_index:
         condition = condition.replace("var_"+str(var_ind),f"$$PREV[{arg_index[var_ind]}]")   
 
     condition = condition.replace("range","$$RANGE") 
+
+    function_calls = re.findall(r"\w+\s*\([^)]*\)", condition)
+    for function_call in function_calls:
+        function_call = function_call.strip()
+        if function_call.startswith("RANGE") or function_call.startswith("$$RANGE"):
+            continue
+        match = re.match(r"\s*(\w+)\((.*)\)",function_call)
+        if match:
+            process_tool(0,match.group(1),match.group(2),tools,arg_index,"var_")
+
+            condition = condition.replace(function_call,f"$$PREV[{arg_index[0]}]")
 
     return {
         "tool_name": "conditional_magic",
@@ -287,7 +301,7 @@ def for_handler(looping_var,arg_index,tools):
     function_calls = re.findall(r"\w+\s*\([^)]*\)", looping_var)
     for function_call in function_calls:
         function_call = function_call.strip()
-        if function_call.startswith("RANGE"):
+        if function_call.startswith("RANGE") or function_call.startswith("$$RANGE"):
             continue
         match = re.match(r"\s*(\w+)\((.*)\)",function_call)
         if match:
@@ -313,18 +327,18 @@ def arg_splitter(args):
             brack_count += 1
         if i == ']':
             brack_count -= 1
+        if i == ',':
+            last_comma = len(cur_arg)
         if brack_count == 0 and i == ',':
             split_args.append(cur_arg)
             cur_arg = ""
             continue
-        if i == ',':
-            last_comma = len(cur_arg)
         cur_arg += i
         if cur_arg.count("=")>1:
             split_args.append(cur_arg[:last_comma]+']')
             cur_arg = cur_arg[last_comma+1:]
     split_args.append(cur_arg)
-
+   
     return split_args
         
 def make_tool(tool_name,args,arg_index,tools,start,temp_index):
@@ -352,6 +366,8 @@ def make_tool(tool_name,args,arg_index,tools,start,temp_index):
             arg_name, arg_value = arg.split("=", 1)
             arg_name = arg_name.strip()
             arg_value = arg_value.strip().strip("\"").strip("\'")
+
+         
 
             arg_name = update_arg_name(arg_name,tool_name)
             if not arg_name:
@@ -401,12 +417,21 @@ def converter(string):
             match = re.match(r"\s*var_(\d+)\s*=\s*(\w+)\((.*)\)", i)
 
             if match:
+        
                 inIf = False
                 inElse = False
                 inFor = False
                 index = int(match.group(1)) 
                 tool_name = match.group(2)
                 args = match.group(3)
+
+                if tool_name.strip() == "if":
+                    tools.append(if_handler(args,arg_index,tools))
+                    ifInd = len(tools)-1
+                    inIf = True
+                    inFor = False
+                    temp_index = {}
+                    continue
 
                 process_tool(index,tool_name,args,tools,arg_index,start="var_")
                 continue
@@ -417,10 +442,11 @@ def converter(string):
                 inIf = True
                 inFor = False
                 temp_index = {}
+            
 
                 condition = match.group(1)
 
-                tools.append(if_handler(condition,arg_index))
+                tools.append(if_handler(condition,arg_index,tools))
                 ifInd = len(tools)-1
                 continue
 
@@ -429,13 +455,15 @@ def converter(string):
                 match = re.match(r"\s*temp_(\d+)\s*=\s*(\w+)\((.*)\)", i)
 
                 if match:
+                 
                     index = int(match.group(1))
                     tool_name = match.group(2)
                     args = match.group(3)
 
                     process_tool(index,tool_name,args,tools[ifInd]["true"],arg_index,"temp_",temp_index)
                     continue
-                    
+                 
+
                 match = re.match(r"\s*else:\s*",i)
 
                 if match:
@@ -449,6 +477,7 @@ def converter(string):
                 match = re.match(r"\s*temp_(\d+)\s*=\s*(\w+)\((.*)\)", i)
 
                 if match:
+                 
                     index = int(match.group(1))
                     tool_name = match.group(2)
                     args = match.group(3)
@@ -459,6 +488,7 @@ def converter(string):
             match = re.match(r"\s*for\s*loop_var\s*in\s*(.*)",i)
 
             if match:
+             
                 inIf = False
                 looping_var = match.group(1)
                 temp_index = {}
@@ -472,6 +502,7 @@ def converter(string):
                 match = re.match(r"\s*temp_(\d+)\s*=\s*(\w+)\((.*)\)", i)
 
                 if match:
+              
                     index = int(match.group(1))
                     tool_name = match.group(2)
                     args = match.group(3)

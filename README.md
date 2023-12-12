@@ -114,9 +114,9 @@ For our experiments, all our datasets were evaluated by a human, often involving
 
 To maintain credibility and verifiability, we generate data for three different scenarios mentioned in the report:
 
-1. Evaluating Few-Shot prompting of CodeLLMs
-2. Training and Evaluating CodeLLMs for the tool-memorisation methodology
-3. Training and Evaluating RTaC (our proposed final pipeline)
+1. Evaluating Few-Shot prompting of CodeLLMs (referred to as P1) (check section 4.2.1 of report)
+2. Training and Evaluating CodeLLMs for the tool-memorisation methodology (check section 4.2.2 of report)
+3. Training and Evaluating RTaC (our proposed final pipeline) (check section 4.2.3 of report)
 
 We adapt the Self-instruct methodology to generate our datasets, which utilizes GPT-4 to generate queries and outputs, encompassing the tool list passed to it in the prompt. Further, we split the task of query and output generation between two distinct LLM agents, to tackle the vulnerability of LLMs to hallucinations.
 
@@ -168,15 +168,16 @@ python fine_Tuning.py –repo_dir <finetuning_mode> --dataset <dataset_name> --m
   <h3 align="center">Figure 2: Code to JSON Converter</h3> </div>
 
   <br>
-The model outputs are generated in a Python inspired format. We use this Code to JSON converter to convert the python code to the desireable JSON format.
-
+The model outputs are generated in a Python-inspired format. A Code-to-JSON converter was built to convert the Python outputs to the desirable JSON format. The working of the converter has been briefly explained below:
 <br>
 
 1. To convert the model’s generated code to the required json format we use a python script. This file is modelled as a compiler type script, and is a key component of our pipeline.
 
 2. Each line is individually classified into either a bonus (if/for) case or the general case. The bonus cases go through their respective handlers and are then treated like the general case.
 
-3. The typical flow of any case involves the following calls: process_tool calls make_tool for each valid tool_name, make_tool calls update_arg_val for each valid argument name. For a more detailed explanation on how the converter works, please refer to the report.
+3. The typical flow of any case involves the following calls: process_tool calls make_tool for each valid tool_name, make_tool calls update_arg_val for each valid argument name.
+
+For a more detailed explanation on how the converter works, please refer to the report.
 
 <br>
 

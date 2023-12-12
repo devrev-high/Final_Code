@@ -184,7 +184,7 @@ The model outputs are generated in a Python inspired format. We use this Code to
 
 Inference and Evaluation can be carried out by running the `inference_main` notebook in the `notebooks` folder. This notebook creates an `output` directory, and stores the generated outputs as csv files.
 
-## Inference
+### Inference
 
 The inference is independently conducted for all three scenarios: P1, P2 and P3. Each of these scenarios is evaluated on three types of test datasets: Static, Dynamic and Bonus. 
 
@@ -192,9 +192,9 @@ The inference is independently conducted for all three scenarios: P1, P2 and P3.
 - For each scenario (P1, P2, and P3), run the respective inference code blocks for Static, Dynamic, and Bonus datasets.
 - The outputs are saved in separate CSV files for each dataset type.
 
-## Evaluation
+### Evaluation
 
-### Description
+#### Description
 This section evaluates the performance of each pipeline on the three test datasets. Evaluation is done using the follwing metrics:
 
 - Precision
@@ -202,7 +202,7 @@ This section evaluates the performance of each pipeline on the three test datase
 - F1 Score
 - [LangChain Metric](https://api.python.langchain.com/en/latest/evaluation/langchain.evaluation.parsing.json_distance.JsonEditDistanceEvaluator.html#)
 
-### Usage
+#### Usage
 - For each scenario (P1, P2, and P3), run the respective evaluation code blocks for Static, Dynamic, and Bonus datasets.
 - The evaluation scores are printed as output in the notebook itself.
 

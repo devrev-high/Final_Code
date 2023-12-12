@@ -107,7 +107,6 @@ class P3_inferencing():
       model.config.pad_token_id = tokenizer.pad_token_id
       model.config.bos_token_id = tokenizer.bos_token_id
       model.config.eos_token_id = tokenizer.eos_token_id
-      model.config.use_cache = 
       
       self.model = PeftModel.from_pretrained(model, infer_model_2, device_map='auto')
 

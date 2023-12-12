@@ -32,7 +32,6 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
   -  [3.3 JSON Converter](#json-converter)
   -  [3.3 Fine-tuning](#fine-tuning)
   -  [3.4 Inference and Evaluation](#inference-and-evaluation)
-- [4. Project Structure](#project-structure)
 
 </h6></details></h3>
 

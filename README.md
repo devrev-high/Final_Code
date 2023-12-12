@@ -165,7 +165,7 @@ python fine_Tuning.py –repo_dir <finetuning_mode> --dataset <dataset_name> --m
 <div align="center">
   
 
-  <h3 align="center">Figure 2: Code to JSON Converter</h3> </div>
+  <h3 align="center">Figure 2: Code-to-JSON Converter</h3> </div>
 
   <br>
 The model outputs are generated in a Python-inspired format. A Code-to-JSON converter was built to convert the Python outputs to the desirable JSON format. The working of the converter has been briefly explained below:

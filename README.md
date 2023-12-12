@@ -28,12 +28,13 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 - [1. Getting Started](#getting-started)
   -  [1.1 Pre-requisites](#pre-requisites)
   -  [1.2 Quick start](#quick-start)
-- [3. Build from scratch](#build-from-scratch)
-  -  [3.1 Dependencies](#dependencies)
-  -  [3.2 Dataset Generation](#dataset-generation)
-  -  [3.3 JSON Converter](#json-converter)
-  -  [3.3 Fine-tuning](#fine-tuning)
-  -  [3.4 Inference and Evaluation](#inference-and-evaluation)
+- [2. Build from scratch](#build-from-scratch)
+  -  [2.1 Dependencies](#dependencies)
+  -  [2.2 Dataset Generation](#dataset-generation)
+  -  [2.3 Downloading Models](#downloading-models)
+  -  [2.4 Fine-tuning](#fine-tuning)
+  -  [2.5 JSON Converter](#json-converter)
+  -  [2.6 Inference and Evaluation](#inference-and-evaluation)
 
 </details>
 

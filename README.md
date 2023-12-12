@@ -136,7 +136,7 @@ Any open-sourced LLM can be fine-tuned using the `fine_Tuning.py` script provide
 Below is a template command to initiate fine-tuning using the `fine_Tuning.py` script. 
 
 ```bash
-python finetuning.py –repo_dir <finetuning_mode> --dataset <dataset_name> --model <model_name> –n <num_epochs> –lora_alpha <lora_alpha_value> –lora_dropout <lora_dropout_value> –lora_r <lora_r_value> –learning_rate <rate_of_learning>
+python finetuning.py --pipeline <pipeline_version> --repo_dir <finetuning_mode> --dataset_1 <stage_1_dataset_name> --dataset_2 <stage_2_dataset_name> --base_model <model_name> --n_1 <num_epochs_stage_1> --n_2 <num_epochs_stage_2> --lora_alpha_1 <lora_alpha_value_stage_1> --lora_alpha_2 <lora_alpha_value_stage_2> --lora_dropout_1 <lora_dropout_value_stage_1> --lora_dropout_2 <lora_dropout_value_stage_2> --lora_r_1 <lora_r_value_stage_1> --lora_r_2 <lora_r_value_stage_2> --learning_rate_1 <learning_rate_stage_1> --learning_rate_2 <learning_rate_stage_2>
 ```
 
 To train under the P2 (tool-memorization) scenario, run the following command:
@@ -154,16 +154,24 @@ python executables/fine_Tuning.py --pipeline 3 --repo_dir 2 --dataset_1 datasets
 
 For a detailed explanation of each argument, refer to the subsequent table:
 
-| option        | description                            | type  | default                                           |
-|---------------|----------------------------------------|-------|---------------------------------------------------|
-| --repo_dir    | mode( 1 for hf repo, 2 for local directory) | int   | 1                                                 |
-| --dataset     | name of dataset to finetune            | str   | Insight244/p3-stage-1-data-no-dynamic-no-random-no-bonus |
-| --model       | name of model to fine-tune             | str   | codellama/CodeLama-7b-Instruct-hf                 |
-| --n           | Number of epochs                       | int   | 5                                                 |
-| --lora_alpha  | alpha parameter value for LoRA         | int   | 16                                                |
-| --lora_dropout| dropout parameter value for LoRA       | float | 0.1                                               |
-| --lora_r      | R parameter value for LoRA             | int   | 8                                                 |
-| --learning_rate | value of learning rate               | float | 2e-4                                             |
+| Option             | Description                                             | Type    | Default                                           |
+|--------------------|---------------------------------------------------------|---------|---------------------------------------------------|
+| `--pipeline`       | Enter 2 for p2, 3 for p3                                | int     | 3                                                 |
+| `--repo_dir`       | Enter 1 for hf repo, 2 for local dir                    | int     | 2                                                 |
+| `--dataset_1`      | Name of stage 1 dataset to finetune                     | str     | "datasets/Pre-Generated/P3_datasets/train_val/Stage-1" |
+| `--dataset_2`      | Name of stage 2 dataset to finetune                     | str     | "datasets/Pre-Generated/P3_datasets/train_val/Stage-2" |
+| `--base_model`     | Name of base model to finetune                          | str     | "codellama/CodeLlama-7b-Instruct-hf"               |
+| `--n_1`            | Number of stage 1 epochs                                | int     | 5                                                 |
+| `--n_2`            | Number of stage 2 epochs                                | int     | 5                                                 |
+| `--lora_alpha_1`   | Alpha parameter value for stage 1 LoRA                  | int     | 16                                                |
+| `--lora_alpha_2`   | Alpha parameter value for stage 2 LoRA                  | int     | 16                                                |
+| `--lora_dropout_1` | Dropout parameter value for stage 1 LoRA                | float   | 0.1                                               |
+| `--lora_dropout_2` | Dropout parameter value for stage 2 LoRA                | float   | 0.1                                               |
+| `--lora_r_1`       | R parameter value for stage 1 LoRA                      | int     | 8                                                 |
+| `--lora_r_2`       | R parameter value for stage 2 LoRA                      | int     | 8                                                 |
+| `--learning_rate_1`| Value of learning rate for stage 1                      | float   | 2e-4                                              |
+| `--learning_rate_2`| Value of learning rate for stage 2                      | float   | 2e-4                                              |
+
 
 ```bash
 

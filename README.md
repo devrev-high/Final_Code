@@ -184,7 +184,7 @@ The model outputs are generated in a Python-inspired format. A Code-to-JSON conv
 
 2. Each line is individually classified into either a bonus (if/for) case or a general case. The bonus cases go through their respective handlers and are then treated like the general case.
 
-3. The typical flow of any case involves the following calls: process_tool calls make_tool for each valid **tool_name**, **make_tool** calls **update_arg_val** for each valid argument name.
+3. The typical flow of any case involves the following calls: `process_tool` calls `make_tool` for each valid `tool_name`, `make_tool` calls `update_arg_val` for each valid argument name.
 
 For a more detailed explanation of how the converter works, please refer to section A.1 of the report.
 

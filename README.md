@@ -18,10 +18,11 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 <br>
 
-<h4>
+<h3>
 <details>
 
   <summary>Table of Contents</summary>
+  <h5>
 
 - [1. Getting Started](#getting-started)
   -  [1.1 Pre-requisites](#pre-requisites)
@@ -34,7 +35,8 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
   -  [3.4 Inference and Evaluation](#inference-and-evaluation)
 - [4. Project Structure](#project-structure)
 
-</details></h4>
+</h5>
+</details></h3>
 <br>
 
 # Getting Started

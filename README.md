@@ -106,7 +106,7 @@ conda env create -f environment_droplet.yml
 
 
 ## Dataset Generation
-The dataset can be generated from scratch by running the `[dataset_main](executables/dataset_main.ipynb)` notebook in the `notebooks` folder. The notebook creates a `generated` directory within the `datasets` folder and saves the generated datasets in the required format in that directory. The exact method and prompt formations have been outlined in detail in the notebook itself. 
+The dataset can be generated from scratch by running the [dataset_main](executables/dataset_main.ipynb) notebook in the `notebooks` folder. The notebook creates a `generated` directory within the `datasets` folder and saves the generated datasets in the required format in that directory. The exact method and prompt formations have been outlined in detail in the notebook itself. 
 
 For our experiments, all our datasets were evaluated by a human, often involving corrections due to errors incurred during the generation stage. We have provided the pre-generated datasets in the `datasets/pre-generated` folder. We strongly encourage training models on the pre-generated dataset.
 

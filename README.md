@@ -92,6 +92,11 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
    ```bash
    docker-compose up
    ```
+<br>
+
+In case, you are unable to run the deployed website or run the website locally, an interactive playground notebook can also be accessed [here](executables/play_ground.ipynb). 
+
+**Note:** This supports only limited functionality, and is meant for backup purposes only.
 
 <br>
 
@@ -124,6 +129,14 @@ To maintain credibility and verifiability, we generate data for three different 
 3. Training and Evaluating RTaC (our proposed final pipeline) **(referred to as P3)** (check section 4.2.3 of the report)
 
 We adopt the Self-instruct methodology to generate our datasets, which utilizes GPT-4 to generate queries and outputs, encompassing the tool list passed to it in the prompt. Further, we split the task of query and output generation between two distinct LLM agents to tackle the vulnerability of LLMs to hallucinations.
+
+## Downloading Models
+
+Our best RTaC models can be downloaded locally using the following command:
+
+```bash
+gdown https://drive.google.com/drive/folders/1lpJCVKcnz93K_dvhZa51hVijid-IuwNr?usp=sharing --folder --remaining-ok
+```
 
 ## Fine Tuning
 
@@ -236,20 +249,3 @@ A sample result from our original set of experiments is shown below:
   
 
   <h3 align="center">Figure 3: Evaluation Result</h3> </div> <be>
-
-<br>
-
-> [!NOTE]
-> For the sake of your convenience, our best RTaC models can be downloaded locally using the following command:
-```bash
-gdown https://drive.google.com/drive/folders/1lpJCVKcnz93K_dvhZa51hVijid-IuwNr?usp=sharing --folder
-```
-
-These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models.
-
-```bash
-model_name
-infer_model_stage_1 
-infer_model_stage_2  
-```
-Example: The value of the variable **model_name** changes from `codellama/CodeLlama-7b-Instruct-hf` to `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`

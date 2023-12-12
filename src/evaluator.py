@@ -59,7 +59,7 @@ def evaluator(eval_df):
 
     return eval_df['Precision'].mean(), eval_df['Recall'].mean(), eval_df['F1_Score'].mean(), eval_df['Langchain'].mean(), eval_df['Latency'].mean()
 
-def clean_output(input_text):
+def clean_output_p1(input_text):
     regex_pattern = r'The output should be:\s*(var_\d+\s*=\s*\w+\(\w+\=[^\n]+(?:\n\s*)*)+'
     match = re.search(regex_pattern, input_text)
     # Check if a match is found
@@ -69,3 +69,13 @@ def clean_output(input_text):
         return(extracted_text)
     else:
         return("")
+    
+def clean_output_p2_p3(code):
+# The regex pattern to find text within triple backticks
+    pattern = r"```([\s\S]*?)```"
+    # Using the re.findall method to find all matches
+    matches = re.findall(pattern, code)
+    if len(matches) == 0:
+        return("")
+    else:
+        return(matches[0])

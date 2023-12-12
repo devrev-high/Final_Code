@@ -127,7 +127,10 @@ def main(args):
     )
     model = get_peft_model(model, peft_config)
     if repo_dir == 2:
-        data_files = {'train':'P3prompt_stage_1_train.csv','validation':'P3prompt_stage_1_val.csv'}
+        if(args.pipeline == 3):
+            data_files = {'train':'P3prompt_stage_1_train.csv','validation':'P3prompt_stage_1_val.csv'}
+        elif(args.pipeline == 2):
+            data_files = {'train':'P2prompt_train.csv','validation':'P2prompt_val.csv'}
         dataset = load_dataset(dataset_name_1,data_files=data_files)
     else:
         dataset = load_dataset(dataset_name_1)
@@ -165,85 +168,87 @@ def main(args):
 
     results = trainer.train()  # Now we just run train()!
     trainer.save_model('./model/Stage-1/checkpoints/outputs_best')
-    # Stage 2
-    model_name_2 = './model/Stage-1/checkpoints/outputs_best'
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        quantization_config=bnb_config,
-        device_map="auto",
-    )
-    model = PeftModel.from_pretrained(model, model_name_2, device_map='auto')
-    with torch.no_grad():
-        model.resize_token_embeddings(len(tokenizer))
-    model.config.pad_token_id = tokenizer.pad_token_id
-    model.config.bos_token_id = tokenizer.bos_token_id
-    model.config.eos_token_id = tokenizer.eos_token_id
-    model.config.use_cache = False
+    if(args.pipeline == 3):
+        # Stage 2
+        model_name_2 = './model/Stage-1/checkpoints/outputs_best'
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            quantization_config=bnb_config,
+            device_map="auto",
+        )
+        model = PeftModel.from_pretrained(model, model_name_2, device_map='auto')
+        with torch.no_grad():
+            model.resize_token_embeddings(len(tokenizer))
+        model.config.pad_token_id = tokenizer.pad_token_id
+        model.config.bos_token_id = tokenizer.bos_token_id
+        model.config.eos_token_id = tokenizer.eos_token_id
+        model.config.use_cache = False
 
-    model.gradient_checkpointing_enable()
-    model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
-    # Finding LORA supporting layers
-    modules = find_all_linear_names(model)
-    lora_alpha = args.lora_alpha_2
-    lora_dropout = args.lora_dropout_2
-    lora_r = args.lora_r_2
-    peft_config = LoraConfig(
-        lora_alpha=lora_alpha,
-        lora_dropout=lora_dropout,
-        target_modules=modules,
-        r=lora_r,
-        bias="none",
-        task_type="CAUSAL_LM"
-    )
-    model = get_peft_model(model, peft_config)
-    if repo_dir == 2:
-        data_files = {'train':'P3prompt_stage_1_train.csv','validation':'P3prompt_stage_1_val.csv'}
-        dataset = load_dataset(dataset_name_2,data_files=data_files)
-    else:
-        dataset = load_dataset(dataset_name_2)
+        model.gradient_checkpointing_enable()
+        model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
+        # Finding LORA supporting layers
+        modules = find_all_linear_names(model)
+        lora_alpha = args.lora_alpha_2
+        lora_dropout = args.lora_dropout_2
+        lora_r = args.lora_r_2
+        peft_config = LoraConfig(
+            lora_alpha=lora_alpha,
+            lora_dropout=lora_dropout,
+            target_modules=modules,
+            r=lora_r,
+            bias="none",
+            task_type="CAUSAL_LM"
+        )
+        model = get_peft_model(model, peft_config)
+        if repo_dir == 2:
+            data_files = {'train':'P3prompt_stage_2_train.csv','validation':'P3prompt_stage_2_val.csv'}
+            dataset = load_dataset(dataset_name_2,data_files=data_files)
+        else:
+            dataset = load_dataset(dataset_name_2)
 
-    # Change the max length depending on hardware constraints.
-    max_length = get_max_length(model)
-    #preprocess the dataset
-    formatted_dataset = deepcopy(dataset)
-    dataset = preprocess_dataset(model, tokenizer, max_length, dataset)
-    training_args = TrainingArguments(
-        output_dir="./model/Stage-2/checkpoints/outputs",
-        per_device_train_batch_size=1,
-        gradient_accumulation_steps=4,  # Powers of 2.
-        learning_rate=args.learning_rate_2,
-        max_grad_norm=1.0,
-        lr_scheduler_type="linear",
-        warmup_steps=5,
-        fp16=True,
-        logging_strategy="steps",
-        logging_steps=1,
-        save_strategy="epoch",
-        optim="paged_adamw_8bit",
-        num_train_epochs=args.n_2,
-        evaluation_strategy='steps',
-        eval_steps=100
-    )
+        # Change the max length depending on hardware constraints.
+        max_length = get_max_length(model)
+        #preprocess the dataset
+        formatted_dataset = deepcopy(dataset)
+        dataset = preprocess_dataset(model, tokenizer, max_length, dataset)
+        training_args = TrainingArguments(
+            output_dir="./model/Stage-2/checkpoints/outputs",
+            per_device_train_batch_size=1,
+            gradient_accumulation_steps=4,  # Powers of 2.
+            learning_rate=args.learning_rate_2,
+            max_grad_norm=1.0,
+            lr_scheduler_type="linear",
+            warmup_steps=5,
+            fp16=True,
+            logging_strategy="steps",
+            logging_steps=1,
+            save_strategy="epoch",
+            optim="paged_adamw_8bit",
+            num_train_epochs=args.n_2,
+            evaluation_strategy='steps',
+            eval_steps=100
+        )
 
-    trainer = Trainer(
-        model=model,
-        args=training_args,
-        data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
-        train_dataset=dataset['train'],
-        eval_dataset=dataset['validation']
-    )
+        trainer = Trainer(
+            model=model,
+            args=training_args,
+            data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
+            train_dataset=dataset['train'],
+            eval_dataset=dataset['validation']
+        )
 
-    results = trainer.train()  # Now we just run train()!
-    trainer.save_model('./model/Stage-2/checkpoints/outputs_best')
+        results = trainer.train()  # Now we just run train()!
+        trainer.save_model('./model/Stage-2/checkpoints/outputs_best')
 
     return
 
 if '__name__' == '__main__':
     parser = argparse.ArgumentParser(description="Script for fine-tuning")
     # Add argument(s) here
-    parser.add_argument("--repo_dir", type=int, default=1, help="Enter 1 for hf repo, 2 for local dir")
-    parser.add_argument("--dataset_1", type=str, default="Insight244/p3-final-stage-1", help="Name of stage 1 dataset to finetune")
-    parser.add_argument("--dataset_2", type=str, default="Insight244/p3-final-stage-2", help="Name of stage 2 dataset to finetune")
+    parser.add_argument("--pipeline", type=int, default=3, help="Enter 2 for p2, 3 for p3")
+    parser.add_argument("--repo_dir", type=int, default=2, help="Enter 1 for hf repo, 2 for local dir")
+    parser.add_argument("--dataset_1", type=str, default="datasets/Pre-Generated/P3_datasets/train_val/Stage-1", help="Name of stage 1 dataset to finetune")
+    parser.add_argument("--dataset_2", type=str, default="datasets/Pre-Generated/P3_datasets/train_val/Stage-2", help="Name of stage 2 dataset to finetune")
     parser.add_argument("--base_model", type=str, default="codellama/CodeLlama-7b-Instruct-hf", help="Name of base model to finetune")
     parser.add_argument("--n_1", type=int, default=5, help="Number of stage 1 epochs")
     parser.add_argument("--n_2", type=int, default=5, help="Number of stage 2 epochs")

@@ -19,7 +19,7 @@ class P1_inferecening():
       model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True).cuda()
       inputs = tokenizer(user_prompt, return_tensors="pt").to(model.device)
       start = time.time()
-      outputs = model.generate(**inputs, max_new_tokens=1024, do_sample=False, top_k=50, top_p=0.5, temperature=0.5, num_return_sequences=1, eos_token_id=32021)
+      outputs = model.generate(**inputs, max_new_tokens=512, do_sample=False, top_k=50, top_p=0.5, temperature=0.5, num_return_sequences=1, eos_token_id=32021)
       ans = tokenizer.decode(outputs[0], skip_special_tokens=True)
       end = time.time()
       latency = end - start

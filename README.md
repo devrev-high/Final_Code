@@ -126,7 +126,7 @@ We adapt the Self-instruct methodology to generate our datasets, which utilizes 
 
 Any open-sourced LLM can be fine-tuned using the `fine_Tuning.py` script provided in the src directory. The script can be used to train on both locally stored datasets, and open-sourced datasets hosted on hugging face. It is built to cover both the scenarios of training - P2 and P3, simply by changing the dataset that the model is being trained on.
 
-#### Usage:
+### Usage:
 
 Below is a template command to initiate fine-tuning, using the `fine_Tuning.py` script. 
 

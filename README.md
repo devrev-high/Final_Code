@@ -14,10 +14,12 @@ This repository contains our solution for the ‘AI Agent 007: Tooling up for su
 
 
 <br>
-We present RTaC, which reconceptualizes the task of tooling as a coding task to exploit the powerful code-comprehension capabilities of LLMs. RTaC provides tools to be used in docstring format to instruction-finetuned Coding-Base LLMs, extracts output in Python-inspired code format, and then deterministically converts it to JSON. RTaC promotes docstring reading capability in the LLMs and hence supports tool modification, addition and deletion. Using RTaC, we achieve GPT-4 benchmark performance while employing just DeepSeek 1.3B and CodeLLama 7B LLMs, despite a drastic reduction in parameter count by over 300 times. Cost reduction per query by over five times is achieved while matching GPT-4’s latency. Moreover, RTaC supports the processing of complex conditional and iterative logic (Bonus), surpassing GPT-4's capabilities.
+We present RTaC, which reconceptualizes the task of tooling as a coding task to exploit the powerful code-comprehension capabilities of LLMs. RTaC provides tools to be used in docstring format to instruction-finetuned Coding-Base LLMs, extracts output in Python code format, and then deterministically converts it to JSON. RTaC promotes docstring reading capability in the LLMs and hence supports tool modification, addition and deletion. Using RTaC, we achieve GPT-4 benchmark performance while employing just DeepSeek 1.3B and CodeLLama 7B LLMs, despite a drastic reduction in parameter count by over 300 times. Cost reduction per query by over five times is achieved while matching GPT-4’s latency. Moreover, RTaC supports the processing of complex conditional and iterative logic (Bonus), surpassing GPT-4's capabilities.
 
 <br>
+<br>
 
+**The application has been deployed for convenience and can be accessed [here](https://devrev-interiit-team13.netlify.app).**
 
 <details>
 
@@ -35,7 +37,8 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 </details>
 
-# Getting Started
+# Getting Started - Running Application Locally
+
 ## Pre-requisites
 > [!NOTE]
 > Ensure the following dependencies are installed on your system:
@@ -43,19 +46,16 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 #### Docker and Docker Compose
 
-- **Docker**: A vital tool for containerizing applications. Docker Compose, part of Docker Desktop, facilitates defining and running multi-container Docker applications.
-  - [Download Docker Desktop for Windows, Mac, or Linux](https://www.docker.com/products/docker-desktop).
+- [Download Docker Desktop for Windows, Mac, or Linux](https://www.docker.com/products/docker-desktop).
 
 
 #### Python 3.0 or Later
 
-- **Python**: A flexible programming language essential for various project components.
-  - [Download the latest version of Python](https://www.python.org/downloads/).
+- [Download the latest version of Python](https://www.python.org/downloads/).
 
 #### Node Package Manager (npm)
 
-- **npm**: The world's largest software registry, crucial for managing project dependencies.
-  - npm is included with Node.js. [Install Node.js and npm](https://nodejs.org/).
+-  [Install Node.js and npm](https://nodejs.org/).
 
 
 ## Quick start
@@ -63,7 +63,8 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/devrev-high/devrev-website-frontend
+   git clone https://github.com/devrev-high/Final_Code
+   cd ./website/frontend
    ```
 2. **Install Frontend Dependencies**
    ```bash
@@ -79,23 +80,27 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 ### Using Docker
 
-> [!NOTE]
-> Ensure you're in the project's root directory before proceeding.
-
-1. **Build the Docker Image**
+1. **Navigate to backend directory**
+   ```bash
+   cd ./website/backend
+   ```
+3. **Build the Docker Image**
    ```bash
    docker-compose build
    ```
-2. **Run the Docker Image**
+4. **Run the Docker Image**
    ```bash
    docker-compose up
    ```
 
-**The application has been deployed for convenience and can be accessed [here](https://devrev-interiit.netlify.app).**
-
 <br>
 
 # Build from Scratch
+
+Change directory to RTaC by running the following command:
+```bash
+cd ./RTaC
+```
 
 ## Dependencies
 
@@ -114,9 +119,9 @@ For our experiments, all our datasets were evaluated by a human, often involving
 
 To maintain credibility and verifiability, we generate data for three different scenarios mentioned in the report:
 
-1. Evaluating Few-Shot prompting of CodeLLMs (referred to as P1) (check section 4.2.1 of the report)
-2. Training and Evaluating CodeLLMs for the tool-memorisation methodology (referred to as P2) (check section 4.2.2 of the report)
-3. Training and Evaluating RTaC (our proposed final pipeline) (referred to as P3) (check section 4.2.3 of the report)
+1. Evaluating Few-Shot prompting of CodeLLMs **(referred to as P1)** (check section 4.2.1 of the report)
+2. Training and Evaluating CodeLLMs for the tool-memorisation methodology **(referred to as P2)** (check section 4.2.2 of the report)
+3. Training and Evaluating RTaC (our proposed final pipeline) **(referred to as P3)** (check section 4.2.3 of the report)
 
 We adopt the Self-instruct methodology to generate our datasets, which utilizes GPT-4 to generate queries and outputs, encompassing the tool list passed to it in the prompt. Further, we split the task of query and output generation between two distinct LLM agents to tackle the vulnerability of LLMs to hallucinations.
 
@@ -188,7 +193,7 @@ The model outputs are generated in a Python-inspired format. A Code-to-JSON conv
 
 For a more detailed explanation of how the converter works, please refer to section A.1 of the report.
 
-<br>
+<be>
 
 ## Inference and Evaluation
 
@@ -196,7 +201,7 @@ Inference and Evaluation can be carried out by running the [inference_main](RTaC
 
 ### Inference
 
-The inference is independently conducted for all three scenarios: P1, P2 and P3. Each of these scenarios is evaluated on three types of test datasets: Static, Dynamic and Bonus. 
+The inference is independently conducted for all three scenarios: P1, P2 and P3. Each of these scenarios is evaluated on three types of test datasets: Static, Dynamic and Bonus. Our trained models have been uploaded on HuggingFace. The inference and evaluation notebook directly loads the models from HuggingFace.
 
 #### Usage
 - For each scenario (P1, P2, and P3), run the respective inference code blocks for Static, Dynamic, and Bonus datasets.
@@ -226,6 +231,21 @@ A sample result from our original set of experiments is shown below:
 <div align="center">
   
 
-  <h3 align="center">Figure 3: Evaluation Result</h3> </div> <br>
+  <h3 align="center">Figure 3: Evaluation Result</h3> </div> <be>
 
+<br>
 
+> [!NOTE]
+> For the sake of your convenience, our best RTaC models can be downloaded locally using the following command:
+```bash
+gdown https://drive.google.com/drive/folders/1lpJCVKcnz93K_dvhZa51hVijid-IuwNr?usp=sharing --folder
+```
+
+These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models.
+
+```bash
+model_name
+infer_model_stage_1 
+infer_model_stage_2  
+```
+Example: The value of the variable **model_name** changes from `codellama/CodeLlama-7b-Instruct-hf` to `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`

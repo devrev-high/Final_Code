@@ -37,7 +37,7 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 </details>
 
-# Getting Started
+# Getting Started - Running Application Locally
 
 ## Pre-requisites
 > [!NOTE]

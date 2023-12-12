@@ -207,8 +207,7 @@ The inference is independently conducted for all three scenarios: P1, P2 and P3.
 link here
 ```
 > [!NOTE]
-> These models can be used to run inference and evaluation by simply changing the `path-variable` to the location of the downloaded models.
-<br>
+> These models can be used to run inference and evaluation by simply changing the `path variable` to the location of the downloaded models.
 
 #### Usage
 - For each scenario (P1, P2, and P3), run the respective inference code blocks for Static, Dynamic, and Bonus datasets.

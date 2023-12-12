@@ -41,18 +41,18 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 > Ensure the following software is installed on your system:
 
 
-### Docker and Docker Compose
+#### Docker and Docker Compose
 
 - **Docker**: A vital tool for containerizing applications. Docker Compose, part of Docker Desktop, facilitates defining and running multi-container Docker applications.
   - [Download Docker Desktop for Windows, Mac, or Linux](https://www.docker.com/products/docker-desktop).
 
 
-### Python 3.0 or Later
+#### Python 3.0 or Later
 
 - **Python**: A flexible programming language essential for various project components.
   - [Download the latest version of Python](https://www.python.org/downloads/).
 
-### Node Package Manager (npm)
+#### Node Package Manager (npm)
 
 - **npm**: The world's largest software registry, crucial for managing project dependencies.
   - npm is included with Node.js. [Install Node.js and npm](https://nodejs.org/).

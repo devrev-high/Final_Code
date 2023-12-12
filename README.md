@@ -177,7 +177,7 @@ The model outputs are generated in a Python-inspired format. A Code-to-JSON conv
 
 3. The typical flow of any case involves the following calls: process_tool calls make_tool for each valid tool_name, make_tool calls update_arg_val for each valid argument name.
 
-For a more detailed explanation on how the converter works, please refer to the report.
+For a more detailed explanation on how the converter works, please refer to section A.1 of the report.
 
 <br>
 

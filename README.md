@@ -38,6 +38,7 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 </details>
 
 # Getting Started
+
 ## Pre-requisites
 > [!NOTE]
 > Ensure the following dependencies are installed on your system:
@@ -190,7 +191,7 @@ The model outputs are generated in a Python-inspired format. A Code-to-JSON conv
 
 For a more detailed explanation of how the converter works, please refer to section A.1 of the report.
 
-<br>
+<be>
 
 ## Inference and Evaluation
 
@@ -198,7 +199,16 @@ Inference and Evaluation can be carried out by running the `inference_main` note
 
 ### Inference
 
-The inference is independently conducted for all three scenarios: P1, P2 and P3. Each of these scenarios is evaluated on three types of test datasets: Static, Dynamic and Bonus. 
+The inference is independently conducted for all three scenarios: P1, P2 and P3. Each of these scenarios is evaluated on three types of test datasets: Static, Dynamic and Bonus. Our trained models have been uploaded on HuggingFace. The inference and evaluation notebook directly loads the models from HuggingFace.
+
+> [!NOTE]
+> For the sake of your convenience, our best models can be downloaded locally using the following command:
+```bash
+link here
+```
+> [!NOTE]
+> These models can be used to run inference and evaluation by simply changing the `path-variable` to the location of the downloaded models.
+<br>
 
 #### Usage
 - For each scenario (P1, P2, and P3), run the respective inference code blocks for Static, Dynamic, and Bonus datasets.

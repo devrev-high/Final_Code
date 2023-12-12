@@ -35,7 +35,6 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 - [4. Project Structure](#project-structure)
 
 </h6></details></h3>
-<br>
 
 # Getting Started
 ## Pre-requisites

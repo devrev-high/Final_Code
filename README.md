@@ -234,7 +234,7 @@ A sample result from our original set of experiments is shown below:
 <br>
 
 > [!NOTE]
-> For the sake of your convenience, our best models can be downloaded locally using the following command:
+> For the sake of your convenience, our best RTaC models can be downloaded locally using the following command:
 ```bash
 gdown https://drive.google.com/drive/folders/1lpJCVKcnz93K_dvhZa51hVijid-IuwNr?usp=sharing --folder
 ```
@@ -246,4 +246,4 @@ model_name
 infer_model_stage_1 
 infer_model_stage_2  
 ```
-Example: The value of the variable: **model_name** `codellama/CodeLlama-7b-Instruct-hf` &rarr; `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`
+Example: The value of the variable: **model_name** changes from `codellama/CodeLlama-7b-Instruct-hf` to `../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`

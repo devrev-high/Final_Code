@@ -150,11 +150,11 @@ def update_arg_val(arg_value,arg_name,tool_name,arg_index,tools,start,temp_index
     if arg_value[0] == '[':
         if arg_value[-1] != ']':
             arg_value += ']'
-        arg_value = arg_value[1:-1].strip("\"").strip("\'").split(",")
+        arg_value = arg_value[1:-1].replace("\"","").replace("\'","").split(",")
 
         arg_val_list = []
         for value in arg_value:
-            value = value.strip().strip("\"").strip("\'")
+            value = value.strip().replace("\"","").replace("\'","")
             value = update_arg_val(value,arg_name,tool_name,arg_index,tools,start,temp_index)
             arg_val_list.append(value)
 
@@ -365,7 +365,7 @@ def make_tool(tool_name,args,arg_index,tools,start,temp_index):
         if "=" in arg:
             arg_name, arg_value = arg.split("=", 1)
             arg_name = arg_name.strip()
-            arg_value = arg_value.strip().strip("\"").strip("\'")
+            arg_value = arg_value.strip().replace("\"","").replace("\'","")
 
          
 
@@ -390,7 +390,7 @@ def make_tool(tool_name,args,arg_index,tools,start,temp_index):
     if len(split_args) == len(avl_tools[tool_name]):
 
         for arg_name,arg in zip(avl_tools[tool_name],split_args):
-            arg_value = arg.strip().strip("\"").strip("\'")
+            arg_value = arg.strip().replace("\"","").replace("\'","")
 
             arg_value = update_arg_val(arg_value,arg_name,tool_name,arg_index,tools,start,temp_index)
             if not arg_value:

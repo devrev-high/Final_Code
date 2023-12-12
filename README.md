@@ -18,6 +18,7 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 <br>
 
+**The application has been deployed for convenience and can be accessed [here](https://devrev-interiit-team13.netlify.app).**
 
 <details>
 
@@ -63,7 +64,8 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/devrev-high/devrev-website-frontend
+   git clone https://github.com/devrev-high/Final_Code
+   cd ./website/frontend
    ```
 2. **Install Frontend Dependencies**
    ```bash
@@ -79,19 +81,18 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 ### Using Docker
 
-> [!NOTE]
-> Ensure you're in the project's root directory before proceeding.
-
-1. **Build the Docker Image**
+1. **Navigate to backend directory**
+   ```bash
+   cd ./website/backend
+   ```
+3. **Build the Docker Image**
    ```bash
    docker-compose build
    ```
-2. **Run the Docker Image**
+4. **Run the Docker Image**
    ```bash
    docker-compose up
    ```
-
-**The application has been deployed for convenience and can be accessed [here](https://devrev-interiit-team13.netlify.app).**
 
 <br>
 

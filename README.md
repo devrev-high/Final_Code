@@ -236,13 +236,13 @@ A sample result from our original set of experiments is shown below:
 > [!NOTE]
 > For the sake of your convenience, our best models can be downloaded locally using the following command:
 ```bash
-link here
+gdown https://drive.google.com/drive/folders/1lpJCVKcnz93K_dvhZa51hVijid-IuwNr?usp=sharing --folder
 ```
 
-These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models. Example: *codellama/CodeLlama-7b-Instruct-hf* changes to *../RTaC Models/codellama/CodeLlama-7b-Instruct-hf*
+These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models. Example: `codellama/CodeLlama-7b-Instruct-hf -> ../RTaC Models/codellama/CodeLlama-7b-Instruct-hf`
 
 ```bash
-model_name = base-model
+model_name
 infer_model_stage_1 
 infer_model_stage_2  
 ```

@@ -100,6 +100,11 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 # Build from Scratch
 
+Change directory to RTaC by running the following command:
+```bash
+cd ./RTaC
+```
+
 ## Dependencies
 
 Run the below command to install all dependencies automatically:

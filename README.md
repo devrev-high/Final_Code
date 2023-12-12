@@ -201,20 +201,6 @@ Inference and Evaluation can be carried out by running the `inference_main` note
 
 The inference is independently conducted for all three scenarios: P1, P2 and P3. Each of these scenarios is evaluated on three types of test datasets: Static, Dynamic and Bonus. Our trained models have been uploaded on HuggingFace. The inference and evaluation notebook directly loads the models from HuggingFace.
 
-> [!NOTE]
-> For the sake of your convenience, our best models can be downloaded locally using the following command:
-```bash
-link here
-```
-> [!NOTE]
-> These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models.
-```bash
-model_name = base-model
-infer_model_stage_1 
-infer_model_stage_2  
-
-```
-
 #### Usage
 - For each scenario (P1, P2, and P3), run the respective inference code blocks for Static, Dynamic, and Bonus datasets.
 - The outputs are saved in separate CSV files for each dataset type.
@@ -243,6 +229,19 @@ A sample result from our original set of experiments is shown below:
 <div align="center">
   
 
-  <h3 align="center">Figure 3: Evaluation Result</h3> </div> <br>
+  <h3 align="center">Figure 3: Evaluation Result</h3> </div> <be>
 
+<br>
+> [!NOTE]
+> For the sake of your convenience, our best models can be downloaded locally using the following command:
+```bash
+link here
+```
 
+These models can be used to run inference and evaluation by simply changing the values of the following variables to the location of the downloaded models. Example: *codellama/CodeLlama-7b-Instruct-hf* changes to *../RTaC Models/codellama/CodeLlama-7b-Instruct-hf*
+
+```bash
+model_name = base-model
+infer_model_stage_1 
+infer_model_stage_2  
+```

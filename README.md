@@ -91,7 +91,7 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
    docker-compose up
    ```
 
-**The application has been deployed for convenience and can be accessed [here](https://devrev-interiit.netlify.app).**
+**The application has been deployed for convenience and can be accessed [here](https://devrev-interiit-team13.netlify.app).**
 
 <br>
 

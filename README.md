@@ -1,4 +1,4 @@
-# **DevRev High Prep : Reimagining Tooling as Coding(RTaC)**
+# **DevRev High Prep: Reimagining Tooling as Coding(RTaC)**
 
 This repository contains our solution for the ‘AI Agent 007: Tooling up for success’ problem statement, provided by DevRev as a part of Inter-IIT Tech 12.0.
 
@@ -14,7 +14,7 @@ This repository contains our solution for the ‘AI Agent 007: Tooling up for su
 
 
 <br>
-We present RTaC, which reconceptualizes the task of tooling as a coding task to exploit the powerful code-comprehension capabilities of LLMs. RTaC provides tools to be used in docstring format to instruction-finetuned Coding-Base LLMs, extracts output in Python-inspired code format and then deterministically converts it to JSON. RTaC promotes docstring reading capability in the LLMs, and hence supports tool modification, addition and deletion. Using RTaC, we achieve GPT-4 benchmark performance while employing just DeepSeek 1.3B and CodeLLama 7B LLMs, despite a drastic reduction in parameter count by over 300 times. Cost reduction per query by over 5 times is achieved while matching GPT-4’s latency. Moreover, RTaC supports the processing of complex conditional and iterative logic (Bonus), surpassing GPT-4's capabilities.
+We present RTaC, which reconceptualizes the task of tooling as a coding task to exploit the powerful code-comprehension capabilities of LLMs. RTaC provides tools to be used in docstring format to instruction-finetuned Coding-Base LLMs, extracts output in Python-inspired code format, and then deterministically converts it to JSON. RTaC promotes docstring reading capability in the LLMs and hence supports tool modification, addition and deletion. Using RTaC, we achieve GPT-4 benchmark performance while employing just DeepSeek 1.3B and CodeLLama 7B LLMs, despite a drastic reduction in parameter count by over 300 times. Cost reduction per query by over five times is achieved while matching GPT-4’s latency. Moreover, RTaC supports the processing of complex conditional and iterative logic (Bonus), surpassing GPT-4's capabilities.
 
 <br>
 
@@ -38,7 +38,7 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 # Getting Started
 ## Pre-requisites
 > [!NOTE]
-> Ensure the following software is installed on your system:
+> Ensure the following dependencies are installed on your system:
 
 
 #### Docker and Docker Compose
@@ -91,7 +91,7 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
    docker-compose up
    ```
 
-**The application has been deployed for convenience, and can be accessed at [xyz.com](http://xyz.com).**
+**The application has been deployed for convenience and can be accessed [here](https://devrev-interiit.netlify.app).**
 
 <br>
 
@@ -106,29 +106,29 @@ conda env create -f environment_droplet.yml
 
 
 ## Dataset Generation
-The dataset can be generated from scratch by running the `dataset_main` notebook in the `notebooks` folder. The notebook creates a `generated` directory within the `datasets` folder, and saves the generated datasets in the required format in that directory. The exact method and prompt formations have been outlined in detail in the notebook itself. 
+The dataset can be generated from scratch by running the `dataset_main` notebook in the `notebooks` folder. The notebook creates a `generated` directory within the `datasets` folder and saves the generated datasets in the required format in that directory. The exact method and prompt formations have been outlined in detail in the notebook itself. 
 
-For our experiments, all our datasets were evaluated by a human, often involving corrections due to errors incurred during the generation stage. Further, for testing models in a setting where tools are modified, the dataset was hand-crafted. We have provided the pre-generated datasets in the `datasets/pre-generated` folder, including the test dataset for tool modification cases. The data generation scripts exist merely for verification purposes, and we strongly encourage training models on the pre-generated dataset.
+For our experiments, all our datasets were evaluated by a human, often involving corrections due to errors incurred during the generation stage. We have provided the pre-generated datasets in the `datasets/pre-generated` folder. We strongly encourage training models on the pre-generated dataset.
 
 #### Data Generation Process:
 
 To maintain credibility and verifiability, we generate data for three different scenarios mentioned in the report:
 
-1. Evaluating Few-Shot prompting of CodeLLMs
-2. Training and Evaluating CodeLLMs for the tool-memorisation methodology
-3. Training and Evaluating RTaC (our proposed final pipeline)
+1. Evaluating Few-Shot prompting of CodeLLMs (referred to as P1) (check section 4.2.1 of the report)
+2. Training and Evaluating CodeLLMs for the tool-memorisation methodology (referred to as P2) (check section 4.2.2 of the report)
+3. Training and Evaluating RTaC (our proposed final pipeline) (referred to as P3) (check section 4.2.3 of the report)
 
-We adapt the Self-instruct methodology to generate our datasets, which utilizes GPT-4 to generate queries and outputs, encompassing the tool list passed to it in the prompt. Further, we split the task of query and output generation between two distinct LLM agents, to tackle the vulnerability of LLMs to hallucinations.
+We adopt the Self-instruct methodology to generate our datasets, which utilizes GPT-4 to generate queries and outputs, encompassing the tool list passed to it in the prompt. Further, we split the task of query and output generation between two distinct LLM agents to tackle the vulnerability of LLMs to hallucinations.
 
 ## Fine Tuning
 
 ### Description
 
-Any open-sourced LLM can be fine-tuned using the `fine_Tuning.py` script provided in the src directory. The script can be used to train on both locally stored datasets, and open-sourced datasets hosted on hugging face. It is built to cover both the scenarios of training - P2 and P3, simply by changing the dataset that the model is being trained on.
+Any open-sourced LLM can be fine-tuned using the `fine_Tuning.py` script provided in the src directory. The script can be used to train on both locally stored datasets and open-sourced datasets hosted on Hugging Face. It is built to cover both the scenarios of training - P2 and P3, simply by changing the dataset that the model is being trained on.
 
 ### Usage:
 
-Below is a template command to initiate fine-tuning, using the `fine_Tuning.py` script. 
+Below is a template command to initiate fine-tuning using the `fine_Tuning.py` script. 
 
 ```bash
 python finetuning.py –repo_dir <finetuning_mode> --dataset <dataset_name> --model <model_name> –n <num_epochs> –lora_alpha <lora_alpha_value> –lora_dropout <lora_dropout_value> –lora_r <lora_r_value> –learning_rate <rate_of_learning>
@@ -136,7 +136,16 @@ python finetuning.py –repo_dir <finetuning_mode> --dataset <dataset_name> --mo
 
 To train under the P2 (tool-memorization) scenario, run the following command:
 
+```bash
+python executables/fine_Tuning.py --pipeline 2 --repo_dir 2 --dataset_1 datasets/Pre-Generated/P2_datasets/train_val --base_model codellama/CodeLlama-7b-Instruct-hf
+```
+
 To train under the P3 (RTaC) scenario, run the following command:
+
+```bash
+python executables/fine_Tuning.py --pipeline 3 --repo_dir 2 --dataset_1 datasets/Pre-Generated/P3_datasets/train_val/Stage-1 --dataset_2 datasets/Pre-Generated/P3_datasets/train_val/Stage-2 --base_model codellama/CodeLlama-7b-Instruct-hf
+
+```
 
 For a detailed explanation of each argument, refer to the subsequent table:
 
@@ -165,24 +174,25 @@ python fine_Tuning.py –repo_dir <finetuning_mode> --dataset <dataset_name> --m
 <div align="center">
   
 
-  <h3 align="center">Figure 2: Code to JSON Converter</h3> </div>
+  <h3 align="center">Figure 2: Code-to-JSON Converter</h3> </div>
 
   <br>
-The model outputs are generated in a Python inspired format. We use this Code to JSON converter to convert the python code to the desireable JSON format.
-
+The model outputs are generated in a Python-inspired format. A Code-to-JSON converter was built to convert the Python outputs to the desirable JSON format. The working of the converter has been briefly explained below:
 <br>
 
-1. To convert the model’s generated code to the required json format we use a python script. This file is modelled as a compiler type script, and is a key component of our pipeline.
+1. To convert the model’s generated code to the required JSON format, we use a Python script. This file is modelled as a compiler-type script and is a key component of our pipeline.
 
-2. Each line is individually classified into either a bonus (if/for) case or the general case. The bonus cases go through their respective handlers and are then treated like the general case.
+2. Each line is individually classified into either a bonus (if/for) case or a general case. The bonus cases go through their respective handlers and are then treated like the general case.
 
-3. The typical flow of any case involves the following calls: process_tool calls make_tool for each valid tool_name, make_tool calls update_arg_val for each valid argument name. For a more detailed explanation on how the converter works, please refer to the report.
+3. The typical flow of any case involves the following calls: `process_tool` calls `make_tool` for each valid `tool_name`, `make_tool` calls `update_arg_val` for each valid argument name.
+
+For a more detailed explanation of how the converter works, please refer to section A.1 of the report.
 
 <br>
 
 ## Inference and Evaluation
 
-Inference and Evaluation can be carried out by running the `inference_main` notebook in the `notebooks` folder. This notebook creates an `output` directory, and stores the generated outputs as csv files.
+Inference and Evaluation can be carried out by running the `inference_main` notebook in the `notebooks` folder. This notebook creates an `output` directory and stores the generated outputs as CSV files.
 
 ### Inference
 
@@ -195,7 +205,7 @@ The inference is independently conducted for all three scenarios: P1, P2 and P3.
 ### Evaluation
 
 #### Description
-This section evaluates the performance of each pipeline on the three test datasets. Evaluation is done using the follwing metrics:
+This section evaluates the performance of each pipeline on the three test datasets. Evaluation is done using the following metrics:
 
 - Precision
 - Recall

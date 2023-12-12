@@ -160,7 +160,7 @@ For a detailed explanation of each argument, refer to the subsequent table:
 | `--repo_dir`       | Enter 1 for hf repo, 2 for local dir                    | int     | 2                                                 |
 | `--dataset_1`      | Name of stage 1 dataset to finetune                     | str     | "datasets/Pre-Generated/P3_datasets/train_val/Stage-1" |
 | `--dataset_2`      | Name of stage 2 dataset to finetune                     | str     | "datasets/Pre-Generated/P3_datasets/train_val/Stage-2" |
-| `--base_model`     | Name of base model to finetune                          | str     | "codellama/CodeLlama-7b-Instruct-hf"               |
+| `--base_model`     | Name of base model to finetune                          | str     | "RtaC-Models/codellama/CodeLlama-7b-Instruct-hf"               |
 | `--n_1`            | Number of stage 1 epochs                                | int     | 5                                                 |
 | `--n_2`            | Number of stage 2 epochs                                | int     | 5                                                 |
 | `--lora_alpha_1`   | Alpha parameter value for stage 1 LoRA                  | int     | 16                                                |

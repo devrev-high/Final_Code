@@ -98,6 +98,7 @@ We present RTaC, which reconceptualizes the task of tooling as a coding task to 
 
 ## Dependencies
 >Run the below command to install all dependencies automatically:
+```conda env create -f environment.yml```
 
 
 ## Dataset Generation

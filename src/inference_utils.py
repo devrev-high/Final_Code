@@ -103,10 +103,10 @@ class P3_inferencing():
 
       model = PeftModel.from_pretrained(model, infer_model_1, device_map='auto')
       with torch.no_grad():
-          model.resize_token_embeddings(len(tokenizer))
-      model.config.pad_token_id = tokenizer.pad_token_id
-      model.config.bos_token_id = tokenizer.bos_token_id
-      model.config.eos_token_id = tokenizer.eos_token_id
+          model.resize_token_embeddings(len(self.tokenizer))
+      model.config.pad_token_id = self.tokenizer.pad_token_id
+      model.config.bos_token_id = self.tokenizer.bos_token_id
+      model.config.eos_token_id = self.tokenizer.eos_token_id
       
       self.model = PeftModel.from_pretrained(model, infer_model_2, device_map='auto')
 

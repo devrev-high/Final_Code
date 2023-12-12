@@ -4,7 +4,7 @@ This repository contains our solution for the ‘AI Agent 007: Tooling up for su
 
 <br>
 <p align="center">
-  <img src="RTaC.png" />
+  <img src="images/RTaC.png" />
 </p>
 
 <div align="center">
@@ -159,7 +159,7 @@ python fine_Tuning.py –repo_dir <finetuning_mode> --dataset <dataset_name> --m
 ## JSON Converter
 <br>
 <p align="center">
-  <img src="JSONConverter.png" />
+  <img src="images/JSONConverter.png" />
 </p>
 
 <div align="center">
@@ -210,7 +210,7 @@ A sample result from our original set of experiments is shown below:
 
 <br>
 <p align="center">
-  <img src="EvalResult.png" />
+  <img src="images/EvalResult.png" />
 </p>
 
 <div align="center">

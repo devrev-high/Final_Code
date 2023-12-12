@@ -180,11 +180,11 @@ python fine_Tuning.py –repo_dir <finetuning_mode> --dataset <dataset_name> --m
 The model outputs are generated in a Python-inspired format. A Code-to-JSON converter was built to convert the Python outputs to the desirable JSON format. The working of the converter has been briefly explained below:
 <br>
 
-1. To convert the model’s generated code to the required JSON format we use a Python script. This file is modelled as a compiler-type script, and is a key component of our pipeline.
+1. To convert the model’s generated code to the required JSON format, we use a Python script. This file is modelled as a compiler-type script and is a key component of our pipeline.
 
-2. Each line is individually classified into either a bonus (if/for) case or the general case. The bonus cases go through their respective handlers and are then treated like the general case.
+2. Each line is individually classified into either a bonus (if/for) case or a general case. The bonus cases go through their respective handlers and are then treated like the general case.
 
-3. The typical flow of any case involves the following calls: process_tool calls make_tool for each valid tool_name, make_tool calls update_arg_val for each valid argument name.
+3. The typical flow of any case involves the following calls: process_tool calls make_tool for each valid **tool_name**, **make_tool** calls **update_arg_val** for each valid argument name.
 
 For a more detailed explanation of how the converter works, please refer to section A.1 of the report.
 

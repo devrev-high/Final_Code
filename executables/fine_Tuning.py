@@ -249,7 +249,7 @@ if '__name__' == '__main__':
     parser.add_argument("--repo_dir", type=int, default=2, help="Enter 1 for hf repo, 2 for local dir")
     parser.add_argument("--dataset_1", type=str, default="datasets/Pre-Generated/P3_datasets/train_val/Stage-1", help="Name of stage 1 dataset to finetune")
     parser.add_argument("--dataset_2", type=str, default="datasets/Pre-Generated/P3_datasets/train_val/Stage-2", help="Name of stage 2 dataset to finetune")
-    parser.add_argument("--base_model", type=str, default="codellama/CodeLlama-7b-Instruct-hf", help="Name of base model to finetune")
+    parser.add_argument("--base_model", type=str, default="RTaC-Models/codellama/CodeLlama-7b-Instruct-hf", help="Name of base model to finetune")
     parser.add_argument("--n_1", type=int, default=5, help="Number of stage 1 epochs")
     parser.add_argument("--n_2", type=int, default=5, help="Number of stage 2 epochs")
     parser.add_argument("--lora_alpha_1", type=int, default=16, help="Alpha parameter value for stage 1 LoRA")

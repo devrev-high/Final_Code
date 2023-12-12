@@ -172,12 +172,6 @@ For a detailed explanation of each argument, refer to the subsequent table:
 | `--learning_rate_1`| Value of learning rate for stage 1                      | float   | 2e-4                                              |
 | `--learning_rate_2`| Value of learning rate for stage 2                      | float   | 2e-4                                              |
 
-
-```bash
-
-python fine_Tuning.py –repo_dir <finetuning_mode> --dataset <dataset_name> --model <model_name> –n <num_epochs> –lora_alpha <lora_alpha_value> –lora_dropout <lora_dropout_value> –lora_r <lora_r_value> –learning_rate <rate_of_learning>
-```
-
 ## JSON Converter
 <br>
 <p align="center">
